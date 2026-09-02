@@ -181,16 +181,13 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
 .iv-row .rn{font-family:var(--mono);font-size:11px;color:var(--terra);letter-spacing:.1em}
 .iv-row .rt{font-family:var(--serif);font-size:clamp(20px,2.4vw,30px);font-weight:400;line-height:1.1;grid-column:2}
 .iv-row[aria-current="true"] .rt{font-style:italic}
-.iv-row .rmeta{grid-column:2;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);
-  max-height:0;overflow:hidden;opacity:0;transition:max-height .4s var(--ease),opacity .3s var(--ease),margin .4s var(--ease)}
-.iv-row[aria-current="true"] .rmeta{max-height:60px;opacity:1;margin-top:10px}
 .iv-row .rx{align-self:center;font-family:var(--mono);font-size:16px;color:var(--hair);transition:color .3s,transform .3s}
 .iv-row:hover .rx,.iv-row[aria-current="true"] .rx{color:var(--terra);transform:translateX(3px)}
 .iv-figure{position:relative;position:sticky;top:calc(var(--nav) + 24px)}
 .iv-figure .stage{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:var(--bone-2)}
 .iv-figure .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .7s var(--ease),transform 1.2s var(--ease)}
 .iv-figure .stage img.on{opacity:1;transform:scale(1)}
-.iv-cap{display:flex;justify-content:space-between;gap:16px;margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.iv-cap{margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .iv-cap b{color:var(--ink);font-weight:500}
 
 /* ---------- pacchetti (accordion) ---------- */
@@ -482,40 +479,35 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
     <div class="iv-grid">
       <div class="iv-list reveal" id="ivList" role="tablist">
         <button class="iv-row" role="tab" aria-current="true" data-img="finito-cucina.jpg"
-          data-cap-it="Cucina su misura" data-cap-en="Bespoke kitchen" data-loc="Roma · Prati">
+          data-cap-it="Cucina su misura" data-cap-en="Bespoke kitchen">
           <span class="rn">01</span><span class="rt" data-lang="it">Cucina su misura</span><span class="rt" data-lang="en">Bespoke kitchen</span>
-          <span class="rmeta" data-lang="it">Prati · 18 m² · 22 giorni · Pacchetto T0</span><span class="rmeta" data-lang="en">Prati · 18 m² · 22 days · Package T0</span>
           <span class="rx">→</span>
         </button>
         <button class="iv-row" role="tab" aria-current="false" data-img="finito-bagno.jpg"
-          data-cap-it="Bagno in marmo" data-cap-en="Marble bathroom" data-loc="Roma · Parioli">
+          data-cap-it="Bagno in marmo" data-cap-en="Marble bathroom">
           <span class="rn">02</span><span class="rt" data-lang="it">Bagno in marmo</span><span class="rt" data-lang="en">Marble bathroom</span>
-          <span class="rmeta" data-lang="it">Parioli · 9 m² · 18 giorni · Pacchetto T0</span><span class="rmeta" data-lang="en">Parioli · 9 m² · 18 days · Package T0</span>
           <span class="rx">→</span>
         </button>
         <button class="iv-row" role="tab" aria-current="false" data-img="slide-3.jpg"
-          data-cap-it="Scala e ingresso" data-cap-en="Stair &amp; entrance" data-loc="Roma · Centro">
+          data-cap-it="Scala e ingresso" data-cap-en="Stair &amp; entrance">
           <span class="rn">03</span><span class="rt" data-lang="it">Scala e ingresso</span><span class="rt" data-lang="en">Stair &amp; entrance</span>
-          <span class="rmeta" data-lang="it">Centro · 40 m² · 35 giorni · Pacchetto T2</span><span class="rmeta" data-lang="en">Centro · 40 m² · 35 days · Package T2</span>
           <span class="rx">→</span>
         </button>
         <button class="iv-row" role="tab" aria-current="false" data-img="aerea-villa.jpg"
-          data-cap-it="Villa unifamiliare" data-cap-en="Detached villa" data-loc="Roma Nord">
+          data-cap-it="Villa unifamiliare" data-cap-en="Detached villa">
           <span class="rn">04</span><span class="rt" data-lang="it">Villa unifamiliare</span><span class="rt" data-lang="en">Detached villa</span>
-          <span class="rmeta" data-lang="it">Roma Nord · 320 m² · 210 giorni · Pacchetto T4</span><span class="rmeta" data-lang="en">Roma Nord · 320 m² · 210 days · Package T4</span>
           <span class="rx">→</span>
         </button>
       </div>
       <figure class="iv-figure reveal">
         <div class="stage" id="ivStage">
-          <img src="assets/finito-cucina.jpg" alt="Cucina su misura, Roma" class="on">
-          <img src="assets/finito-bagno.jpg" alt="Bagno in marmo, Roma">
-          <img src="assets/slide-3.jpg" alt="Scala e ingresso, Roma">
-          <img src="assets/aerea-villa.jpg" alt="Villa unifamiliare, Roma Nord">
+          <img src="assets/finito-cucina.jpg" alt="Cucina su misura" class="on">
+          <img src="assets/finito-bagno.jpg" alt="Bagno in marmo">
+          <img src="assets/slide-3.jpg" alt="Scala e ingresso">
+          <img src="assets/aerea-villa.jpg" alt="Villa unifamiliare">
         </div>
         <figcaption class="iv-cap">
           <span id="ivCap">01 · <b data-lang="it">Cucina su misura</b><b data-lang="en">Bespoke kitchen</b></span>
-          <span id="ivLoc">Roma · Prati</span>
         </figcaption>
       </figure>
     </div>
@@ -1003,13 +995,12 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
   }
 
   /* interventi switcher */
-  var rows = $$('#ivList .iv-row'), stImgs = $$('#ivStage img'), ivCap = $('#ivCap'), ivLoc = $('#ivLoc');
+  var rows = $$('#ivList .iv-row'), stImgs = $$('#ivStage img'), ivCap = $('#ivCap');
   function pickRow(i){
     rows.forEach(function(r, k){ r.setAttribute('aria-current', k === i ? 'true' : 'false'); });
     stImgs.forEach(function(im, k){ im.classList.toggle('on', k === i); });
     var r = rows[i], lang = document.body.getAttribute('data-lang');
     ivCap.innerHTML = r.querySelector('.rn').textContent + ' · <b>' + (lang === 'en' ? r.dataset.capEn : r.dataset.capIt) + '</b>';
-    ivLoc.textContent = r.dataset.loc;
   }
   rows.forEach(function(r, i){
     r.addEventListener('click', function(){ pickRow(i); });
