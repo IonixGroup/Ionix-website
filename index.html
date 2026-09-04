@@ -6,9 +6,49 @@
 <title>Ionix Group · Ristrutturazioni a Roma</title>
 <meta name="description" content="Ionix Group · studio di ristrutturazioni, azienda di famiglia a Roma dal 2004. Prezzo fisso, tempi garantiti per contratto, trasparenza totale. Sopralluogo gratuito.">
 <meta name="theme-color" content="#1A1815">
+<!-- SITO NON ANCORA PUBBLICO: togliere la riga qui sotto (e il Disallow in robots.txt) quando si vuole comparire su Google -->
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:site_name" content="Ionix Group">
 <meta property="og:title" content="Ionix Group · Ristrutturazioni a Roma">
-<meta property="og:description" content="Azienda di famiglia dal 2004. Prezzo fisso, tempi garantiti, un metodo moderno.">
+<meta property="og:description" content="Azienda di famiglia dal 2004. Prezzo fisso, tempi garantiti per contratto, un metodo moderno. Sopralluogo gratuito a Roma e in tutta Italia.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://ionixgroup.github.io/Ionix-website/">
+<meta property="og:image" content="https://ionixgroup.github.io/Ionix-website/assets/slide-1.jpg">
+<meta property="og:image:alt" content="Roma dall'alto — Ionix Group">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ionix Group · Ristrutturazioni a Roma">
+<meta name="twitter:description" content="Azienda di famiglia dal 2004. Prezzo fisso, tempi garantiti, un metodo moderno.">
+<meta name="twitter:image" content="https://ionixgroup.github.io/Ionix-website/assets/slide-1.jpg">
+<link rel="canonical" href="https://ionixgroup.github.io/Ionix-website/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "name": "Ionix Group",
+  "description": "Studio di ristrutturazioni residenziali, azienda di famiglia. Prezzo fisso, tempi garantiti per contratto.",
+  "url": "https://ionixgroup.github.io/Ionix-website/",
+  "telephone": "+393287787671",
+  "email": "info@ionixgroup.it",
+  "vatID": "IT17517281006",
+  "founder": { "@type": "Person", "name": "Adrian Vasile Ionita" },
+  "foundingDate": "2004",
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Via Claudio Carcagni 39",
+    "postalCode": "00188",
+    "addressLocality": "Roma",
+    "addressRegion": "RM",
+    "addressCountry": "IT"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Roma" },
+    { "@type": "Country", "name": "Italia" }
+  ],
+  "knowsLanguage": ["it", "en"]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -74,8 +114,9 @@ h3.display{font-size:clamp(22px,2.8vw,34px);line-height:1.1;font-weight:400}
 .sec-head .kicker{display:flex;align-items:center;gap:12px}
 .sec-head .kicker::before{content:'';width:34px;height:1px;background:var(--terra)}
 
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.reveal.in{opacity:1;transform:none}
+.reveal{opacity:0;transition:opacity 1.1s var(--ease)}
+.reveal.in{opacity:1}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1}}
 
 /* ---------- progress + nav ---------- */
 .progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:120;transform:scaleX(0);transform-origin:0 50%;background:var(--terra)}
@@ -129,7 +170,6 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
 .hero-media .frame{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 2s var(--ease);will-change:transform}
 .hero-media .frame.on{opacity:1}
 .hero-media .f1{background-image:url('assets/slide-1.jpg')}
-.hero-media .f2{background-image:url('assets/finito-cucina.jpg')}
 .hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,18,15,.5) 0%,rgba(20,18,15,.22) 30%,rgba(20,18,15,.55) 66%,rgba(20,18,15,.86) 100%)}
 .hero-inner{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;width:100%;color:var(--white)}
 .hero-meta{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(252,250,246,.9);margin-bottom:26px;text-shadow:0 1px 14px rgba(20,18,15,.7)}
@@ -145,17 +185,14 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
   background:var(--terra);color:var(--white);padding:17px 28px;transition:background .3s var(--ease)}
 .hero-cta:hover{background:var(--white);color:var(--ink)}
 .hero-cta svg{width:15px;height:15px}
-.hero-dots{position:absolute;right:var(--pad);bottom:clamp(32px,6vh,64px);z-index:2;display:flex;gap:8px}
-.hero-dots button{width:22px;height:2px;background:rgba(252,250,246,.3);border:0;padding:0;cursor:pointer;transition:background .3s}
-.hero-dots button.on{background:var(--white)}
 
 /* ---------- index strip ---------- */
 .strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-.strip div{padding:clamp(26px,4vw,44px) var(--pad);border-right:1px solid var(--hair)}
-.strip div:last-child{border-right:0}
-.strip .num{font-family:var(--serif);font-size:clamp(34px,4vw,52px);font-weight:400;line-height:1}
-.strip .num i{font-style:normal;color:var(--terra);font-size:.5em;margin-left:2px}
-.strip .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:14px;max-width:22ch}
+.strip div{padding:clamp(30px,5vw,56px) var(--pad)}
+.strip div + div{border-left:1px solid var(--hair-soft)}
+.strip .num{font-family:var(--serif);font-size:clamp(38px,4.6vw,60px);font-weight:400;line-height:1}
+.strip .num i{font-style:normal;color:var(--terra);font-size:.42em;margin-left:3px;vertical-align:.35em}
+.strip .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:16px;max-width:22ch}
 
 /* ---------- manifesto ---------- */
 .manifesto{background:var(--bone-2)}
@@ -220,16 +257,16 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
 .btn-line:hover{background:var(--ink);color:var(--bone)}
 
 /* ---------- metodo ---------- */
-.metodo{background:var(--ink);color:var(--bone)}
+.metodo{background:var(--ink);color:var(--bone);padding-block:clamp(96px,17vh,210px)}
 .metodo .kicker{color:#9a9184}
 .metodo .kicker .n{color:#E6C7B4}
 .metodo .sec-head .kicker::before{background:#E6C7B4}
 .metodo h2.display{color:var(--white)}
-.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(252,250,246,.12);border:1px solid rgba(252,250,246,.12)}
-.method-grid article{background:var(--ink);padding:clamp(28px,3.5vw,44px)}
-.method-grid .mn{font-family:var(--serif);font-size:34px;font-weight:400;color:rgba(230,199,180,.45)}
-.method-grid h4{font-size:16px;font-weight:500;color:var(--white);margin:16px 0 10px}
-.method-grid p{font-size:14px;color:#9a9184;line-height:1.7}
+.method-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(40px,7vw,96px);row-gap:clamp(32px,5vw,58px)}
+.method-grid article{padding:26px 0 0;border-top:1px solid rgba(252,250,246,.16)}
+.method-grid .mn{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:#E6C7B4}
+.method-grid h4{font-family:var(--serif);font-size:clamp(19px,2vw,24px);font-weight:400;color:var(--white);margin:14px 0 10px}
+.method-grid p{font-size:14.5px;color:#9a9184;line-height:1.7;max-width:38ch}
 
 /* ---------- calcolatori ---------- */
 .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair);border:1px solid var(--hair)}
@@ -300,7 +337,19 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border:0;border-radiu
 .collab-list .cx{font-family:var(--mono);font-size:18px;color:var(--hair);transition:color .3s,transform .3s}
 .collab-list a:hover .cx{color:var(--terra);transform:translateX(4px)}
 
-/* ---------- recensioni ---------- */
+/* ---------- faq ---------- */
+.faq-list{border-top:1px solid var(--ink)}
+.faq-list details{border-bottom:1px solid var(--hair)}
+.faq-list summary{list-style:none;cursor:pointer;padding:26px 40px 26px 4px;position:relative;
+  font-family:var(--serif);font-size:clamp(17px,2vw,23px);font-weight:400;color:var(--ink);transition:padding .3s var(--ease)}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:'';position:absolute;right:6px;top:50%;width:12px;height:12px;
+  background:linear-gradient(var(--terra),var(--terra)) center/12px 1.5px no-repeat,linear-gradient(var(--terra),var(--terra)) center/1.5px 12px no-repeat;
+  transform:translateY(-50%);transition:transform .3s var(--ease)}
+.faq-list details[open] summary::after{transform:translateY(-50%) rotate(45deg);background:linear-gradient(var(--terra),var(--terra)) center/12px 1.5px no-repeat}
+.faq-list summary:hover{padding-left:12px}
+.faq-a{padding:0 40px 26px 4px}
+.faq-a p{font-size:14.5px;line-height:1.75;color:var(--ink-2);max-width:64ch}
 
 /* ---------- contatti ---------- */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair);border:1px solid var(--hair)}
@@ -337,6 +386,20 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
 .fcol a:hover{color:var(--bone)}
 .foot-bot{max-width:var(--maxw);margin:0 auto;padding-top:28px;border-top:1px solid rgba(252,250,246,.1);display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:#5f574c}
 
+/* ---------- sticky mobile CTA ---------- */
+.m-cta{display:none}
+@media(max-width:760px){
+  .m-cta{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:90;
+    background:var(--bone);border-top:1px solid var(--hair);padding-bottom:env(safe-area-inset-bottom)}
+  .m-cta a{display:flex;align-items:center;justify-content:center;gap:9px;padding:16px 8px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+  .m-cta a.wa{background:#1f7a4d;color:#fff}
+  .m-cta a.qt{background:var(--ink);color:var(--bone)}
+  .m-cta svg{width:15px;height:15px}
+  body{padding-bottom:56px}
+  .m-menu.open ~ .m-cta{display:none}
+}
+
 /* ---------- responsive ---------- */
 @media(max-width:1080px){
   .mani-grid,.iv-grid,.pkg-inner,.calc-grid,.contact-grid{grid-template-columns:1fr}
@@ -348,7 +411,8 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
   .nav-links,.nav-right .nav-cta{display:none}
   .burger{display:flex}
   .strip,.method-grid,.care-grid{grid-template-columns:1fr}
-  .strip div,.method-grid article{border-right:0;border-bottom:1px solid var(--hair)}
+  .strip div + div{border-left:0;border-top:1px solid var(--hair)}
+  .method-grid article{border-right:0;border-bottom:1px solid var(--hair)}
   .pkg-head{grid-template-columns:48px 1fr 30px;gap:14px}
   .pkg-metatop{display:none}
   .pkg-head .pkg-metatop{grid-column:1/-1}
@@ -359,6 +423,20 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
   *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* ---------- hero 3D intro ---------- */
+.hero-canvas{position:absolute;inset:0;z-index:3;width:100%;height:100%;display:block;
+  opacity:0;transition:opacity 1s var(--ease);pointer-events:none}
+.hero-canvas.on{opacity:1}
+.hero-canvas.done{opacity:0}
+.hero-inner{transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.hero.intro .hero-inner{opacity:0;transform:translateY(18px)}
+.hero-skip{position:absolute;right:var(--pad);bottom:clamp(28px,5vh,54px);z-index:5;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(252,250,246,.7);
+  background:none;border:1px solid rgba(252,250,246,.28);padding:9px 15px;cursor:pointer;transition:all .25s;opacity:0;pointer-events:none}
+.hero.intro .hero-skip{opacity:1;pointer-events:auto}
+.hero-skip:hover{color:#fff;border-color:#fff}
+body.intro-playing .m-cta{opacity:0;pointer-events:none;transition:opacity .4s}
 </style>
 </head>
 <body data-lang="it">
@@ -374,6 +452,7 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
     <a href="#metodo" data-lang="it">Metodo</a><a href="#metodo" data-lang="en">Method</a>
     <a href="#rate" data-lang="it">Rate &amp; Bonus</a><a href="#rate" data-lang="en">Finance</a>
     <a href="#care" class="nav-link">Care</a>
+    <a href="#faq" class="nav-link">FAQ</a>
   </div>
   <div class="nav-right">
     <div class="lang" role="group" aria-label="Lingua / Language">
@@ -391,16 +470,18 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
   <a href="#metodo" data-lang="it">Il <em>Metodo</em></a><a href="#metodo" data-lang="en">The <em>Method</em></a>
   <a href="#rate" data-lang="it">Rate &amp; <em>Bonus</em></a><a href="#rate" data-lang="en">Finance &amp; <em>Bonus</em></a>
   <a href="#care">Ionix <em>Care</em></a>
+  <a href="#faq" data-lang="it">Domande <em>frequenti</em></a><a href="#faq" data-lang="en">Frequent <em>questions</em></a>
   <a href="#contatti" data-lang="it">Chiedi un <em>Preventivo</em></a><a href="#contatti" data-lang="en">Get a <em>Quote</em></a>
 </div>
 
 <!-- HERO -->
 <header class="hero" id="top">
+  <canvas class="hero-canvas" id="heroC" aria-hidden="true"></canvas>
   <div class="hero-media" id="heroMedia">
     <div class="frame f1 on"></div>
-    <div class="frame f2"></div>
   </div>
   <div class="hero-scrim"></div>
+  <button class="hero-skip" id="heroSkip" type="button"><span data-lang="it">Salta intro &rarr;</span><span data-lang="en">Skip intro &rarr;</span></button>
   <div class="hero-inner">
     <div class="hero-meta">
       <span data-lang="it">Roma</span><span data-lang="en">Rome</span>
@@ -417,10 +498,6 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
       <a href="#contatti" class="hero-cta" data-lang="en">Free site visit
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
-  </div>
-  <div class="hero-dots" id="heroDots">
-    <button class="on" data-f="0" aria-label="1"></button>
-    <button data-f="1" aria-label="2"></button>
   </div>
 </header>
 
@@ -453,9 +530,8 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
         <p class="body-copy" data-lang="it">Da qui nasce il <strong>Metodo Ionix™</strong>: prezzi fissi, tempi garantiti per contratto, trasparenza totale. Un approccio che mette il cliente al centro.</p>
         <p class="body-copy" data-lang="en">From this comes the <strong>Ionix Method™</strong>: fixed prices, contractually guaranteed deadlines, total transparency. An approach that puts the client first.</p>
         <div class="mani-quote">
-          <p data-lang="it">Il 73% delle ristrutturazioni italiane finisce in ritardo. Noi abbiamo costruito un sistema perché questo non accada.</p>
-          <p data-lang="en">73% of Italian renovations finish late. We built a system to make sure ours don't.</p>
-          <cite data-lang="it">I fondatori di Ionix Group</cite><cite data-lang="en">The founders of Ionix Group</cite>
+          <p data-lang="it">Il 73% delle ristrutturazioni italiane finisce in ritardo. Abbiamo costruito il nostro lavoro perché questo, da noi, non succeda.</p>
+          <p data-lang="en">73% of Italian renovations finish late. We built the way we work so that, with us, it doesn't.</p>
         </div>
         <div class="values">
           <div><div class="vn">a</div><h4 data-lang="it">Tempi garantiti</h4><h4 data-lang="en">Guaranteed timing</h4><p data-lang="it">La data di consegna è scritta nel contratto, con penale.</p><p data-lang="en">The delivery date is written into the contract, with a penalty.</p></div>
@@ -544,7 +620,7 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
           <div class="pkg-aside">
             <div class="pkg-price">€ 8.000–15.000</div>
             <div class="pkg-dur" data-lang="it">30 giorni</div><div class="pkg-dur" data-lang="en">30 days</div>
-            <div class="pkg-chips"><span class="chip">Klarna</span><span class="chip">Afterpay</span><span class="chip">Banca</span></div>
+            <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento in arrivo</span><span class="chip" data-lang="en">Financing coming soon</span></div>
             <button class="btn-line" data-pkg="T0 · Starter (30 gg)" data-lang="it">Richiedi T0 →</button><button class="btn-line" data-pkg="T0 · Starter (30 gg)" data-lang="en">Request T0 →</button>
           </div>
         </div></div></div>
@@ -570,7 +646,7 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
           <div class="pkg-aside">
             <div class="pkg-price">€ 15.000–30.000</div>
             <div class="pkg-dur" data-lang="it">60 giorni</div><div class="pkg-dur" data-lang="en">60 days</div>
-            <div class="pkg-chips"><span class="chip">Klarna</span><span class="chip">Afterpay</span><span class="chip">Compass 24r</span></div>
+            <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento in arrivo</span><span class="chip" data-lang="en">Financing coming soon</span></div>
             <button class="btn-line" data-pkg="T1 · Bilocale (60 gg)" data-lang="it">Richiedi T1 →</button><button class="btn-line" data-pkg="T1 · Bilocale (60 gg)" data-lang="en">Request T1 →</button>
           </div>
         </div></div></div>
@@ -594,7 +670,7 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
           <div class="pkg-aside">
             <div class="pkg-price">€ 30.000–60.000</div>
             <div class="pkg-dur" data-lang="it">90 giorni</div><div class="pkg-dur" data-lang="en">90 days</div>
-            <div class="pkg-chips"><span class="chip">Compass 36r</span><span class="chip">Milestone</span></div>
+            <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento in arrivo</span><span class="chip" data-lang="en">Financing coming soon</span></div>
             <button class="btn-line" data-pkg="T2 · Trilocale (90 gg)" data-lang="it">Richiedi T2 →</button><button class="btn-line" data-pkg="T2 · Trilocale (90 gg)" data-lang="en">Request T2 →</button>
           </div>
         </div></div></div>
@@ -618,7 +694,7 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
           <div class="pkg-aside">
             <div class="pkg-price">€ 50.000–90.000</div>
             <div class="pkg-dur" data-lang="it">120 giorni</div><div class="pkg-dur" data-lang="en">120 days</div>
-            <div class="pkg-chips"><span class="chip">Compass 48r</span><span class="chip">Milestone</span></div>
+            <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento in arrivo</span><span class="chip" data-lang="en">Financing coming soon</span></div>
             <button class="btn-line" data-pkg="T3 · Quadrilocale (120 gg)" data-lang="it">Richiedi T3 →</button><button class="btn-line" data-pkg="T3 · Quadrilocale (120 gg)" data-lang="en">Request T3 →</button>
           </div>
         </div></div></div>
@@ -641,7 +717,7 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
           <div class="pkg-aside">
             <div class="pkg-price" data-lang="it">Su preventivo</div><div class="pkg-price" data-lang="en">On quote</div>
             <div class="pkg-dur" data-lang="it">210 giorni</div><div class="pkg-dur" data-lang="en">210 days</div>
-            <div class="pkg-chips"><span class="chip" data-lang="it">Banca su misura</span><span class="chip" data-lang="en">Tailored financing</span><span class="chip">Milestone</span></div>
+            <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento su misura in arrivo</span><span class="chip" data-lang="en">Tailored financing coming soon</span></div>
             <button class="btn-line" data-pkg="T4 · Villa (210 gg)" data-lang="it">Richiedi T4 →</button><button class="btn-line" data-pkg="T4 · Villa (210 gg)" data-lang="en">Request T4 →</button>
           </div>
         </div></div></div>
@@ -681,24 +757,24 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
     <div class="fin-head reveal"><span data-lang="it">Partner finanziari</span><span data-lang="en">Financing partners</span></div>
     <ul class="fin-partners reveal">
       <li>
+        <span class="pn" data-lang="it">Rate a milestone</span><span class="pn" data-lang="en">Milestone payments</span>
+        <div><div class="pr">0% · 30% + 40% + 30%</div>
+          <p data-lang="it">30% alla firma · 40% a metà lavori · 30% alla consegna. Nessun interesse, sempre disponibile.</p><p data-lang="en">30% on signing · 40% mid-works · 30% on delivery. No interest, always available.</p></div>
+      </li>
+      <li>
         <span class="pn">Klarna</span>
-        <div><div class="pr" data-lang="it">Fino a €5.000 · 3 rate a tasso 0%</div><div class="pr" data-lang="en">Up to €5,000 · 3 instalments at 0%</div>
-          <p data-lang="it">Approvazione istantanea. Ideale per il pacchetto T0.</p><p data-lang="en">Instant approval. Ideal for the T0 package.</p></div>
+        <div><div class="pr" data-lang="it">In arrivo</div><div class="pr" data-lang="en">Coming soon</div>
+          <p data-lang="it">Rateizzazione fino a €5.000 per gli interventi più piccoli.</p><p data-lang="en">Instalments up to €5,000 for smaller works.</p></div>
       </li>
       <li>
         <span class="pn">Afterpay</span>
-        <div><div class="pr" data-lang="it">Fino a €5.000 · 4 rate</div><div class="pr" data-lang="en">Up to €5,000 · 4 instalments</div>
-          <p data-lang="it">Zero interessi se paghi nei tempi previsti.</p><p data-lang="en">Zero interest if paid on schedule.</p></div>
+        <div><div class="pr" data-lang="it">In arrivo</div><div class="pr" data-lang="en">Coming soon</div>
+          <p data-lang="it">Pagamento in 4 rate, senza interessi.</p><p data-lang="en">Payment in 4 instalments, interest-free.</p></div>
       </li>
       <li>
         <span class="pn" data-lang="it">Compass / Banche</span><span class="pn" data-lang="en">Compass / Banks</span>
-        <div><div class="pr" data-lang="it">Fino a €60.000 · da 12 a 84 rate</div><div class="pr" data-lang="en">Up to €60,000 · 12 to 84 months</div>
-          <p data-lang="it">Per i pacchetti da T1 a T4. Preventivo del piano su richiesta.</p><p data-lang="en">For packages T1 to T4. Plan quote on request.</p></div>
-      </li>
-      <li>
-        <span class="pn" data-lang="it">Rate a milestone</span><span class="pn" data-lang="en">Milestone payments</span>
-        <div><div class="pr">0% · 30% + 40% + 30%</div>
-          <p data-lang="it">30% alla firma · 40% a metà lavori · 30% alla consegna. Sempre disponibile, nessun interesse.</p><p data-lang="en">30% on signing · 40% mid-works · 30% on delivery. Always available, no interest.</p></div>
+        <div><div class="pr" data-lang="it">In arrivo</div><div class="pr" data-lang="en">Coming soon</div>
+          <p data-lang="it">Finanziamenti fino a €60.000 per i lavori più grandi.</p><p data-lang="en">Financing up to €60,000 for larger renovations.</p></div>
       </li>
     </ul>
 
@@ -713,8 +789,8 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
         <div class="calc-row"><span data-lang="it">Totale</span><span data-lang="en">Total</span><b id="fTot">€ 20.000</b></div>
         <div class="calc-row"><span data-lang="it">Rate</span><span data-lang="en">Months</span><b id="fMon">12</b></div>
         <div class="calc-row big"><span data-lang="it">Rata mensile</span><span data-lang="en">Monthly</span><b id="fPer">€ 1.667</b></div>
-        <p class="note" data-lang="it">Klarna e Afterpay fino a €5.000. I tassi reali dipendono dal partner finanziario (Compass, banche).</p>
-        <p class="note" data-lang="en">Klarna and Afterpay up to €5,000. Actual rates depend on the financial partner (Compass, banks).</p>
+        <p class="note" data-lang="it">Stima a tasso 0% a scopo illustrativo. Il pagamento a milestone è già attivo; la rateizzazione tramite Klarna, Afterpay e finanziamenti bancari è in fase di attivazione.</p>
+        <p class="note" data-lang="en">0% shown for illustration. Milestone payment is already available; instalments via Klarna, Afterpay and bank financing are being set up.</p>
         <a href="#contatti" class="cta-line" data-lang="it">Richiedi questo piano</a><a href="#contatti" class="cta-line" data-lang="en">Request this plan</a>
       </div>
       <div class="calc">
@@ -808,8 +884,70 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
     <div class="collab-list reveal">
       <a href="#contatti"><span class="cn">a</span><div><h4 data-lang="it">Architetti e designer</h4><h4 data-lang="en">Architects &amp; designers</h4><p data-lang="it">Rispettiamo i tuoi progetti, i tuoi tempi e il budget concordato. Commissioni disponibili.</p><p data-lang="en">We respect your designs, timelines and agreed budget. Commissions available.</p></div><span class="cx">→</span></a>
       <a href="#contatti"><span class="cn">b</span><div><h4 data-lang="it">Agenzie immobiliari</h4><h4 data-lang="en">Real estate agencies</h4><p data-lang="it">Pacchetti dedicati. Ristrutturiamo prima della vendita aumentando il valore. Referral fee incluso.</p><p data-lang="en">Dedicated packages. Renovate before sale to raise value. Referral fee included.</p></div><span class="cx">→</span></a>
-      <a href="#contatti"><span class="cn">c</span><div><h4 data-lang="it">Banche e fintech</h4><h4 data-lang="en">Banks &amp; fintech</h4><p data-lang="it">Aperti a partnership per soluzioni di pagamento. Lavoriamo con Klarna, Afterpay e Compass.</p><p data-lang="en">Open to payment-solution partnerships. Working with Klarna, Afterpay and Compass.</p></div><span class="cx">→</span></a>
+      <a href="#contatti"><span class="cn">c</span><div><h4 data-lang="it">Banche e fintech</h4><h4 data-lang="en">Banks &amp; fintech</h4><p data-lang="it">Aperti a partnership per soluzioni di pagamento e rateizzazione, come Klarna, Afterpay e finanziamenti bancari.</p><p data-lang="en">Open to partnerships for payment and instalment solutions, such as Klarna, Afterpay and bank financing.</p></div><span class="cx">→</span></a>
       <a href="#contatti"><span class="cn">d</span><div><h4 data-lang="it">Artigiani e subappaltatori</h4><h4 data-lang="en">Craftsmen &amp; subcontractors</h4><p data-lang="it">Elettricisti, idraulici, piastrellisti. Cerchiamo professionisti seri per rapporti di lungo periodo.</p><p data-lang="en">Electricians, plumbers, tilers. We seek reliable professionals for long-term relationships.</p></div><span class="cx">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" data-sec>
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="kicker"><span class="n">08</span> <span data-lang="it">Domande frequenti</span><span data-lang="en">FAQ</span></div>
+      <h2 class="display" data-lang="it">Le domande<br><em>che ci fanno tutti.</em></h2>
+      <h2 class="display" data-lang="en">The questions<br><em>everyone asks.</em></h2>
+    </div>
+    <div class="faq-list reveal">
+      <details>
+        <summary data-lang="it">Il sopralluogo è davvero gratuito?</summary><summary data-lang="en">Is the site visit really free?</summary>
+        <div class="faq-a">
+          <p data-lang="it">Sì. Veniamo da te, valutiamo lo stato dell'immobile e ti diamo un preventivo dettagliato entro 48 ore. Nessun costo e nessun impegno.</p>
+          <p data-lang="en">Yes. We come to you, assess the property and give you a detailed quote within 48 hours. No cost, no commitment.</p>
+        </div>
+      </details>
+      <details>
+        <summary data-lang="it">Il prezzo del preventivo può cambiare durante i lavori?</summary><summary data-lang="en">Can the quoted price change during the works?</summary>
+        <div class="faq-a">
+          <p data-lang="it">No. Il preventivo firmato è il prezzo finale. Eventuali extra sono possibili solo se sei tu a chiedere lavori aggiuntivi non previsti, e vengono sempre concordati e messi per iscritto prima.</p>
+          <p data-lang="en">No. The signed quote is the final price. Extras are only possible if you request additional works that weren't planned, and they are always agreed and put in writing beforehand.</p>
+        </div>
+      </details>
+      <details>
+        <summary data-lang="it">Cosa succede se finite in ritardo?</summary><summary data-lang="en">What happens if you finish late?</summary>
+        <div class="faq-a">
+          <p data-lang="it">La data di consegna è scritta nel contratto con una penale a nostro carico. Se sforiamo per causa nostra, paghiamo noi.</p>
+          <p data-lang="en">The delivery date is written into the contract with a penalty on us. If we overrun through our own fault, we pay.</p>
+        </div>
+      </details>
+      <details>
+        <summary data-lang="it">Vi occupate anche di permessi e pratiche?</summary><summary data-lang="en">Do you handle permits and paperwork?</summary>
+        <div class="faq-a">
+          <p data-lang="it">Sì. Coordiniamo tecnico, pratiche edilizie e comunicazioni al Comune. Per gli interventi che lo richiedono lavoriamo con un architetto o un geometra di fiducia.</p>
+          <p data-lang="en">Yes. We coordinate the surveyor, building paperwork and municipal filings. For works that require it, we bring in a trusted architect or surveyor.</p>
+        </div>
+      </details>
+      <details>
+        <summary data-lang="it">Come funzionano i pagamenti?</summary><summary data-lang="en">How do payments work?</summary>
+        <div class="faq-a">
+          <p data-lang="it">Di norma a milestone: 30% alla firma, 40% a metà lavori, 30% alla consegna. Nessun interesse. Le opzioni di rateizzazione tramite partner esterni (Klarna, Afterpay, finanziamenti bancari) sono in fase di attivazione.</p>
+          <p data-lang="en">Usually by milestone: 30% on signing, 40% mid-works, 30% on delivery. No interest. Instalment options via external partners (Klarna, Afterpay, bank financing) are being set up.</p>
+        </div>
+      </details>
+      <details>
+        <summary data-lang="it">Lavorate solo a Roma?</summary><summary data-lang="en">Do you only work in Rome?</summary>
+        <div class="faq-a">
+          <p data-lang="it">La base è Roma, dove copriamo tutte le zone. Per progetti più grandi facciamo sopralluoghi in tutta Italia: scrivici e ti diciamo subito se possiamo seguirti.</p>
+          <p data-lang="en">Our base is Rome, where we cover every area. For larger projects we do site visits across Italy: write to us and we'll tell you right away if we can take it on.</p>
+        </div>
+      </details>
+      <details>
+        <summary data-lang="it">C'è una garanzia sui lavori?</summary><summary data-lang="en">Is there a guarantee on the works?</summary>
+        <div class="faq-a">
+          <p data-lang="it">Sì, tutti i lavori sono garantiti per iscritto per 2 anni. Se qualcosa non va, torniamo entro 48 ore.</p>
+          <p data-lang="en">Yes, all works are guaranteed in writing for 2 years. If something goes wrong, we come back within 48 hours.</p>
+        </div>
+      </details>
     </div>
   </div>
 </section>
@@ -818,7 +956,7 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
 <section class="section" id="contatti" data-sec style="background:var(--bone-2)">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="kicker"><span class="n">08</span> <span data-lang="it">Contatti</span><span data-lang="en">Contact</span></div>
+      <div class="kicker"><span class="n">09</span> <span data-lang="it">Contatti</span><span data-lang="en">Contact</span></div>
       <h2 class="display" data-lang="it">Sopralluogo gratuito<br><em>in tutta Italia.</em></h2>
       <h2 class="display" data-lang="en">Free site visit<br><em>across Italy.</em></h2>
     </div>
@@ -896,11 +1034,21 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
     </div>
   </div>
   <div class="foot-bot">
-    <span>© <span id="year">2025</span> Ionix Group S.R.L. · Roma</span>
-    <span><a href="#">Privacy</a> · <a href="#">Cookie</a> · <span data-lang="it">P.IVA 00000000000</span><span data-lang="en">VAT 00000000000</span></span>
+    <span>© <span id="year">2025</span> Ionix Group di Adrian Vasile Ionita · Via Claudio Carcagni 39, 00188 Roma</span>
+    <span><a href="privacy.html">Privacy &amp; Cookie</a> · <span data-lang="it">P.IVA 17517281006</span><span data-lang="en">VAT IT17517281006</span></span>
   </div>
 </footer>
 
+<div class="m-cta" aria-hidden="true">
+  <a href="https://wa.me/393287787671" class="wa">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.8.7-2.8-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5L9.8 6.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3A3 3 0 007 8.9c0 1.8 1.3 3.5 1.5 3.7.2.3 2.6 4 6.3 5.5 2.3 1 3.2.9 4 .8.6-.1 1.4-.6 1.6-1.2.2-.6.2-1 .1-1.2z"/></svg>
+    WhatsApp</a>
+  <a href="#contatti" class="qt" data-lang="it">Preventivo</a><a href="#contatti" class="qt" data-lang="en">Get a quote</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+  integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" async></script>
 <script>
 (function(){
   "use strict";
@@ -977,22 +1125,211 @@ footer{background:var(--ink);color:#8a8175;padding:clamp(56px,8vh,90px) var(--pa
     cs.forEach(function(el){ co.observe(el); });
   } else cs.forEach(countUp);
 
-  /* hero crossfade + parallax */
-  var frames = $$('#heroMedia .frame'), hdots = $$('#heroDots button'), hf = 0, htimer;
-  function goFrame(n){
-    frames[hf].classList.remove('on'); hdots[hf].classList.remove('on');
-    hf = (n + frames.length) % frames.length;
-    frames[hf].classList.add('on'); hdots[hf].classList.add('on');
-  }
-  function hplay(){ if(reduce) return; clearInterval(htimer); htimer = setInterval(function(){ goFrame(hf + 1); }, 6500); }
-  hdots.forEach(function(d){ d.addEventListener('click', function(){ goFrame(+d.dataset.f); hplay(); }); });
-  hplay();
-  if(!reduce){
+  /* hero: poster parallax */
+  var poster = $('#heroMedia .frame');
+  if(!reduce && poster){
     addEventListener('scroll', function(){
       var y = pageYOffset;
-      if(y < innerHeight) frames.forEach(function(f){ f.style.transform = 'translateY(' + (y * 0.12) + 'px) scale(1.05)'; });
+      if(y < innerHeight) poster.style.transform = 'translateY(' + (y * 0.12) + 'px) scale(1.05)';
     }, { passive:true });
   }
+
+  /* hero: 3D intro (domus -> apartment). Falls back silently to the photo hero. */
+  (function heroIntro(){
+    var heroEl = $('.hero'), cv = $('#heroC'), skip = $('#heroSkip');
+    if(reduce || !cv || !heroEl) return;
+    var glok; try{ var tc = document.createElement('canvas');
+      glok = !!(window.WebGLRenderingContext && (tc.getContext('webgl') || tc.getContext('experimental-webgl'))); }catch(e){ glok = false; }
+    if(!glok) return;
+    if(typeof THREE === 'undefined'){                       // three.js loads async
+      var s = document.querySelector('script[src*="three.min.js"]');
+      if(s){ s.addEventListener('load', heroIntro, { once:true }); }
+      return;
+    }
+    try{ build(); }catch(e){ cleanup(); }
+
+    function cleanup(){ heroEl.classList.remove('intro'); if(cv) cv.classList.remove('on'); }
+
+    var hInner = $('.hero-inner');
+    function build(){
+      heroEl.classList.add('intro');
+      if(hInner){ hInner.style.opacity = '0'; hInner.style.transform = 'translateY(18px)'; }
+      nav.classList.add('scrolled');                       // dark nav text over the light intro
+      document.body.classList.add('intro-playing');
+      var safety = setTimeout(finish, 13000);              // never leave the headline hidden
+
+      var rnd = new THREE.WebGLRenderer({ canvas:cv, antialias:true });
+      rnd.setPixelRatio(Math.min(devicePixelRatio, 1.7));
+      rnd.outputEncoding = THREE.sRGBEncoding;
+      rnd.toneMapping = THREE.ACESFilmicToneMapping; rnd.toneMappingExposure = 1.06;
+      rnd.shadowMap.enabled = true; rnd.shadowMap.type = THREE.PCFSoftShadowMap;
+
+      var sc = new THREE.Scene();
+      sc.background = new THREE.Color(0xE8E1D3);
+      sc.fog = new THREE.Fog(0xE8E1D3, 44, 120);
+      var cam = new THREE.PerspectiveCamera(52, innerWidth/innerHeight, 0.1, 400);
+
+      sc.add(new THREE.HemisphereLight(0xfff6ea, 0xd2c9b6, 0.72));
+      var sun = new THREE.DirectionalLight(0xfff0da, 2.0);
+      sun.position.set(18, 30, 14); sun.castShadow = true;
+      var smz = innerWidth < 760 ? 1024 : 2048;
+      sun.shadow.mapSize.set(smz, smz);
+      sun.shadow.camera.left = -34; sun.shadow.camera.right = 34; sun.shadow.camera.top = 34; sun.shadow.camera.bottom = -34;
+      sun.shadow.camera.far = 90; sun.shadow.bias = -0.0004;
+      sc.add(sun);
+      var fl = new THREE.DirectionalLight(0xbcd0e0, 0.35); fl.position.set(-16, 12, -18); sc.add(fl);
+
+      var grd = new THREE.Mesh(new THREE.PlaneGeometry(240,240),
+        new THREE.MeshStandardMaterial({ color:0xDED4C1, roughness:.99 }));
+      grd.rotation.x = -Math.PI/2; grd.receiveShadow = true; sc.add(grd);
+
+      var bd = new THREE.Mesh(new THREE.PlaneGeometry(88,34),
+        new THREE.MeshBasicMaterial({ color:0x8a8578, fog:true }));
+      bd.position.set(0, 12, -30); sc.add(bd);
+      new THREE.TextureLoader().load('assets/slide-2.jpg', function(tx){
+        tx.encoding = THREE.sRGBEncoding; bd.material.map = tx; bd.material.color.set(0xffffff); bd.material.needsUpdate = true;
+      });
+
+      var CREAM = 0xF3EEE3, STONE = 0xEBE4D6, GLASS = 0x9db9c9;
+      function bx(g,w,h,d,x,z,o){ o=o||{};
+        var m = new THREE.Mesh(new THREE.BoxGeometry(w,h,d),
+          new THREE.MeshStandardMaterial({ color:o.color!=null?o.color:CREAM, roughness:o.rough!=null?o.rough:.9, transparent:true }));
+        m.position.set(x, o.y!=null?o.y:h/2, z); m.castShadow = o.cast!==false; m.receiveShadow = true;
+        m.userData = { baseY:m.position.y, delay:o.delay!=null?o.delay:Math.random(), fo:o.opacity!=null?o.opacity:1 };
+        g.add(m); return m; }
+      function cl(g,x,z,r,h,o){ o=o||{};
+        var m = new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,18),
+          new THREE.MeshStandardMaterial({ color:STONE, roughness:.92, transparent:true }));
+        m.position.set(x,h/2,z); m.castShadow = true; m.receiveShadow = true;
+        m.userData = { baseY:h/2, delay:o.delay!=null?o.delay:Math.random(), fo:1 }; g.add(m); return m; }
+
+      // domus
+      var dom = new THREE.Group(); sc.add(dom);
+      (function(d){ var W=3.0, T=0.35;
+        bx(d,16,W,T,0,-13,{delay:.02}); bx(d,T,W,26,-8,0,{delay:.05}); bx(d,T,W,26,8,0,{delay:.05});
+        bx(d,5.5,W,T,-5.25,13,{delay:.08}); bx(d,5.5,W,T,5.25,13,{delay:.08});
+        bx(d,T,W,5,-2,10.5,{delay:.10}); bx(d,T,W,5,2,10.5,{delay:.10});
+        bx(d,T,W,6,-4,5,{delay:.14}); bx(d,T,W,6,4,5,{delay:.14});
+        bx(d,4,W,T,-6,8,{delay:.18}); bx(d,4,W,T,6,8,{delay:.18}); bx(d,4,W,T,-6,2,{delay:.18}); bx(d,4,W,T,6,2,{delay:.18});
+        bx(d,3.2,0.35,3.2,0,5.5,{y:0.18,color:0x3c4a4f,rough:.4,cast:false,delay:.2});
+        bx(d,T,W,5,-3,0,{delay:.16}); bx(d,T,W,5,3,0,{delay:.16});
+        bx(d,12,0.12,8,0,-7.5,{y:0.06,color:0xD8D9C4,rough:1,cast:false,delay:.24});
+        var cz=[-3.4,-6,-8.6,-11.2]; for(var i=0;i<cz.length;i++){ cl(d,-5.4,cz[i],.34,W,{delay:.22}); cl(d,5.4,cz[i],.34,W,{delay:.22}); }
+        cl(d,-2.2,-11.4,.34,W,{delay:.24}); cl(d,2.2,-11.4,.34,W,{delay:.24});
+        bx(d,10,T,2,0,1.6,{y:W+0.2,color:0xE7DFCF,cast:false,delay:.06});
+        bx(d,10,T,2,0,9.4,{y:W+0.2,color:0xE7DFCF,cast:false,delay:.06});
+        bx(d,2,T,8,-4.5,5.5,{y:W+0.2,color:0xE7DFCF,cast:false,delay:.06});
+        bx(d,2,T,8,4.5,5.5,{y:W+0.2,color:0xE7DFCF,cast:false,delay:.06});
+      })(dom);
+
+      // apartment
+      var apt = new THREE.Group(); sc.add(apt);
+      (function(a){ var H=3.1, T=0.4, WALL=0xF1EBDE, DK=0x2e2a25;
+        bx(a,17.4,0.3,27,0,-1,{y:0.15,color:0xEFE9DC,rough:1,cast:false,delay:0});
+        bx(a,17.4,T,27,0,-1,{y:H+T/2,color:WALL,cast:false,delay:.05});
+        bx(a,3.4,T+0.1,3.4,0,5.5,{y:H+T/2,color:0xFFF7E8,rough:.4,cast:false,delay:.06});
+        bx(a,17.4,H,T,0,-14,{color:WALL,delay:.10});
+        bx(a,6.5,H,T,-5.4,13,{color:WALL,delay:.12}); bx(a,6.5,H,T,5.4,13,{color:WALL,delay:.12});
+        for(var gz=-11;gz<=11;gz+=4.4){
+          bx(a,T,H,4.0,-8.5,gz,{color:GLASS,rough:.1,opacity:.45,delay:.08});
+          bx(a,T,H,4.0,8.5,gz,{color:GLASS,rough:.1,opacity:.45,delay:.08});
+          bx(a,0.18,H,0.18,-8.5,gz-2.2,{color:DK,delay:.08}); bx(a,0.18,H,0.18,8.5,gz-2.2,{color:DK,delay:.08});
+        }
+        bx(a,T,H,8,-1.2,-10,{color:WALL,delay:.16});
+        bx(a,7,H,T,-4.6,-6.2,{color:WALL,delay:.16}); bx(a,5,H,T,4.5,-6.2,{color:WALL,delay:.16});
+        bx(a,4.4,0.62,1.7,-3.2,3.4,{y:0.31,color:0xE4DAC6,rough:1,delay:.2});
+        bx(a,4.4,0.34,0.5,-3.2,4.1,{y:0.78,color:0xE4DAC6,rough:1,delay:.2});
+        bx(a,4.2,0.98,1.9,2.6,1.5,{y:0.49,color:DK,rough:.45,delay:.22});
+        bx(a,4.2,0.07,1.9,2.6,1.5,{y:1.02,color:0xEFE9DC,rough:.25,cast:false,delay:.22});
+        bx(a,2.6,0.76,1.1,3.4,6.4,{y:0.38,color:0xE4DAC6,rough:1,delay:.22});
+        bx(a,3.4,0.55,3.4,-4.4,-10,{y:0.28,color:0xEDE3CF,rough:1,delay:.24});
+        bx(a,3.4,0.5,0.4,-4.4,-11.5,{y:0.75,color:0xEDE3CF,rough:1,delay:.24});
+        bx(a,0.6,2.4,3.2,6.3,-10,{y:1.2,color:WALL,delay:.24});
+        for(var s=0;s<6;s++) bx(a,2.1,0.16,1.15,6.4,2-s*1.2,{y:0.42+s*0.44,color:0xE7DFCF,delay:.26});
+        cl(a,-5.6,-8.2,.32,H,{delay:.18}); cl(a,5.6,-8.2,.32,H,{delay:.18});
+        cl(a,-5.6,-12,.32,H,{delay:.18}); cl(a,5.6,-12,.32,H,{delay:.18});
+        bx(a,15.5,0.28,8,0,-19,{y:0.14,color:0xE5DCC8,rough:1,cast:false,delay:.22});
+        bx(a,15.5,0.7,0.28,0,-22.9,{color:0xE0D6C1,delay:.26});
+        bx(a,0.28,0.7,8,-7.7,-19,{color:0xE0D6C1,delay:.26}); bx(a,0.28,0.7,8,7.7,-19,{color:0xE0D6C1,delay:.26});
+        bx(a,3,0.65,1,-4.5,-16.5,{y:0.32,color:0x54614a,rough:1,delay:.28});
+        bx(a,3,0.65,1,4.5,-16.5,{y:0.32,color:0x54614a,rough:1,delay:.28});
+        bx(a,2.2,0.4,0.9,0,-20,{y:0.2,color:0xE4DAC6,rough:1,delay:.3});
+      })(apt);
+      apt.children.forEach(function(m){ m.position.y = m.userData.baseY - 7; m.material.opacity = 0; m.visible = false; });
+
+      var K = [
+        { t:0.00, p:[16,12,23],    l:[0,1.0,0] },
+        { t:0.22, p:[0,2.0,13.5],  l:[0,1.6,2] },
+        { t:0.45, p:[-1.6,1.9,5],  l:[1.2,1.6,-6] },
+        { t:0.70, p:[3.6,1.9,-2],  l:[-1.6,1.5,-10] },
+        { t:0.88, p:[0,2.9,-11],   l:[0,2.4,-19] },
+        { t:1.00, p:[0,3.2,-14],   l:[0,4.4,-28] }
+      ];
+      function ss(x){ x=x<0?0:x>1?1:x; return x*x*(3-2*x); }
+      function pose(t){
+        var i=0; while(i<K.length-2 && t>K[i+1].t) i++;
+        var a=K[i], b=K[i+1], e=ss((t-a.t)/(b.t-a.t));
+        cam.position.set(a.p[0]+(b.p[0]-a.p[0])*e, a.p[1]+(b.p[1]-a.p[1])*e, a.p[2]+(b.p[2]-a.p[2])*e);
+        cam.lookAt(a.l[0]+(b.l[0]-a.l[0])*e, a.l[1]+(b.l[1]-a.l[1])*e, a.l[2]+(b.l[2]-a.l[2])*e);
+      }
+      function apply(t){
+        pose(t);
+        var i,m,dd,p;
+        for(i=0;i<dom.children.length;i++){ m=dom.children[i]; dd=m.userData.delay*0.22;
+          p=ss((t-dd)/0.34); m.position.y=m.userData.baseY+p*10; m.material.opacity=(1-p)*m.userData.fo; m.visible=p<0.999; }
+        for(i=0;i<apt.children.length;i++){ m=apt.children[i]; dd=m.userData.delay*0.24;
+          p=ss((t-0.30-dd)/0.42); m.position.y=m.userData.baseY-(1-p)*7; m.material.opacity=p*m.userData.fo; m.visible=p>0.001; }
+      }
+
+      addEventListener('resize', function(){ rnd.setSize(innerWidth, innerHeight, false); cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix(); });
+      rnd.setSize(innerWidth, innerHeight, false);
+
+      try{ apply(0); rnd.render(sc, cam); }
+      catch(e){ finish(); return; }                        // broken GL context -> keep the photo hero
+      requestAnimationFrame(function(){ cv.classList.add('on'); });
+
+      var DUR = 9000, start = null, finished = false, pausedFor = 0, pMark = 0;
+      document.addEventListener('visibilitychange', function(){
+        if(document.hidden) pMark = performance.now();
+        else if(pMark){ pausedFor += performance.now() - pMark; pMark = 0; }
+      });
+      if(skip) skip.addEventListener('click', function(){ finished = true; });
+      setTimeout(function(){ start = performance.now(); }, 700);
+
+      var lastT = -1, held = null;
+      window.__introSeek = function(v){ held = v; if(v==null){ start = performance.now(); return; } apply(v); rnd.render(sc, cam); };
+      var errs = 0;
+      function loop(now){
+        if(finished && lastT >= 1){ finish(); return; }
+        requestAnimationFrame(loop);
+        if(held !== null || start === null || !now) return;
+        var t;
+        if(finished){ t = 1; }
+        else { var el = (now - start - pausedFor)/1000; if(!(el >= 0)) return;
+          t = el >= DUR/1000 ? 1 : (function(x){ return x*x*x*(x*(x*6-15)+10); })(el/(DUR/1000));
+          if(el >= DUR/1000) finished = true; }
+        if(Math.abs(t-lastT) > 0.0002 || lastT < 0){
+          try{ apply(t); lastT = t; rnd.render(sc, cam); }
+          catch(e){ if(++errs > 3) finish(); }
+        }
+      }
+      requestAnimationFrame(loop);
+
+      var ended = false;
+      function finish(){
+        if(ended) return; ended = true;
+        clearTimeout(safety);
+        heroEl.classList.remove('intro');
+        if(hInner){ hInner.style.opacity = ''; hInner.style.transform = ''; }
+        document.body.classList.remove('intro-playing');
+        onScroll();                                        // restore the nav to its scroll-correct state
+        cv.classList.add('done');
+        setTimeout(function(){                              // free the GPU once faded out
+          try{ rnd.dispose(); rnd.forceContextLoss && rnd.forceContextLoss(); }catch(e){}
+        }, 1400);
+      }
+    }
+  })();
 
   /* interventi switcher */
   var rows = $$('#ivList .iv-row'), stImgs = $$('#ivStage img'), ivCap = $('#ivCap');
