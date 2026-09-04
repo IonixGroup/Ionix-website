@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Dalla domus all'attico · Ionix Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bone:#F4F0E8; --ink:#1A1815; --ink-2:#5A5348; --terra:#A24B32; --white:#FCFAF6;
+  --serif:'Bodoni Moda',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace; --sans:'Inter',system-ui,sans-serif;
+}
+html,body{background:#E8E1D3;color:var(--ink);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased}
+body{overflow:hidden}
+a{color:inherit}
+
+/* top bar */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+  padding:20px clamp(18px,4vw,44px);pointer-events:none}
+.topbar > *{pointer-events:auto}
+.wm{font-family:var(--serif);font-weight:500;font-size:19px;letter-spacing:.14em;color:var(--ink);text-decoration:none}
+.wm span{font-family:var(--mono);font-size:8px;letter-spacing:.24em;color:var(--terra);margin-left:8px;vertical-align:1px}
+.skip{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--ink-2);
+  border:1px solid rgba(26,24,21,.28);padding:9px 16px;transition:all .25s;background:rgba(244,240,232,.6)}
+.skip:hover{color:var(--ink);border-color:var(--ink)}
+
+/* stage */
+.stage{position:fixed;inset:0;overflow:hidden}
+#c{position:absolute;inset:0;width:100%;height:100%;display:block}
+.tapskip{position:absolute;inset:0;z-index:8;background:none;border:0;cursor:pointer;font:0/0 a;color:transparent}
+
+/* overlays */
+.ovl{position:absolute;inset:0;z-index:10;pointer-events:none;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:clamp(26px,7vh,84px) clamp(18px,5vw,72px)}
+.kicker{font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--terra);
+  opacity:0;transition:opacity .6s;display:flex;align-items:center;gap:12px}
+.kicker::before{content:'';width:26px;height:1px;background:var(--terra)}
+.room{font-family:var(--serif);font-weight:400;font-size:clamp(38px,9vw,110px);line-height:.95;letter-spacing:-.02em;
+  color:var(--ink);margin:14px 0 6px;text-shadow:0 2px 30px rgba(232,225,211,.8)}
+.sub{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.2vw,24px);color:var(--ink-2);max-width:32ch;
+  transition:opacity .5s}
+.room-wrap{transition:opacity .5s,transform .5s cubic-bezier(.22,1,.36,1)}
+
+/* progress */
+.bar{position:fixed;left:0;bottom:0;height:2px;width:100%;z-index:20;background:rgba(26,24,21,.12)}
+.bar i{display:block;height:100%;width:0;background:var(--terra)}
+
+
+/* end cta */
+.end{position:absolute;left:50%;bottom:clamp(26px,9vh,90px);transform:translate(-50%,20px);z-index:12;
+  display:flex;flex-direction:column;align-items:center;gap:16px;opacity:0;pointer-events:none;transition:opacity .6s,transform .6s var(--serif)}
+.end.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.end .lead{font-family:var(--serif);font-style:italic;font-size:clamp(16px,2vw,22px);color:var(--ink-2)}
+.enter{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;
+  background:var(--terra);color:var(--white);padding:16px 30px;transition:background .25s}
+.enter:hover{background:var(--ink);color:var(--white)}
+.replay{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;background:none;border:0;cursor:pointer;
+  color:var(--ink-2);padding:6px;transition:color .2s}
+.replay:hover{color:var(--ink)}
+
+/* fallback / loader */
+.center{position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:20px;padding:32px;background:#E8E1D3;color:var(--ink)}
+.center h1{font-family:var(--serif);font-weight:400;font-size:clamp(26px,5vw,44px);font-style:italic}
+.center p{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);max-width:40ch;line-height:1.8}
+.center a{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;
+  border:1px solid var(--ink);padding:14px 24px;transition:all .25s}
+.center a:hover{background:var(--ink);color:#E8E1D3}
+.loader .dot{background:var(--terra)}
+.loader .dot{width:6px;height:6px;background:#E6C7B4;border-radius:50%;animation:p 1s ease-in-out infinite}
+@keyframes p{0%,100%{opacity:.2}50%{opacity:1}}
+#loader.hide{opacity:0;visibility:hidden;transition:opacity .6s,visibility .6s}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="wm" href="index.html">IONIX<span>GROUP</span></a>
+  <a class="skip" href="index.html">Salta &rarr;</a>
+</div>
+
+<div class="stage" id="stage">
+  <canvas id="c"></canvas>
+
+  <div class="ovl">
+    <div class="kicker" id="kicker">Ionix Group</div>
+    <div class="room-wrap" id="roomWrap">
+      <div class="room" id="room">La domus</div>
+      <div class="sub" id="sub">Duemila anni di case romane.</div>
+    </div>
+  </div>
+
+  <button class="tapskip" id="tapskip" aria-label="Salta l'intro"></button>
+
+  <div class="end" id="end">
+    <div class="lead">Dal 2004 progettiamo la prossima.</div>
+    <a class="enter" href="index.html">Entra nel sito &rarr;</a>
+    <button class="replay" id="replay">&#8635;&nbsp;&nbsp;Rivedi</button>
+  </div>
+</div>
+
+<div class="bar"><i id="barFill"></i></div>
+
+<div class="center loader" id="loader">
+  <div class="dot"></div>
+  <p>Costruzione della scena&hellip;</p>
+</div>
+
+<div class="center" id="fallback" style="display:none">
+  <h1>Dalla domus all'attico</h1>
+  <p>Questa esperienza ha bisogno di un browser con WebGL. Sul sito trovi tutto il resto.</p>
+  <a href="index.html">Vai al sito &rarr;</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+  integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+(function(){
+  "use strict";
+  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- WebGL support ----
+  var ok = (function(){ try{ var cv=document.createElement('canvas');
+    return !!(window.WebGLRenderingContext && (cv.getContext('webgl')||cv.getContext('experimental-webgl'))); }catch(e){ return false; } })();
+  if(!ok || typeof THREE === 'undefined'){
+    document.getElementById('loader').style.display='none';
+    document.getElementById('fallback').style.display='flex';
+    return;
+  }
+
+  var canvas = document.getElementById('c');
+  var stage = document.getElementById('stage');
+
+  var renderer = new THREE.WebGLRenderer({ canvas:canvas, antialias:true, alpha:false });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  var scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xE8E1D3);
+  scene.fog = new THREE.Fog(0xE8E1D3, 46, 120);
+
+  var camera = new THREE.PerspectiveCamera(52, innerWidth/innerHeight, 0.1, 400);
+
+  // ---- lights ----
+  var hemi = new THREE.HemisphereLight(0xfff6ea, 0xd2c9b6, 0.72);
+  scene.add(hemi);
+  var sun = new THREE.DirectionalLight(0xfff0da, 2.0);
+  sun.position.set(18, 30, 14);
+  sun.castShadow = true;
+  var sm = innerWidth < 720 ? 1024 : 2048;
+  sun.shadow.mapSize.set(sm, sm);
+  sun.shadow.camera.near = 1; sun.shadow.camera.far = 90;
+  sun.shadow.camera.left = -34; sun.shadow.camera.right = 34;
+  sun.shadow.camera.top = 34; sun.shadow.camera.bottom = -34;
+  sun.shadow.bias = -0.0004;
+  scene.add(sun);
+  var fill = new THREE.DirectionalLight(0xbcd0e0, 0.35);
+  fill.position.set(-16, 12, -18);
+  scene.add(fill);
+
+  // ---- ground ----
+  var ground = new THREE.Mesh(
+    new THREE.PlaneGeometry(240, 240),
+    new THREE.MeshStandardMaterial({ color:0xDED4C1, roughness:.99, metalness:0 })
+  );
+  ground.rotation.x = -Math.PI/2;
+  ground.receiveShadow = true;
+  scene.add(ground);
+
+  // ---- Rome backdrop ----
+  var backdrop = new THREE.Mesh(
+    new THREE.PlaneGeometry(84, 34),
+    new THREE.MeshBasicMaterial({ color:0x8a8578, fog:true })
+  );
+  backdrop.position.set(0, 12, -30);
+  scene.add(backdrop);
+  new THREE.TextureLoader().load('assets/slide-2.jpg', function(tx){
+    tx.encoding = THREE.sRGBEncoding;
+    backdrop.material.map = tx; backdrop.material.color.set(0xffffff); backdrop.material.needsUpdate = true;
+  });
+
+  // ---- helpers ----
+  var CREAM = 0xF3EEE3, STONE = 0xEBE4D6, GLASS = 0x9db9c9;
+
+  function box(g, w,h,d, x,z, opt){
+    opt = opt || {};
+    var mat = new THREE.MeshStandardMaterial({
+      color: opt.color!=null?opt.color:CREAM, roughness: opt.rough!=null?opt.rough:.9, metalness:0, transparent:true
+    });
+    var m = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), mat);
+    m.position.set(x, opt.y!=null?opt.y:h/2, z);
+    m.castShadow = opt.cast!==false; m.receiveShadow = true;
+    m.userData.baseY = m.position.y;
+    m.userData.delay = opt.delay!=null?opt.delay:Math.random();
+    m.userData.fo = opt.opacity!=null?opt.opacity:1;
+    g.add(m); return m;
+  }
+  function col(g, x,z, r,h, opt){
+    opt = opt || {};
+    var mat = new THREE.MeshStandardMaterial({ color:STONE, roughness:.92, metalness:0, transparent:true });
+    var m = new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,18), mat);
+    m.position.set(x, h/2, z);
+    m.castShadow = true; m.receiveShadow = true;
+    m.userData.baseY = h/2; m.userData.delay = opt.delay!=null?opt.delay:Math.random(); m.userData.fo = 1;
+    g.add(m); return m;
+  }
+
+  // ============ DOMUS (t = 0) ============
+  // footprint x:[-8,8]  z:[-13,13]   entrance at +z (south), garden at -z (north)
+  var domus = new THREE.Group(); scene.add(domus);
+  var WH = 3.0, T = 0.35;          // wall height / thickness
+  (function(){
+    var d = domus;
+    // perimeter (gap for entrance on +z)
+    box(d, 16, WH, T, 0, -13, {delay:.02});                 // north
+    box(d, T, WH, 26, -8, 0, {delay:.05});                  // west
+    box(d, T, WH, 26,  8, 0, {delay:.05});                  // east
+    box(d, 5.5, WH, T, -5.25, 13, {delay:.08});             // south left of door
+    box(d, 5.5, WH, T,  5.25, 13, {delay:.08});             // south right of door
+    // fauces (entrance corridor)
+    box(d, T, WH, 5, -2, 10.5, {delay:.10});
+    box(d, T, WH, 5,  2, 10.5, {delay:.10});
+    // atrium walls around impluvium zone (z ~ 2..8)
+    box(d, T, WH, 6, -4, 5, {delay:.14});
+    box(d, T, WH, 6,  4, 5, {delay:.14});
+    // cubicula (small rooms) partitions
+    box(d, 4, WH, T, -6, 8, {delay:.18});
+    box(d, 4, WH, T,  6, 8, {delay:.18});
+    box(d, 4, WH, T, -6, 2, {delay:.18});
+    box(d, 4, WH, T,  6, 2, {delay:.18});
+    // impluvium basin (shallow, dark water)
+    box(d, 3.2, 0.35, 3.2, 0, 5.5, {y:0.18, color:0x3c4a4f, rough:.4, cast:false, delay:.20});
+    // tablinum (open room, z ~ -2..2)
+    box(d, T, WH, 5, -3, 0, {delay:.16});
+    box(d, T, WH, 5,  3, 0, {delay:.16});
+    // peristyle garden slab (z ~ -12..-3)
+    box(d, 12, 0.12, 8, 0, -7.5, {y:0.06, color:0xD8D9C4, rough:1, cast:false, delay:.24});
+    // colonnade around the garden
+    var cz = [-3.4, -6, -8.6, -11.2];
+    for(var i=0;i<cz.length;i++){ col(d, -5.4, cz[i], .34, WH, {delay:.22}); col(d, 5.4, cz[i], .34, WH, {delay:.22}); }
+    col(d, -2.2, -11.4, .34, WH, {delay:.24}); col(d, 2.2, -11.4, .34, WH, {delay:.24});
+    // triclinium off the garden
+    box(d, 5, WH, T, -5.5, -12.6, {delay:.2});
+    box(d, T, WH, 3, -7.7, -11.2, {delay:.2});
+    // low roof hint over atrium ring (compluvium = open centre)
+    box(d, 10, T, 2, 0, 1.6, {y:WH+0.2, color:0xE7DFCF, cast:false, delay:.06});
+    box(d, 10, T, 2, 0, 9.4, {y:WH+0.2, color:0xE7DFCF, cast:false, delay:.06});
+    box(d, 2, T, 8, -4.5, 5.5, {y:WH+0.2, color:0xE7DFCF, cast:false, delay:.06});
+    box(d, 2, T, 8, 4.5, 5.5, {y:WH+0.2, color:0xE7DFCF, cast:false, delay:.06});
+  })();
+
+  // ============ APARTMENT (t = 1) ============
+  var apt = new THREE.Group(); scene.add(apt);
+  var AH = 3.1, AT = 0.4;
+  (function(){
+    var a = apt, WALL = 0xF1EBDE, DARK = 0x2e2a25;
+    // floor plate + ceiling slab (solid mass, reads from inside & outside)
+    box(a, 17.4, 0.3, 27, 0, -1, {y:0.15, color:0xEFE9DC, rough:1, cast:false, delay:.0});
+    box(a, 17.4, AT, 27, 0, -1, {y:AH+AT/2, color:WALL, cast:false, delay:.05});
+    // light-well where the impluvium was  (continuity)
+    box(a, 3.4, AT+0.1, 3.4, 0, 5.5, {y:AH+AT/2, color:0xFFF7E8, rough:.4, cast:false, delay:.06});
+    // perimeter: solid short ends, glazing on long sides
+    box(a, 17.4, AH, AT, 0, -14, {color:WALL, delay:.10});               // north (behind: terrace)
+    box(a, 6.5, AH, AT, -5.4, 13, {color:WALL, delay:.12});              // south left
+    box(a, 6.5, AH, AT,  5.4, 13, {color:WALL, delay:.12});              // south right (entrance gap)
+    for(var gz=-11;gz<=11;gz+=4.4){                                      // long-side glazing mullions + panes
+      box(a, AT, AH, 4.0, -8.5, gz, {color:GLASS, rough:.1, opacity:.45, delay:.08});
+      box(a, AT, AH, 4.0,  8.5, gz, {color:GLASS, rough:.1, opacity:.45, delay:.08});
+      box(a, 0.18, AH, 0.18, -8.5, gz-2.2, {color:DARK, delay:.08});
+      box(a, 0.18, AH, 0.18,  8.5, gz-2.2, {color:DARK, delay:.08});
+    }
+    // internal partitions -> zona notte at the north end
+    box(a, AT, AH, 8, -1.2, -10, {color:WALL, delay:.16});
+    box(a, 7, AH, AT, -4.6, -6.2, {color:WALL, delay:.16});
+    box(a, 5, AH, AT,  4.5, -6.2, {color:WALL, delay:.16});
+    // ---- furniture (tonal blocks, a few dark accents) ----
+    box(a, 4.4, 0.62, 1.7, -3.2, 3.4, {y:0.31, color:0xE4DAC6, rough:1, delay:.2});   // sofa
+    box(a, 4.4, 0.34, 0.5, -3.2, 4.1, {y:0.78, color:0xE4DAC6, rough:1, delay:.2});   // sofa back
+    box(a, 2.6, 0.5, 0.35, -3.2, -1.4, {y:0.55, color:DARK, rough:.5, delay:.2});     // media unit
+    box(a, 4.2, 0.98, 1.9, 2.6, 1.5, {y:0.49, color:DARK, rough:.45, delay:.22});     // kitchen island
+    box(a, 4.2, 0.07, 1.9, 2.6, 1.5, {y:1.02, color:0xEFE9DC, rough:.25, cast:false, delay:.22});
+    box(a, 2.6, 0.76, 1.1, 3.4, 6.4, {y:0.38, color:0xE4DAC6, rough:1, delay:.22});   // dining table
+    box(a, 3.4, 0.55, 3.4, -4.4, -10, {y:0.28, color:0xEDE3CF, rough:1, delay:.24});  // bed base
+    box(a, 3.4, 0.5, 0.4, -4.4, -11.5, {y:0.75, color:0xEDE3CF, rough:1, delay:.24}); // headboard
+    box(a, 0.6, 2.4, 3.2, 6.3, -10, {y:1.2, color:WALL, delay:.24});                  // wardrobe
+    // floating stair (nod to the real photo)
+    for(var s=0;s<6;s++) box(a, 2.1, 0.16, 1.15, 6.4, 2 - s*1.2, {y:0.42 + s*0.44, color:0xE7DFCF, delay:.26});
+    // pilotis kept from the peristyle -> continuity
+    col(a, -5.6, -8.2, .32, AH, {delay:.18}); col(a, 5.6, -8.2, .32, AH, {delay:.18});
+    col(a, -5.6, -12, .32, AH, {delay:.18}); col(a, 5.6, -12, .32, AH, {delay:.18});
+    // ---- terrace (was the garden) ----
+    box(a, 15.5, 0.28, 8, 0, -19, {y:0.14, color:0xE5DCC8, rough:1, cast:false, delay:.22});
+    box(a, 15.5, 0.7, 0.28, 0, -22.9, {color:0xE0D6C1, delay:.26});      // parapet far
+    box(a, 0.28, 0.7, 8, -7.7, -19, {color:0xE0D6C1, delay:.26});
+    box(a, 0.28, 0.7, 8,  7.7, -19, {color:0xE0D6C1, delay:.26});
+    box(a, 3, 0.65, 1, -4.5, -16.5, {y:0.32, color:0x54614a, rough:1, delay:.28});    // planter
+    box(a, 3, 0.65, 1,  4.5, -16.5, {y:0.32, color:0x54614a, rough:1, delay:.28});
+    box(a, 2.2, 0.4, 0.9, 0, -20, {y:0.2, color:0xE4DAC6, rough:1, delay:.3});        // lounge
+    box(a, 0.9, 0.7, 0.9, -0.9, -20.2, {y:0.35, color:0xE4DAC6, rough:1, delay:.3});
+  })();
+
+  // start hidden below ground
+  apt.children.forEach(function(m){ m.position.y = m.userData.baseY - 7; m.material.opacity = 0; m.visible = false; });
+
+  // ---- camera keyframes ----
+  var K = [
+    { t:0.00, p:[17, 12, 24],   l:[0, 1.0, 0] },      // aerial 3/4 of the whole domus
+    { t:0.15, p:[0, 2.1, 15.5], l:[0, 1.7, 4] },      // approach the entrance, eye level
+    { t:0.32, p:[0, 1.7, 7.2],  l:[0, 1.5, -2] },     // inside the atrium
+    { t:0.50, p:[-2.2, 1.8, 3.2],l:[1.4, 1.6, -7] },  // pushing through as it rebuilds
+    { t:0.66, p:[4.4, 1.8, 0.8],l:[-1.6, 1.5, -8] },  // soggiorno + island in frame
+    { t:0.80, p:[-2.6, 1.8, -6],l:[1.3, 1.6, -12] },  // toward the zona notte
+    { t:0.91, p:[0, 1.9, -12.5],l:[0, 2.1, -19] },    // turn onto the terrace
+    { t:1.00, p:[0, 1.8, -16.5],l:[0, 3.2, -27] }     // terrace: parapet + Rome behind
+  ];
+  function ss(x){ x = x<0?0:x>1?1:x; return x*x*(3-2*x); }
+  var _p = new THREE.Vector3(), _l = new THREE.Vector3();
+  function poseAt(t){
+    var i = 0; while(i < K.length-2 && t > K[i+1].t) i++;
+    var a = K[i], b = K[i+1];
+    var e = ss((t - a.t) / (b.t - a.t));
+    _p.set(
+      a.p[0]+(b.p[0]-a.p[0])*e, a.p[1]+(b.p[1]-a.p[1])*e, a.p[2]+(b.p[2]-a.p[2])*e );
+    _l.set(
+      a.l[0]+(b.l[0]-a.l[0])*e, a.l[1]+(b.l[1]-a.l[1])*e, a.l[2]+(b.l[2]-a.l[2])*e );
+    camera.position.copy(_p);
+    camera.lookAt(_l);
+  }
+
+  // ---- overlay text ----
+  var kicker = document.getElementById('kicker'), roomEl = document.getElementById('room'),
+      subEl = document.getElementById('sub'), roomWrap = document.getElementById('roomWrap'),
+      end = document.getElementById('end'), barFill = document.getElementById('barFill');
+  var ROOMS = [
+    [0.00, 'La domus', 'Duemila anni di case romane.'],
+    [0.14, 'Atrium', 'Il cuore della casa, aperto al cielo.'],
+    [0.34, 'Si trasforma', 'Le mura si alzano, lo spazio si apre.'],
+    [0.52, 'Soggiorno', 'Pianta libera, luce da parete a parete.'],
+    [0.68, 'Cucina', 'Un blocco unico al centro dello spazio.'],
+    [0.82, 'Camera', 'Silenzio, sul lato riparato.'],
+    [0.92, 'Terrazzo', 'La stessa vista di Roma, altri mille anni.']
+  ];
+  var lastRoom = -1;
+  function setText(t){
+    var idx = 0;
+    for(var i=0;i<ROOMS.length;i++){ if(t >= ROOMS[i][0]) idx = i; }
+    if(idx !== lastRoom){
+      lastRoom = idx;
+      roomWrap.style.opacity = 0; roomWrap.style.transform = 'translateY(14px)';
+      setTimeout(function(){
+        roomEl.textContent = ROOMS[idx][1];
+        subEl.textContent = ROOMS[idx][2];
+        roomWrap.style.opacity = 1; roomWrap.style.transform = 'translateY(0)';
+      }, 180);
+    }
+    kicker.style.opacity = t > 0.015 && t < 0.985 ? 1 : 0;
+    end.classList.toggle('on', t > 0.99);
+    roomWrap.style.opacity = t > 0.99 ? 0 : roomWrap.style.opacity;
+    barFill.style.width = (t*100).toFixed(1) + '%';
+  }
+
+  // ---- transition ----
+  function apply(t){
+    poseAt(t);
+    var i, m, d, p;
+    for(i=0;i<domus.children.length;i++){
+      m = domus.children[i]; d = m.userData.delay * 0.22;
+      p = ss((t - d) / 0.34);
+      m.position.y = m.userData.baseY + p * 10;
+      m.material.opacity = (1 - p) * m.userData.fo;
+      m.visible = p < 0.999;
+    }
+    for(i=0;i<apt.children.length;i++){
+      m = apt.children[i]; d = m.userData.delay * 0.24;
+      p = ss((t - 0.30 - d) / 0.42);
+      m.position.y = m.userData.baseY - (1 - p) * 7;
+      m.material.opacity = p * m.userData.fo;
+      m.visible = p > 0.001;
+    }
+    setText(t);
+  }
+
+  // ---- resize ----
+  function resize(){
+    var w = innerWidth, h = innerHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h; camera.updateProjectionMatrix();
+  }
+  addEventListener('resize', resize);
+  resize();
+
+  // ---- autoplay timeline ----
+  var DURATION = 13;                 // seconds, full journey (tune to taste)
+  var startAt = null, pausedFor = 0, pauseMark = 0, finished = false;
+  function smooth(x){ return x<=0?0:x>=1?1:x*x*x*(x*(x*6-15)+10); }   // smootherstep — soft in & out
+
+  function begin(delay){
+    finished = false; pausedFor = 0; end.classList.remove('on');
+    startAt = performance.now() + (delay||0);
+  }
+  function jumpToEnd(){
+    if(finished) return;
+    finished = true; startAt = performance.now() - DURATION*1000 - 1;
+    apply(1); renderer.render(scene, camera); end.classList.add('on');
+  }
+
+  // pause while the tab is hidden, so nobody misses the intro
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden){ pauseMark = performance.now(); }
+    else if(pauseMark){ pausedFor += performance.now() - pauseMark; pauseMark = 0; }
+  });
+
+  document.getElementById('tapskip').addEventListener('click', jumpToEnd);
+  addEventListener('keydown', function(e){ if(e.key==='Escape'||e.key===' '||e.key==='Enter') jumpToEnd(); });
+  document.getElementById('replay').addEventListener('click', function(){ begin(0); });
+
+  var lastT = -1;
+  function frame(now){
+    requestAnimationFrame(frame);
+    if(startAt === null) return;
+    var t;
+    if(finished){ t = 1; }
+    else {
+      var el = (now - startAt - pausedFor) / 1000;
+      t = el <= 0 ? 0 : el >= DURATION ? 1 : smooth(el / DURATION);
+      if(el >= DURATION){ finished = true; }
+    }
+    if(RM) t = 1;
+    if(Math.abs(t - lastT) > 0.0001 || lastT < 0){
+      apply(t); lastT = t;
+      renderer.render(scene, camera);
+    }
+  }
+
+  document.getElementById('loader').classList.add('hide');
+  apply(0); renderer.render(scene, camera);
+  requestAnimationFrame(frame);
+  begin(RM ? 0 : 800);              // small beat before it starts
+
+  // preview hook (harmless): window.__seek(0..1) jumps the visuals to that point
+  window.__seek = function(te){ startAt = performance.now() + 1e9; apply(Math.max(0,Math.min(1,te))); renderer.render(scene, camera); };
+})();
+</script>
+</body>
+</html>
