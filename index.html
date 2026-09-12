@@ -364,6 +364,27 @@ form button[type=submit]:hover{background:var(--terra)}
 .fnote{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink-3);text-align:center;padding:14px;background:var(--paper);line-height:1.6}
 .form-ok{background:var(--ink);color:#E6C7B4;padding:18px;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.08em}
 
+/* ---------- recensioni ---------- */
+.rev-empty{max-width:56ch;margin:-8px 0 30px}
+.rev-empty p{font-family:var(--sans);font-weight:300;font-size:14px;line-height:1.7;color:var(--ink-2)}
+.rev-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:8px}
+.rev-cta{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:16px 22px;border:1px solid var(--ink);background:none;cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease)}
+.rev-cta svg{width:18px;height:18px;flex:0 0 auto}
+.rev-cta-google{color:var(--ink)}
+.rev-cta-google:hover{background:var(--ink);color:var(--bone)}
+.rev-cta-form{color:var(--ink)}
+.rev-cta-form:hover{background:var(--ink);color:var(--bone)}
+.rev-form{margin-top:30px;max-width:640px}
+.rev-form[hidden]{display:none}
+.stars{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:4px;border:0;padding:16px;margin:0;background:var(--paper)}
+.stars legend{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);padding:0 0 12px;width:100%}
+.stars input{position:absolute;opacity:0;width:1px;height:1px}
+.stars label{cursor:pointer;width:28px;height:28px;color:var(--hair);transition:color .15s}
+.stars label svg{width:100%;height:100%;fill:currentColor}
+.stars input:checked ~ label{color:var(--terra)}
+.stars label:hover,.stars label:hover ~ label{color:var(--terra)}
+.stars input:focus-visible + label{outline:2px solid var(--terra);outline-offset:2px}
+
 /* ---------- footer ---------- */
 footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pad) 34px}
 .foot-grid{display:grid;grid-template-columns:2.4fr 1fr 1fr;gap:clamp(28px,5vw,64px);max-width:var(--maxw);margin:0 auto 52px}
@@ -472,6 +493,7 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
     <a href="#rate" data-lang="it">Rate &amp; Bonus</a><a href="#rate" data-lang="en">Finance</a>
     <a href="#care" class="nav-link">Care</a>
     <a href="#faq" class="nav-link">FAQ</a>
+    <a href="#recensioni" data-lang="it">Recensioni</a><a href="#recensioni" data-lang="en">Reviews</a>
   </div>
   <div class="nav-right">
     <div class="lang" role="group" aria-label="Lingua / Language">
@@ -489,6 +511,7 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
   <a href="#rate" data-lang="it">Rate &amp; Bonus</a><a href="#rate" data-lang="en">Finance</a>
   <a href="#care">Care</a>
   <a href="#faq">FAQ</a>
+  <a href="#recensioni" data-lang="it">Recensioni</a><a href="#recensioni" data-lang="en">Reviews</a>
   <a href="#contatti" data-lang="it">Contatti</a><a href="#contatti" data-lang="en">Contact</a>
 </nav>
 
@@ -499,6 +522,7 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
   <a href="#rate" data-lang="it">Rate &amp; <em>Bonus</em></a><a href="#rate" data-lang="en">Finance &amp; <em>Bonus</em></a>
   <a href="#care">Ionix <em>Care</em></a>
   <a href="#faq" data-lang="it">Domande <em>frequenti</em></a><a href="#faq" data-lang="en">Frequent <em>questions</em></a>
+  <a href="#recensioni" data-lang="it">Le <em>Recensioni</em></a><a href="#recensioni" data-lang="en">The <em>Reviews</em></a>
   <a href="#contatti" data-lang="it">Chiedi un <em>Preventivo</em></a><a href="#contatti" data-lang="en">Get a <em>Quote</em></a>
 </div>
 
@@ -887,11 +911,65 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
   </div>
 </section>
 
+<!-- RECENSIONI -->
+<section class="section" id="recensioni" data-sec>
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="kicker"><span class="n">07</span> <span data-lang="it">Recensioni</span><span data-lang="en">Reviews</span></div>
+      <h2 class="display" data-lang="it">Cosa dicono<br><em>i nostri clienti.</em></h2>
+      <h2 class="display" data-lang="en">What our<br><em>clients say.</em></h2>
+      <p class="lead" data-lang="it">Le recensioni raccolte qui vengono lette da Adrian e pubblicate dopo una verifica, per tenere questa pagina onesta.</p>
+      <p class="lead" data-lang="en">Reviews collected here are read by Adrian and published after a quick check, to keep this page honest.</p>
+    </div>
+
+    <div class="rev-empty reveal">
+      <p data-lang="it">Non ci sono ancora recensioni pubblicate qui. Se hai lavorato con noi, saresti il primo.</p>
+      <p data-lang="en">No reviews published here yet. If you've worked with us, you'd be the first.</p>
+    </div>
+
+    <div class="rev-actions reveal">
+      <a href="https://www.google.com/maps" target="_blank" rel="noopener" class="rev-cta rev-cta-google">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.2c0-.7-.06-1.4-.18-2.05H12v3.9h5.6a4.8 4.8 0 01-2.08 3.15v2.6h3.36c1.97-1.8 3.1-4.47 3.1-7.6z" fill="#4285F4"/><path d="M12 22c2.8 0 5.16-.92 6.88-2.5l-3.36-2.6c-.93.63-2.13 1-3.52 1-2.7 0-4.99-1.83-5.8-4.28H2.73v2.68A10 10 0 0012 22z" fill="#34A853"/><path d="M6.2 13.62A6 6 0 015.9 12c0-.56.1-1.11.3-1.62V7.7H2.73a10 10 0 000 8.6z" fill="#FBBC05"/><path d="M12 5.9c1.52 0 2.88.52 3.95 1.55l2.96-2.96A9.7 9.7 0 0012 2a10 10 0 00-9.27 5.7l3.47 2.68C6.99 7.73 9.3 5.9 12 5.9z" fill="#EA4335"/></svg>
+        <span data-lang="it">Lasciaci una recensione su Google</span><span data-lang="en">Leave us a review on Google</span>
+      </a>
+      <button type="button" class="rev-cta rev-cta-form" data-reveal-form>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+        <span data-lang="it">Scrivi la tua esperienza qui</span><span data-lang="en">Write your experience here</span>
+      </button>
+    </div>
+
+    <form id="reviewForm" class="rev-form reveal" action="https://formspree.io/f/meaqpkwn" method="POST" novalidate hidden>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <input type="hidden" name="_subject" value="Nuova recensione — ionixgroup.it">
+      <input type="hidden" name="tipo" value="recensione">
+      <fieldset class="stars">
+        <legend data-lang="it">La tua valutazione</legend><legend data-lang="en">Your rating</legend>
+        <input type="radio" id="star5" name="rating" value="5" required><label for="star5"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg></label>
+        <input type="radio" id="star4" name="rating" value="4" required><label for="star4"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg></label>
+        <input type="radio" id="star3" name="rating" value="3" required><label for="star3"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg></label>
+        <input type="radio" id="star2" name="rating" value="2" required><label for="star2"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg></label>
+        <input type="radio" id="star1" name="rating" value="1" required><label for="star1"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg></label>
+      </fieldset>
+      <div class="ff"><label for="r-name" data-lang="it">Nome</label><label for="r-name" data-lang="en">Name</label><input id="r-name" name="name" type="text" required autocomplete="name" placeholder="Mario Rossi"></div>
+      <div class="ff"><label for="r-work" data-lang="it">Lavoro svolto</label><label for="r-work" data-lang="en">Work done</label><input id="r-work" name="work" type="text" placeholder="Es. ristrutturazione bagno, Roma"></div>
+      <div class="ff"><label for="r-text" data-lang="it">La tua recensione</label><label for="r-text" data-lang="en">Your review</label><textarea id="r-text" name="review" rows="4" required placeholder="Racconta la tua esperienza con Ionix Group…"></textarea></div>
+      <label class="consent">
+        <input type="checkbox" name="consenso" value="si" required>
+        <span data-lang="it">Ho letto la <a href="privacy.html">privacy policy</a> e acconsento alla pubblicazione della recensione, anche solo in parte. <span aria-hidden="true">*</span></span>
+        <span data-lang="en">I have read the <a href="privacy.html">privacy policy</a> and consent to the review being published, even in part. <span aria-hidden="true">*</span></span>
+      </label>
+      <button type="submit" data-lang="it">Invia recensione</button><button type="submit" data-lang="en">Send review</button>
+      <p class="fnote" data-lang="it">Le recensioni sono lette e pubblicate a mano, di norma entro pochi giorni.</p>
+      <p class="fnote" data-lang="en">Reviews are read and published by hand, usually within a few days.</p>
+    </form>
+  </div>
+</section>
+
 <!-- CONTATTI -->
 <section class="section" id="contatti" data-sec style="background:var(--bone-2)">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="kicker"><span class="n">07</span> <span data-lang="it">Contatti</span><span data-lang="en">Contact</span></div>
+      <div class="kicker"><span class="n">08</span> <span data-lang="it">Contatti</span><span data-lang="en">Contact</span></div>
       <h2 class="display" data-lang="it">Sopralluogo gratuito<br><em>in tutta Italia.</em></h2>
       <h2 class="display" data-lang="en">Free site visit<br><em>across Italy.</em></h2>
     </div>
@@ -1055,7 +1133,7 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
         if(vis) secnav.scrollTo({ left: vis.offsetLeft - secnav.clientWidth / 2 + vis.clientWidth / 2, behavior: reduce ? 'auto' : 'smooth' });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['studio','interventi','pacchetti','rate','care','faq','contatti'].forEach(function(id){
+    ['studio','interventi','pacchetti','rate','care','faq','recensioni','contatti'].forEach(function(id){
       var el = document.getElementById(id); if(el) spy.observe(el);
     });
   }
@@ -1140,9 +1218,9 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
     });
   });
 
-  /* form -> Formspree, with a mailto fallback */
-  var form = $('#quoteForm');
-  if(form){
+  /* forms -> Formspree, with a mailto fallback */
+  function wireForm(form, opts){
+    if(!form) return;
     var endpoint = form.getAttribute('action') || '';
     var configured = endpoint && endpoint.indexOf('YOUR_FORM_ID') === -1;
     function showOk(msg){
@@ -1151,24 +1229,20 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
       if(!ok.parentNode) form.appendChild(ok);
     }
     function toMailto(d, lang){
-      var s = encodeURIComponent('Richiesta preventivo · ' + (d.get('name') || ''));
-      var bd = encodeURIComponent(
-        (lang === 'en' ? 'Name' : 'Nome') + ': ' + (d.get('name') || '') + '\n' +
-        (lang === 'en' ? 'Phone' : 'Telefono') + ': ' + (d.get('phone') || '') + '\n' +
-        (lang === 'en' ? 'City' : 'Città') + ': ' + (d.get('city') || '') + '\n' +
-        (lang === 'en' ? 'Package' : 'Pacchetto') + ': ' + (d.get('package') || '') + '\n' +
-        (lang === 'en' ? 'Notes' : 'Note') + ': ' + (d.get('notes') || '')
-      );
+      var s = encodeURIComponent(opts.mailtoSubject(d));
+      var bd = encodeURIComponent(opts.mailtoBody(d, lang));
       location.href = 'mailto:info@ionixgroup.it?subject=' + s + '&body=' + bd;
     }
+    var okBusyMsg = { it: 'Apro la tua app di posta… altrimenti scrivi a info@ionixgroup.it', en: 'Opening your email app… otherwise write to info@ionixgroup.it' };
     form.addEventListener('submit', function(e){
       e.preventDefault();
       var lang = document.body.getAttribute('data-lang'), d = new FormData(form);
-      if(!d.get('name') || !d.get('phone') || !d.get('consenso')){ if(form.reportValidity) form.reportValidity(); return; }
-      var btns = $$('#quoteForm button[type="submit"]');
+      var missing = opts.required.some(function(f){ return !d.get(f); });
+      if(missing){ if(form.reportValidity) form.reportValidity(); return; }
+      var btns = $$('button[type="submit"]', form);
       if(!configured){
         toMailto(d, lang);
-        showOk(lang === 'en' ? 'Opening your email app… otherwise write to info@ionixgroup.it' : 'Apro la tua app di posta… altrimenti scrivi a info@ionixgroup.it');
+        showOk(lang === 'en' ? okBusyMsg.en : okBusyMsg.it);
         return;
       }
       btns.forEach(function(b){ b.disabled = true; });
@@ -1176,17 +1250,56 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
         .then(function(r){
           if(r.ok){
             form.reset();
-            showOk(lang === 'en' ? 'Thank you. We\'ll be in touch within a few hours.' : 'Grazie. Ti ricontattiamo entro poche ore.');
+            showOk(lang === 'en' ? opts.successMsg.en : opts.successMsg.it);
           } else {
             toMailto(d, lang);
-            showOk(lang === 'en' ? 'Opening your email app… otherwise write to info@ionixgroup.it' : 'Apro la tua app di posta… altrimenti scrivi a info@ionixgroup.it');
+            showOk(lang === 'en' ? okBusyMsg.en : okBusyMsg.it);
           }
         })
         .catch(function(){
           toMailto(d, lang);
-          showOk(lang === 'en' ? 'Opening your email app… otherwise write to info@ionixgroup.it' : 'Apro la tua app di posta… altrimenti scrivi a info@ionixgroup.it');
+          showOk(lang === 'en' ? okBusyMsg.en : okBusyMsg.it);
         })
         .then(function(){ btns.forEach(function(b){ b.disabled = false; }); });
+    });
+  }
+
+  wireForm($('#quoteForm'), {
+    required: ['name', 'phone', 'consenso'],
+    mailtoSubject: function(d){ return 'Richiesta preventivo · ' + (d.get('name') || ''); },
+    mailtoBody: function(d, lang){
+      return (lang === 'en' ? 'Name' : 'Nome') + ': ' + (d.get('name') || '') + '\n' +
+        (lang === 'en' ? 'Phone' : 'Telefono') + ': ' + (d.get('phone') || '') + '\n' +
+        (lang === 'en' ? 'City' : 'Città') + ': ' + (d.get('city') || '') + '\n' +
+        (lang === 'en' ? 'Package' : 'Pacchetto') + ': ' + (d.get('package') || '') + '\n' +
+        (lang === 'en' ? 'Notes' : 'Note') + ': ' + (d.get('notes') || '');
+    },
+    successMsg: { it: 'Grazie. Ti ricontattiamo entro poche ore.', en: 'Thank you. We\'ll be in touch within a few hours.' }
+  });
+
+  wireForm($('#reviewForm'), {
+    required: ['rating', 'name', 'review', 'consenso'],
+    mailtoSubject: function(d){ return 'Nuova recensione · ' + (d.get('name') || ''); },
+    mailtoBody: function(d, lang){
+      return (lang === 'en' ? 'Rating' : 'Valutazione') + ': ' + (d.get('rating') || '') + '/5\n' +
+        (lang === 'en' ? 'Name' : 'Nome') + ': ' + (d.get('name') || '') + '\n' +
+        (lang === 'en' ? 'Work' : 'Lavoro svolto') + ': ' + (d.get('work') || '') + '\n' +
+        (lang === 'en' ? 'Review' : 'Recensione') + ': ' + (d.get('review') || '');
+    },
+    successMsg: { it: 'Grazie! La leggiamo a breve e la pubblichiamo dopo una verifica.', en: 'Thank you! We\'ll read it shortly and publish it after a quick check.' }
+  });
+
+  /* recensioni: reveal the on-site review form */
+  var revealBtn = $('[data-reveal-form]');
+  if(revealBtn){
+    revealBtn.addEventListener('click', function(){
+      var rf = $('#reviewForm');
+      if(!rf) return;
+      rf.hidden = false;
+      revealBtn.hidden = true;
+      rf.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+      var first = $('#r-name', rf);
+      if(first) first.focus();
     });
   }
 })();
