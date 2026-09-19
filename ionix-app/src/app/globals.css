@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #FCFAF6;
+  --paper-2: #FBF9F4;
+  --paper-3: #F4F0E8;
+  --paper-4: #ECE6DA;
+  --ink: #1A1815;
+  --ink-2: #5A5348;
+  --ink-3: #9C9488;
+  --terra: #A24B32;
+  --terra-dark: #823A26;
+  --terra-soft: #E6C7B4;
+  --green: #1f7a4d;
+  --hair: rgba(26, 24, 21, 0.16);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-paper-3: var(--paper-3);
+  --color-paper-4: var(--paper-4);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-terra: var(--terra);
+  --color-terra-dark: var(--terra-dark);
+  --color-terra-soft: var(--terra-soft);
+  --color-green: var(--green);
+  --color-hair: var(--hair);
+
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
+  --font-sans: var(--font-sans);
+}
+
+body {
+  font-weight: 300;
+}
