@@ -3,6 +3,7 @@
 //   npx supabase gen types typescript --project-id <id> > src/lib/database.types.ts
 
 export type TaskStatus = "todo" | "in_progress" | "done";
+export type DocumentCategory = "contratto" | "preventivo" | "altro";
 
 export interface Database {
   public: {
@@ -12,18 +13,21 @@ export interface Database {
           id: string;
           name: string;
           address: string | null;
+          deadline: string | null;
           created_at: string;
         };
         Insert: {
           id?: string;
           name: string;
           address?: string | null;
+          deadline?: string | null;
           created_at?: string;
         };
         Update: {
           id?: string;
           name?: string;
           address?: string | null;
+          deadline?: string | null;
           created_at?: string;
         };
         Relationships: [];
@@ -56,6 +60,47 @@ export interface Database {
         Relationships: [
           {
             foreignKeyName: "tasks_project_id_fkey";
+            columns: ["project_id"];
+            isOneToOne: false;
+            referencedRelation: "projects";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      documents: {
+        Row: {
+          id: string;
+          project_id: string;
+          title: string;
+          category: DocumentCategory;
+          client_visible: boolean;
+          file_path: string;
+          size_bytes: number | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          project_id: string;
+          title: string;
+          category?: DocumentCategory;
+          client_visible?: boolean;
+          file_path: string;
+          size_bytes?: number | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          project_id?: string;
+          title?: string;
+          category?: DocumentCategory;
+          client_visible?: boolean;
+          file_path?: string;
+          size_bytes?: number | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "documents_project_id_fkey";
             columns: ["project_id"];
             isOneToOne: false;
             referencedRelation: "projects";
