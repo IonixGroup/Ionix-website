@@ -2,14 +2,7 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-
-function formatDate(iso: string) {
-  return new Intl.DateTimeFormat("it-IT", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(new Date(`${iso}T00:00:00`));
-}
+import { formatDateIt } from "@/lib/format";
 
 export default function DeadlineEditor({
   projectId,
@@ -64,7 +57,7 @@ export default function DeadlineEditor({
         Consegna
       </span>
       <span className="font-serif text-base group-hover:text-terra-dark">
-        {deadline ? formatDate(deadline) : "— da impostare"}
+        {deadline ? formatDateIt(deadline) : "— da impostare"}
       </span>
     </button>
   );

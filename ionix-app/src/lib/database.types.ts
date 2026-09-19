@@ -4,6 +4,7 @@
 
 export type TaskStatus = "todo" | "in_progress" | "done";
 export type DocumentCategory = "contratto" | "preventivo" | "altro";
+export type ProfileRole = "team" | "client";
 
 export interface Database {
   public: {
@@ -101,6 +102,38 @@ export interface Database {
         Relationships: [
           {
             foreignKeyName: "documents_project_id_fkey";
+            columns: ["project_id"];
+            isOneToOne: false;
+            referencedRelation: "projects";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      profiles: {
+        Row: {
+          id: string;
+          role: ProfileRole;
+          project_id: string | null;
+          full_name: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id: string;
+          role: ProfileRole;
+          project_id?: string | null;
+          full_name?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          role?: ProfileRole;
+          project_id?: string | null;
+          full_name?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "profiles_project_id_fkey";
             columns: ["project_id"];
             isOneToOne: false;
             referencedRelation: "projects";
