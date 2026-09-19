@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import BoardClient from "./board-client";
+import DeadlineEditor from "./deadline-editor";
+import DocumentsClient from "./documents-client";
 
 export const dynamic = "force-dynamic";
 
@@ -42,17 +44,32 @@ export default async function BoardPage(props: PageProps<"/board">) {
     return <ConnectionNotice message={tasksError.message} />;
   }
 
+  const { data: documents, error: documentsError } = activeProjectId
+    ? await supabase
+        .from("documents")
+        .select("*")
+        .eq("project_id", activeProjectId)
+        .order("created_at", { ascending: false })
+    : { data: [], error: null };
+
+  if (documentsError) {
+    return <ConnectionNotice message={documentsError.message} />;
+  }
+
   return (
     <main className="flex-1 px-6 py-10 md:px-10 max-w-6xl mx-auto w-full">
       <div className="mb-8">
         <div className="font-mono text-[10.5px] tracking-[0.18em] uppercase text-ink-2 mb-2">
           Bacheca lavori · solo squadra
         </div>
-        <h1 className="font-serif text-3xl md:text-4xl -tracking-[0.01em]">
+        <h1 className="font-serif text-3xl md:text-4xl -tracking-[0.01em] mb-2">
           {activeProject ? activeProject.name : "Nessun progetto"}
         </h1>
         {activeProject?.address && (
-          <p className="text-ink-2 font-light text-sm mt-1">{activeProject.address}</p>
+          <p className="text-ink-2 font-light text-sm mb-3">{activeProject.address}</p>
+        )}
+        {activeProject && (
+          <DeadlineEditor projectId={activeProject.id} initialDeadline={activeProject.deadline} />
         )}
       </div>
 
@@ -75,7 +92,12 @@ export default async function BoardPage(props: PageProps<"/board">) {
       )}
 
       {activeProjectId ? (
-        <BoardClient projectId={activeProjectId} initialTasks={tasks ?? []} />
+        <>
+          <BoardClient projectId={activeProjectId} initialTasks={tasks ?? []} />
+          <div className="mt-10">
+            <DocumentsClient projectId={activeProjectId} initialDocuments={documents ?? []} />
+          </div>
+        </>
       ) : (
         <p className="text-ink-2">
           Nessun progetto trovato — esegui lo schema in supabase/schema.sql sul tuo progetto Supabase.
