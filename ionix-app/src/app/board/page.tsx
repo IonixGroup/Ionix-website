@@ -1,5 +1,8 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { getSessionProfile } from "@/lib/supabase/session";
+import LogoutButton from "@/components/logout-button";
 import BoardClient from "./board-client";
 import DeadlineEditor from "./deadline-editor";
 import DocumentsClient from "./documents-client";
@@ -14,6 +17,10 @@ export default async function BoardPage(props: PageProps<"/board">) {
       <ConnectionNotice message="Variabili NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY mancanti in .env.local." />
     );
   }
+
+  const session = await getSessionProfile();
+  if (!session) redirect("/login");
+  if (session.profile?.role !== "team") redirect("/portal");
 
   const supabase = await createClient();
 
@@ -58,6 +65,22 @@ export default async function BoardPage(props: PageProps<"/board">) {
 
   return (
     <main className="flex-1 px-6 py-10 md:px-10 max-w-6xl mx-auto w-full">
+      <div className="flex items-center justify-between mb-10">
+        <div className="flex items-baseline gap-2">
+          <span className="font-serif font-medium text-base tracking-[0.1em]">IONIX</span>
+          <span className="font-mono text-[7px] tracking-[0.2em] uppercase text-terra">Group</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <Link
+            href="/board/account"
+            className="font-mono text-[10px] tracking-[0.14em] uppercase text-ink-3 hover:text-terra"
+          >
+            Account
+          </Link>
+          <LogoutButton />
+        </div>
+      </div>
+
       <div className="mb-8">
         <div className="font-mono text-[10.5px] tracking-[0.18em] uppercase text-ink-2 mb-2">
           Bacheca lavori · solo squadra
