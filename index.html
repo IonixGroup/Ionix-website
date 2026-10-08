@@ -253,26 +253,13 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
 .iv-cap{margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .iv-cap b{color:var(--ink);font-weight:500}
 
-/* ---------- pacchetti (accordion) ---------- */
+/* ---------- pacchetti (listino) ---------- */
 .pkg-list{border-top:1px solid var(--ink)}
-.pkg{border-bottom:1px solid var(--hair)}
-.pkg-head{width:100%;background:none;border:0;cursor:pointer;padding:30px 4px;display:grid;
-  grid-template-columns:64px 1fr auto 40px;gap:24px;align-items:center;color:var(--ink);font:inherit;text-align:left;transition:padding .3s var(--ease)}
-.pkg-head:hover{padding-left:12px}
-.pkg-code{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--terra)}
-.pkg-name{font-family:var(--serif);font-size:clamp(20px,2.4vw,30px);font-weight:400}
-.pkg-metatop{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:right}
-.pkg-tog{justify-self:end;width:26px;height:26px;position:relative}
-.pkg-tog::before,.pkg-tog::after{content:'';position:absolute;top:50%;left:50%;width:14px;height:1.4px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .35s var(--ease)}
-.pkg-tog::after{transform:translate(-50%,-50%) rotate(90deg)}
-.pkg[data-open] .pkg-tog::after{transform:translate(-50%,-50%) rotate(0)}
-.pkg-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
-.pkg[data-open] .pkg-body{grid-template-rows:1fr}
-.pkg-body > div{overflow:hidden}
-.pkg-inner{padding:6px 4px 40px;display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(24px,4vw,60px);align-items:start}
-.pkg-scope{list-style:none;columns:1}
-.pkg-scope li{font-size:14.5px;color:var(--ink-2);padding:9px 0;border-bottom:1px solid var(--hair-soft);display:flex;gap:12px;line-height:1.45}
-.pkg-scope li::before{content:'';width:6px;height:6px;border:1px solid var(--terra);flex-shrink:0;margin-top:7px}
+.pkg{border-bottom:1px solid var(--hair);padding:34px 4px;display:grid;
+  grid-template-columns:48px 1.4fr 1fr;gap:clamp(24px,4vw,60px);align-items:start}
+.pkg-num{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--terra);padding-top:3px}
+.pkg-name{font-family:var(--serif);font-size:clamp(20px,2.4vw,30px);font-weight:400;margin-bottom:12px}
+.pkg-scope-text{font-size:14.5px;color:var(--ink-2);line-height:1.7}
 .pkg-note{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:14px}
 .pkg-aside .pkg-price{font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);font-weight:400}
 .pkg-aside .pkg-dur{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-top:6px}
@@ -438,7 +425,8 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
 
 /* ---------- responsive ---------- */
 @media(max-width:1080px){
-  .mani-grid,.iv-grid,.pkg-inner,.contact-grid{grid-template-columns:1fr}
+  .mani-grid,.iv-grid,.pkg,.contact-grid{grid-template-columns:1fr}
+  .pkg-num{padding-top:0}
   .strip{grid-template-columns:1fr 1fr}
   .iv-figure{position:relative;top:0;order:-1;margin-bottom:8px}
   .foot-grid{grid-template-columns:1fr 1fr}
@@ -448,9 +436,7 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
   .burger{display:flex}
   .strip{grid-template-columns:1fr}
   .strip div + div{border-left:0;border-top:1px solid var(--hair)}
-  .pkg-head{grid-template-columns:48px 1fr 30px;gap:14px}
-  .pkg-metatop{display:none}
-  .pkg-head .pkg-metatop{grid-column:1/-1}
+  .pkg{gap:14px}
   .hero-foot{flex-direction:column;align-items:flex-start}
   .foot-grid{grid-template-columns:1fr}
 }
@@ -640,124 +626,79 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
 
     <div class="pkg-list reveal" id="pkgList">
       <div class="pkg">
-        <button class="pkg-head" aria-expanded="false">
-          <span class="pkg-code">T0</span>
-          <span class="pkg-name" data-lang="it">Interventi mirati</span><span class="pkg-name" data-lang="en">Targeted works</span>
-          <span class="pkg-metatop">30 gg · € 8.000–15.000</span>
-          <span class="pkg-tog"></span>
-        </button>
-        <div class="pkg-body"><div><div class="pkg-inner">
-          <ul class="pkg-scope">
-            <li data-lang="it">Rifacimento bagno completo</li><li data-lang="en">Full bathroom renovation</li>
-            <li data-lang="it">Ristrutturazione cucina</li><li data-lang="en">Kitchen renovation</li>
-            <li data-lang="it">Ritinteggiatura completa</li><li data-lang="en">Full repainting</li>
-            <li data-lang="it">Sostituzione pavimenti (1 stanza)</li><li data-lang="en">Floor replacement (1 room)</li>
-            <li data-lang="it">Piccoli interventi impiantistici</li><li data-lang="en">Minor system works</li>
-          </ul>
-          <div class="pkg-aside">
-            <div class="pkg-price">€ 8.000–15.000</div>
-            <div class="pkg-dur" data-lang="it">30 giorni</div><div class="pkg-dur" data-lang="en">30 days</div>
-            <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento in arrivo</span><span class="chip" data-lang="en">Financing coming soon</span></div>
-            <button class="btn-line" data-pkg="T0 · Starter (30 gg)" data-lang="it">Richiedi T0 →</button><button class="btn-line" data-pkg="T0 · Starter (30 gg)" data-lang="en">Request T0 →</button>
-          </div>
-        </div></div></div>
-      </div>
-
-      <div class="pkg" data-open>
-        <button class="pkg-head" aria-expanded="true">
-          <span class="pkg-code">T1</span>
-          <span class="pkg-name" data-lang="it">Bilocale completo</span><span class="pkg-name" data-lang="en">Full 2-room apartment</span>
-          <span class="pkg-metatop">60 gg · € 15.000–30.000 · <span data-lang="it">più scelto</span><span data-lang="en">most chosen</span></span>
-          <span class="pkg-tog"></span>
-        </button>
-        <div class="pkg-body"><div><div class="pkg-inner">
-          <div>
-            <ul class="pkg-scope">
-              <li data-lang="it">Bagno e cucina completi</li><li data-lang="en">Full bathroom and kitchen</li>
-              <li data-lang="it">Serramenti e porte interne: fino a 3 finestre + 1 portafinestra, oppure 4 finestre</li><li data-lang="en">Windows &amp; internal doors: up to 3 windows + 1 French door, or 4 windows</li>
-              <li data-lang="it">Impianto elettrico e idraulico</li><li data-lang="en">Electrical and plumbing systems</li>
-              <li data-lang="it">Cartongesso e partizioni</li><li data-lang="en">Plasterboard and partitions</li>
-            </ul>
-            <p class="pkg-note" data-lang="it">Esclusi: pavimenti e sanitari</p><p class="pkg-note" data-lang="en">Excluded: flooring and sanitary fixtures</p>
-          </div>
-          <div class="pkg-aside">
-            <div class="pkg-price">€ 15.000–30.000</div>
-            <div class="pkg-dur" data-lang="it">60 giorni</div><div class="pkg-dur" data-lang="en">60 days</div>
-            <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento in arrivo</span><span class="chip" data-lang="en">Financing coming soon</span></div>
-            <button class="btn-line" data-pkg="T1 · Bilocale (60 gg)" data-lang="it">Richiedi T1 →</button><button class="btn-line" data-pkg="T1 · Bilocale (60 gg)" data-lang="en">Request T1 →</button>
-          </div>
-        </div></div></div>
+        <span class="pkg-num">01</span>
+        <div>
+          <div class="pkg-name" data-lang="it">Interventi mirati</div><div class="pkg-name" data-lang="en">Targeted works</div>
+          <p class="pkg-scope-text" data-lang="it">Rifacimento bagno completo, ristrutturazione cucina, ritinteggiatura completa, sostituzione pavimenti di una stanza e piccoli interventi impiantistici.</p>
+          <p class="pkg-scope-text" data-lang="en">Full bathroom renovation, kitchen renovation, full repainting, floor replacement in one room, and minor system works.</p>
+        </div>
+        <div class="pkg-aside">
+          <div class="pkg-price">€ 8.000–15.000</div>
+          <div class="pkg-dur" data-lang="it">30 giorni</div><div class="pkg-dur" data-lang="en">30 days</div>
+          <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento in arrivo</span><span class="chip" data-lang="en">Financing coming soon</span></div>
+          <button class="btn-line" data-pkg="T0 · Starter (30 gg)" data-lang="it">Richiedi →</button><button class="btn-line" data-pkg="T0 · Starter (30 gg)" data-lang="en">Request →</button>
+        </div>
       </div>
 
       <div class="pkg">
-        <button class="pkg-head" aria-expanded="false">
-          <span class="pkg-code">T2</span>
-          <span class="pkg-name" data-lang="it">Trilocale, ristrutturazione totale</span><span class="pkg-name" data-lang="en">3-room, full renovation</span>
-          <span class="pkg-metatop">90 gg · € 30.000–60.000</span>
-          <span class="pkg-tog"></span>
-        </button>
-        <div class="pkg-body"><div><div class="pkg-inner">
-          <ul class="pkg-scope">
-            <li data-lang="it">Bagno, cucina, pavimenti, impianti</li><li data-lang="en">Bathroom, kitchen, floors, systems</li>
-            <li data-lang="it">Trilocale completo</li><li data-lang="en">Full 3-room apartment</li>
-            <li data-lang="it">Riscaldamento e raffrescamento</li><li data-lang="en">Heating and cooling</li>
-            <li data-lang="it">Finiture premium</li><li data-lang="en">Premium finishes</li>
-            <li data-lang="it">Progettazione architettonica</li><li data-lang="en">Architectural design</li>
-          </ul>
-          <div class="pkg-aside">
-            <div class="pkg-price">€ 30.000–60.000</div>
-            <div class="pkg-dur" data-lang="it">90 giorni</div><div class="pkg-dur" data-lang="en">90 days</div>
-            <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento in arrivo</span><span class="chip" data-lang="en">Financing coming soon</span></div>
-            <button class="btn-line" data-pkg="T2 · Trilocale (90 gg)" data-lang="it">Richiedi T2 →</button><button class="btn-line" data-pkg="T2 · Trilocale (90 gg)" data-lang="en">Request T2 →</button>
-          </div>
-        </div></div></div>
+        <span class="pkg-num">02</span>
+        <div>
+          <div class="pkg-name" data-lang="it">Bilocale completo</div><div class="pkg-name" data-lang="en">Full 2-room apartment</div>
+          <p class="pkg-scope-text" data-lang="it">Bagno e cucina completi, impianto elettrico e idraulico, cartongesso e partizioni, serramenti e porte interne (fino a 3 finestre e un portafinestra, oppure 4 finestre).</p>
+          <p class="pkg-scope-text" data-lang="en">Full bathroom and kitchen, electrical and plumbing systems, plasterboard and partitions, windows and internal doors (up to 3 windows and one French door, or 4 windows).</p>
+          <p class="pkg-note" data-lang="it">Esclusi: pavimenti e sanitari</p><p class="pkg-note" data-lang="en">Excluded: flooring and sanitary fixtures</p>
+        </div>
+        <div class="pkg-aside">
+          <div class="pkg-price">€ 15.000–30.000</div>
+          <div class="pkg-dur" data-lang="it">60 giorni</div><div class="pkg-dur" data-lang="en">60 days</div>
+          <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento in arrivo</span><span class="chip" data-lang="en">Financing coming soon</span></div>
+          <button class="btn-line" data-pkg="T1 · Bilocale (60 gg)" data-lang="it">Richiedi →</button><button class="btn-line" data-pkg="T1 · Bilocale (60 gg)" data-lang="en">Request →</button>
+        </div>
       </div>
 
       <div class="pkg">
-        <button class="pkg-head" aria-expanded="false">
-          <span class="pkg-code">T3</span>
-          <span class="pkg-name" data-lang="it">Quadrilocale, ristrutturazione grande</span><span class="pkg-name" data-lang="en">4-room, large renovation</span>
-          <span class="pkg-metatop">120 gg · € 50.000–90.000</span>
-          <span class="pkg-tog"></span>
-        </button>
-        <div class="pkg-body"><div><div class="pkg-inner">
-          <ul class="pkg-scope">
-            <li data-lang="it">Ristrutturazione completa di tutti gli ambienti</li><li data-lang="en">Full renovation of every room</li>
-            <li data-lang="it">Quadrilocale fino a 120 m²</li><li data-lang="en">4-room apartment up to 120 m²</li>
-            <li data-lang="it">Serramenti e infissi nuovi</li><li data-lang="en">New windows and frames</li>
-            <li data-lang="it">Finiture su misura</li><li data-lang="en">Custom finishes</li>
-            <li data-lang="it">Coordinamento con l'architetto</li><li data-lang="en">Architect coordination</li>
-          </ul>
-          <div class="pkg-aside">
-            <div class="pkg-price">€ 50.000–90.000</div>
-            <div class="pkg-dur" data-lang="it">120 giorni</div><div class="pkg-dur" data-lang="en">120 days</div>
-            <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento in arrivo</span><span class="chip" data-lang="en">Financing coming soon</span></div>
-            <button class="btn-line" data-pkg="T3 · Quadrilocale (120 gg)" data-lang="it">Richiedi T3 →</button><button class="btn-line" data-pkg="T3 · Quadrilocale (120 gg)" data-lang="en">Request T3 →</button>
-          </div>
-        </div></div></div>
+        <span class="pkg-num">03</span>
+        <div>
+          <div class="pkg-name" data-lang="it">Trilocale, ristrutturazione totale</div><div class="pkg-name" data-lang="en">3-room, full renovation</div>
+          <p class="pkg-scope-text" data-lang="it">Trilocale completo: bagno, cucina, pavimenti e impianti, riscaldamento e raffrescamento, finiture premium e progettazione architettonica inclusa.</p>
+          <p class="pkg-scope-text" data-lang="en">Full 3-room apartment: bathroom, kitchen, floors and systems, heating and cooling, premium finishes, and architectural design included.</p>
+        </div>
+        <div class="pkg-aside">
+          <div class="pkg-price">€ 30.000–60.000</div>
+          <div class="pkg-dur" data-lang="it">90 giorni</div><div class="pkg-dur" data-lang="en">90 days</div>
+          <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento in arrivo</span><span class="chip" data-lang="en">Financing coming soon</span></div>
+          <button class="btn-line" data-pkg="T2 · Trilocale (90 gg)" data-lang="it">Richiedi →</button><button class="btn-line" data-pkg="T2 · Trilocale (90 gg)" data-lang="en">Request →</button>
+        </div>
       </div>
 
       <div class="pkg">
-        <button class="pkg-head" aria-expanded="false">
-          <span class="pkg-code">T4</span>
-          <span class="pkg-name" data-lang="it">Villa e immobili su misura</span><span class="pkg-name" data-lang="en">Villas and full properties</span>
-          <span class="pkg-metatop" data-lang="it">210 gg · su preventivo</span><span class="pkg-metatop" data-lang="en">210 days · on quote</span>
-          <span class="pkg-tog"></span>
-        </button>
-        <div class="pkg-body"><div><div class="pkg-inner">
-          <ul class="pkg-scope">
-            <li data-lang="it">Villa, immobile o piano intero</li><li data-lang="en">Villa, property or full floor</li>
-            <li data-lang="it">Ristrutturazione totale su misura</li><li data-lang="en">Fully custom renovation</li>
-            <li data-lang="it">Team dedicato esclusivo</li><li data-lang="en">Exclusive dedicated team</li>
-            <li data-lang="it">Project manager assegnato</li><li data-lang="en">Assigned project manager</li>
-          </ul>
-          <div class="pkg-aside">
-            <div class="pkg-price" data-lang="it">Su preventivo</div><div class="pkg-price" data-lang="en">On quote</div>
-            <div class="pkg-dur" data-lang="it">210 giorni</div><div class="pkg-dur" data-lang="en">210 days</div>
-            <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento su misura in arrivo</span><span class="chip" data-lang="en">Tailored financing coming soon</span></div>
-            <button class="btn-line" data-pkg="T4 · Villa (210 gg)" data-lang="it">Richiedi T4 →</button><button class="btn-line" data-pkg="T4 · Villa (210 gg)" data-lang="en">Request T4 →</button>
-          </div>
-        </div></div></div>
+        <span class="pkg-num">04</span>
+        <div>
+          <div class="pkg-name" data-lang="it">Quadrilocale, ristrutturazione grande</div><div class="pkg-name" data-lang="en">4-room, large renovation</div>
+          <p class="pkg-scope-text" data-lang="it">Ristrutturazione completa di tutti gli ambienti, fino a 120 m², con serramenti e infissi nuovi, finiture su misura e coordinamento con l'architetto.</p>
+          <p class="pkg-scope-text" data-lang="en">Full renovation of every room, up to 120 m², with new windows and frames, custom finishes and architect coordination.</p>
+        </div>
+        <div class="pkg-aside">
+          <div class="pkg-price">€ 50.000–90.000</div>
+          <div class="pkg-dur" data-lang="it">120 giorni</div><div class="pkg-dur" data-lang="en">120 days</div>
+          <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento in arrivo</span><span class="chip" data-lang="en">Financing coming soon</span></div>
+          <button class="btn-line" data-pkg="T3 · Quadrilocale (120 gg)" data-lang="it">Richiedi →</button><button class="btn-line" data-pkg="T3 · Quadrilocale (120 gg)" data-lang="en">Request →</button>
+        </div>
+      </div>
+
+      <div class="pkg">
+        <span class="pkg-num">05</span>
+        <div>
+          <div class="pkg-name" data-lang="it">Villa e immobili su misura</div><div class="pkg-name" data-lang="en">Villas and full properties</div>
+          <p class="pkg-scope-text" data-lang="it">Villa, immobile o piano intero: ristrutturazione totale su misura, con team dedicato esclusivo e project manager assegnato.</p>
+          <p class="pkg-scope-text" data-lang="en">Villa, property or full floor: fully custom renovation, with an exclusive dedicated team and assigned project manager.</p>
+        </div>
+        <div class="pkg-aside">
+          <div class="pkg-price" data-lang="it">Su preventivo</div><div class="pkg-price" data-lang="en">On quote</div>
+          <div class="pkg-dur" data-lang="it">210 giorni</div><div class="pkg-dur" data-lang="en">210 days</div>
+          <div class="pkg-chips"><span class="chip">Rate a milestone</span><span class="chip" data-lang="it">Finanziamento su misura in arrivo</span><span class="chip" data-lang="en">Tailored financing coming soon</span></div>
+          <button class="btn-line" data-pkg="T4 · Villa (210 gg)" data-lang="it">Richiedi →</button><button class="btn-line" data-pkg="T4 · Villa (210 gg)" data-lang="en">Request →</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1121,15 +1062,6 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
     r.addEventListener('keydown', function(e){
       if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){ e.preventDefault(); rows[(i + 1) % rows.length].focus(); pickRow((i + 1) % rows.length); }
       if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){ e.preventDefault(); rows[(i - 1 + rows.length) % rows.length].focus(); pickRow((i - 1 + rows.length) % rows.length); }
-    });
-  });
-
-  /* packages accordion */
-  $$('#pkgList .pkg-head').forEach(function(h){
-    h.addEventListener('click', function(){
-      var pkg = h.closest('.pkg'), open = pkg.hasAttribute('data-open');
-      $$('#pkgList .pkg').forEach(function(p){ p.removeAttribute('data-open'); p.querySelector('.pkg-head').setAttribute('aria-expanded', 'false'); });
-      if(!open){ pkg.setAttribute('data-open', ''); h.setAttribute('aria-expanded', 'true'); }
     });
   });
 
