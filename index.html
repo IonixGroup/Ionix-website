@@ -223,7 +223,7 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
 /* ---------- manifesto ---------- */
 .manifesto{background:var(--bone-2)}
 .mani-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,7vw,110px);align-items:start}
-.mani-figure{position:relative}
+.mani-figure{position:relative;position:sticky;top:calc(var(--nav) + 24px)}
 .mani-figure img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:32% center;filter:grayscale(1) contrast(1.04) brightness(.94)}
 .mani-figure figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-top:12px;display:flex;justify-content:space-between}
 .mani-quote{margin:38px 0;padding-left:26px;border-left:2px solid var(--terra)}
@@ -247,7 +247,7 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
 .iv-row .rx{align-self:center;font-family:var(--mono);font-size:16px;color:var(--hair);transition:color .3s,transform .3s}
 .iv-row:hover .rx,.iv-row[aria-current="true"] .rx{color:var(--terra);transform:translateX(3px)}
 .iv-figure{position:relative;position:sticky;top:calc(var(--nav) + 24px)}
-.iv-figure .stage{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:var(--bone-2)}
+.iv-figure .stage{position:relative;width:100%;aspect-ratio:6/5;overflow:hidden;background:var(--bone-2)}
 .iv-figure .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .7s var(--ease),transform 1.2s var(--ease)}
 .iv-figure .stage img.on{opacity:1;transform:scale(1)}
 .iv-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;border-radius:50%;background:rgba(26,24,21,.55);color:var(--white);font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .2s}
@@ -436,6 +436,8 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
   .pkg-num{padding-top:0}
   .strip{grid-template-columns:1fr 1fr}
   .iv-figure{position:relative;top:0;order:-1;margin-bottom:8px}
+  .iv-figure .stage{aspect-ratio:3/4}
+  .mani-figure{position:relative;top:0}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:760px){
@@ -773,11 +775,73 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
   </div>
 </section>
 
+<!-- CONTATTI -->
+<section class="section" id="contatti" data-sec style="background:var(--bone-2)">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="kicker"><span class="n">06</span> <span data-lang="it">Contatti</span><span data-lang="en">Contact</span></div>
+      <h2 class="display" data-lang="it">Sopralluogo gratuito<br><em>in tutta Italia.</em></h2>
+      <h2 class="display" data-lang="en">Free site visit<br><em>across Italy.</em></h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-l">
+        <p class="lead" data-lang="it">Veniamo da te, valutiamo gratuitamente e ti diamo un preventivo dettagliato entro 48 ore. Nessun impegno.</p>
+        <p class="lead" data-lang="en">We come to you, assess for free, and give you a detailed quote within 48 hours. No commitment.</p>
+        <a href="https://wa.me/393287787671" class="wa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.8.7-2.8-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5L9.8 6.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3A3 3 0 007 8.9c0 1.8 1.3 3.5 1.5 3.7.2.3 2.6 4 6.3 5.5 2.3 1 3.2.9 4 .8.6-.1 1.4-.6 1.6-1.2.2-.6.2-1 .1-1.2z"/></svg>
+          <span data-lang="it">WhatsApp · rispondiamo in giornata</span><span data-lang="en">WhatsApp · same-day reply</span></a>
+        <div class="cmeta">
+          <a href="tel:+393287787671">+39 328 778 7671</a>
+          <a href="mailto:info@ionixgroup.it">info@ionixgroup.it</a>
+          <span data-lang="it">Roma · sopralluoghi in tutta Italia</span><span data-lang="en">Rome · site visits across Italy</span>
+        </div>
+        <div class="zones">
+          <h3 data-lang="it">Zone coperte a Roma</h3><h3 data-lang="en">Areas covered in Rome</h3>
+          <div class="ztags"><span>Prati</span><span>Parioli</span><span>Trastevere</span><span>EUR</span><span>Testaccio</span><span>Flaminio</span><span>Nomentano</span><span>Ostiense</span><span>Monteverde</span></div>
+        </div>
+        <div class="socials">
+          <h3 data-lang="it">Trovaci su</h3><h3 data-lang="en">Find us on</h3>
+          <a href="https://www.google.com/maps" target="_blank" rel="noopener">Google Business</a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram · @ionixgroup</a>
+          <a href="https://www.edilnet.it" target="_blank" rel="noopener" data-lang="it">Edilnet</a><a href="https://www.edilnet.it" target="_blank" rel="noopener" data-lang="en">Edilnet</a>
+        </div>
+      </div>
+      <div class="contact-r">
+        <form id="quoteForm" action="https://formspree.io/f/meaqpkwn" method="POST" novalidate>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+          <input type="hidden" name="_subject" value="Nuova richiesta preventivo — ionixgroup.it">
+          <div class="ff"><label for="f-name" data-lang="it">Nome</label><label for="f-name" data-lang="en">Name</label><input id="f-name" name="name" type="text" required autocomplete="name" placeholder="Mario Rossi"></div>
+          <div class="ff"><label for="f-phone">Telefono · Phone</label><input id="f-phone" name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="+39 333 000 0000"></div>
+          <div class="ff"><label for="f-city" data-lang="it">Città</label><label for="f-city" data-lang="en">City</label><input id="f-city" name="city" type="text" autocomplete="address-level2" placeholder="Roma, Milano, Napoli…"></div>
+          <div class="ff"><label for="pkgSelect" data-lang="it">Pacchetto d'interesse</label><label for="pkgSelect" data-lang="en">Package of interest</label>
+            <select name="package" id="pkgSelect">
+              <option>T0 · Starter (30 gg)</option>
+              <option>T1 · Bilocale (60 gg)</option>
+              <option>T2 · Trilocale (90 gg)</option>
+              <option>T3 · Quadrilocale (120 gg)</option>
+              <option>T4 · Villa (210 gg)</option>
+              <option data-lang="it">Non sono ancora sicuro</option><option data-lang="en">Not sure yet</option>
+            </select>
+          </div>
+          <div class="ff"><label for="f-notes" data-lang="it">Note</label><label for="f-notes" data-lang="en">Notes</label><textarea id="f-notes" name="notes" rows="3" placeholder="Descrivi brevemente l'immobile…"></textarea></div>
+          <label class="consent">
+            <input type="checkbox" name="consenso" value="si" required>
+            <span data-lang="it">Ho letto la <a href="privacy.html">privacy policy</a> e acconsento al trattamento dei miei dati per essere ricontattato/a. <span aria-hidden="true">*</span></span>
+            <span data-lang="en">I have read the <a href="privacy.html">privacy policy</a> and consent to my data being processed so you can contact me. <span aria-hidden="true">*</span></span>
+          </label>
+          <button type="submit" data-lang="it">Invia richiesta</button><button type="submit" data-lang="en">Send request</button>
+          <p class="fnote" data-lang="it">Ti ricontattiamo in giornata · Sopralluogo sempre gratuito · I tuoi dati non vengono ceduti a terzi.</p>
+          <p class="fnote" data-lang="en">We get back to you the same day · Site visit always free · Your data is never sold to third parties.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="section" id="faq" data-sec>
   <div class="container">
     <div class="sec-head reveal">
-      <div class="kicker"><span class="n">06</span> <span data-lang="it">Domande frequenti</span><span data-lang="en">FAQ</span></div>
+      <div class="kicker"><span class="n">07</span> <span data-lang="it">Domande frequenti</span><span data-lang="en">FAQ</span></div>
       <h2 class="display" data-lang="it">Le domande<br><em>che ci fanno tutti.</em></h2>
       <h2 class="display" data-lang="en">The questions<br><em>everyone asks.</em></h2>
     </div>
@@ -838,68 +902,6 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
           <p data-lang="en">Yes, all works are guaranteed in writing for 2 years. If something goes wrong, we come back within 48 hours.</p>
         </div>
       </details>
-    </div>
-  </div>
-</section>
-
-<!-- CONTATTI -->
-<section class="section" id="contatti" data-sec style="background:var(--bone-2)">
-  <div class="container">
-    <div class="sec-head reveal">
-      <div class="kicker"><span class="n">07</span> <span data-lang="it">Contatti</span><span data-lang="en">Contact</span></div>
-      <h2 class="display" data-lang="it">Sopralluogo gratuito<br><em>in tutta Italia.</em></h2>
-      <h2 class="display" data-lang="en">Free site visit<br><em>across Italy.</em></h2>
-    </div>
-    <div class="contact-grid reveal">
-      <div class="contact-l">
-        <p class="lead" data-lang="it">Veniamo da te, valutiamo gratuitamente e ti diamo un preventivo dettagliato entro 48 ore. Nessun impegno.</p>
-        <p class="lead" data-lang="en">We come to you, assess for free, and give you a detailed quote within 48 hours. No commitment.</p>
-        <a href="https://wa.me/393287787671" class="wa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.8.7-2.8-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5L9.8 6.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3A3 3 0 007 8.9c0 1.8 1.3 3.5 1.5 3.7.2.3 2.6 4 6.3 5.5 2.3 1 3.2.9 4 .8.6-.1 1.4-.6 1.6-1.2.2-.6.2-1 .1-1.2z"/></svg>
-          <span data-lang="it">WhatsApp · rispondiamo in giornata</span><span data-lang="en">WhatsApp · same-day reply</span></a>
-        <div class="cmeta">
-          <a href="tel:+393287787671">+39 328 778 7671</a>
-          <a href="mailto:info@ionixgroup.it">info@ionixgroup.it</a>
-          <span data-lang="it">Roma · sopralluoghi in tutta Italia</span><span data-lang="en">Rome · site visits across Italy</span>
-        </div>
-        <div class="zones">
-          <h3 data-lang="it">Zone coperte a Roma</h3><h3 data-lang="en">Areas covered in Rome</h3>
-          <div class="ztags"><span>Prati</span><span>Parioli</span><span>Trastevere</span><span>EUR</span><span>Testaccio</span><span>Flaminio</span><span>Nomentano</span><span>Ostiense</span><span>Monteverde</span></div>
-        </div>
-        <div class="socials">
-          <h3 data-lang="it">Trovaci su</h3><h3 data-lang="en">Find us on</h3>
-          <a href="https://www.google.com/maps" target="_blank" rel="noopener">Google Business</a>
-          <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram · @ionixgroup</a>
-          <a href="https://www.edilnet.it" target="_blank" rel="noopener" data-lang="it">Edilnet</a><a href="https://www.edilnet.it" target="_blank" rel="noopener" data-lang="en">Edilnet</a>
-        </div>
-      </div>
-      <div class="contact-r">
-        <form id="quoteForm" action="https://formspree.io/f/meaqpkwn" method="POST" novalidate>
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
-          <input type="hidden" name="_subject" value="Nuova richiesta preventivo — ionixgroup.it">
-          <div class="ff"><label for="f-name" data-lang="it">Nome</label><label for="f-name" data-lang="en">Name</label><input id="f-name" name="name" type="text" required autocomplete="name" placeholder="Mario Rossi"></div>
-          <div class="ff"><label for="f-phone">Telefono · Phone</label><input id="f-phone" name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="+39 333 000 0000"></div>
-          <div class="ff"><label for="f-city" data-lang="it">Città</label><label for="f-city" data-lang="en">City</label><input id="f-city" name="city" type="text" autocomplete="address-level2" placeholder="Roma, Milano, Napoli…"></div>
-          <div class="ff"><label for="pkgSelect" data-lang="it">Pacchetto d'interesse</label><label for="pkgSelect" data-lang="en">Package of interest</label>
-            <select name="package" id="pkgSelect">
-              <option>T0 · Starter (30 gg)</option>
-              <option>T1 · Bilocale (60 gg)</option>
-              <option>T2 · Trilocale (90 gg)</option>
-              <option>T3 · Quadrilocale (120 gg)</option>
-              <option>T4 · Villa (210 gg)</option>
-              <option data-lang="it">Non sono ancora sicuro</option><option data-lang="en">Not sure yet</option>
-            </select>
-          </div>
-          <div class="ff"><label for="f-notes" data-lang="it">Note</label><label for="f-notes" data-lang="en">Notes</label><textarea id="f-notes" name="notes" rows="3" placeholder="Descrivi brevemente l'immobile…"></textarea></div>
-          <label class="consent">
-            <input type="checkbox" name="consenso" value="si" required>
-            <span data-lang="it">Ho letto la <a href="privacy.html">privacy policy</a> e acconsento al trattamento dei miei dati per essere ricontattato/a. <span aria-hidden="true">*</span></span>
-            <span data-lang="en">I have read the <a href="privacy.html">privacy policy</a> and consent to my data being processed so you can contact me. <span aria-hidden="true">*</span></span>
-          </label>
-          <button type="submit" data-lang="it">Invia richiesta</button><button type="submit" data-lang="en">Send request</button>
-          <p class="fnote" data-lang="it">Ti ricontattiamo in giornata · Sopralluogo sempre gratuito · I tuoi dati non vengono ceduti a terzi.</p>
-          <p class="fnote" data-lang="en">We get back to you the same day · Site visit always free · Your data is never sold to third parties.</p>
-        </form>
-      </div>
     </div>
   </div>
 </section>
