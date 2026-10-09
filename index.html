@@ -247,7 +247,7 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
 .iv-row .rx{align-self:center;font-family:var(--mono);font-size:16px;color:var(--hair);transition:color .3s,transform .3s}
 .iv-row:hover .rx,.iv-row[aria-current="true"] .rx{color:var(--terra);transform:translateX(3px)}
 .iv-figure{position:relative;position:sticky;top:calc(var(--nav) + 24px)}
-.iv-figure .stage{position:relative;width:100%;aspect-ratio:6/5;overflow:hidden;background:var(--bone-2)}
+.iv-figure .stage{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:var(--bone-2);cursor:pointer}
 .iv-figure .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .7s var(--ease),transform 1.2s var(--ease)}
 .iv-figure .stage img.on{opacity:1;transform:scale(1)}
 .iv-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;border-radius:50%;background:rgba(26,24,21,.55);color:var(--white);font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .2s}
@@ -560,7 +560,7 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
         <div class="mani-quote">
           <p data-lang="it">Secondo un'indagine Nomisma, un cliente su cinque che ristruttura in Italia subisce ritardi di consegna rispetto ai tempi concordati. Abbiamo costruito il nostro lavoro perché questo, da noi, non succeda.</p>
           <p data-lang="en">According to a Nomisma survey, one in five people who renovate in Italy face delivery delays against the agreed schedule. We built the way we work so that, with us, it doesn't happen.</p>
-          <cite>Nomisma · 2022</cite>
+          <cite data-lang="it">Nomisma — istituto di ricerca economica · 2022</cite><cite data-lang="en">Nomisma — Italian economic research institute · 2022</cite>
         </div>
         <div class="values">
           <div><div class="vn">a</div><h3 data-lang="it">Contratto con penale</h3><h3 data-lang="en">Contract with penalty</h3><p data-lang="it">La data di consegna è scritta nel contratto. Se finiamo in ritardo per causa nostra, paghiamo noi.</p><p data-lang="en">The delivery date is in the contract. If we finish late through our own fault, we pay.</p></div>
@@ -1087,15 +1087,21 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
   if(ivPrevBtn) ivPrevBtn.addEventListener('click', function(){ pickRow((ivCur - 1 + rows.length) % rows.length); });
   if(ivNextBtn) ivNextBtn.addEventListener('click', function(){ pickRow((ivCur + 1) % rows.length); });
   if(ivStage){
-    var ivTouchX = null;
+    var ivTouchX = null, ivSwiped = false;
     ivStage.addEventListener('touchstart', function(e){ ivTouchX = e.touches[0].clientX; }, { passive:true });
     ivStage.addEventListener('touchend', function(e){
       if(ivTouchX === null) return;
       var dx = e.changedTouches[0].clientX - ivTouchX;
       ivTouchX = null;
       if(Math.abs(dx) < 40) return;
+      ivSwiped = true;
       if(dx < 0) pickRow((ivCur + 1) % rows.length); else pickRow((ivCur - 1 + rows.length) % rows.length);
     }, { passive:true });
+    ivStage.addEventListener('click', function(e){
+      if(ivSwiped){ ivSwiped = false; return; }
+      if(e.target.closest('.iv-arrow')) return;
+      pickRow((ivCur + 1) % rows.length);
+    });
   }
 
   /* package CTA -> form */
