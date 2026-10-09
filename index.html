@@ -117,9 +117,9 @@ body[data-lang="en"] [data-lang="it"]{display:none!important}
 /* ---------- type ---------- */
 .display{font-family:var(--serif);font-weight:500;line-height:1.0;letter-spacing:-.018em}
 .display em{font-style:italic;font-weight:400}
-h1.display{font-size:clamp(38px,6.8vw,88px);letter-spacing:-.03em}
-h2.display{font-size:clamp(26px,4.2vw,52px);line-height:1.04;letter-spacing:-.024em}
-h3.display{font-size:clamp(20px,2.4vw,28px);line-height:1.15;font-weight:400;letter-spacing:-.018em}
+h1.display{font-size:clamp(34px,5.8vw,72px);letter-spacing:-.03em}
+h2.display{font-size:clamp(23px,3.4vw,42px);line-height:1.08;letter-spacing:-.022em}
+h3.display{font-size:clamp(19px,2.2vw,26px);line-height:1.18;font-weight:400;letter-spacing:-.018em}
 .kicker{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3)}
 .kicker .n{color:var(--terra)}
 .lead{font-size:clamp(16px,1.5vw,19px);line-height:1.7;color:var(--ink-2);font-weight:300;max-width:46ch}
@@ -129,12 +129,11 @@ h3.display{font-size:clamp(20px,2.4vw,28px);line-height:1.15;font-weight:400;let
 .body-copy + .body-copy{margin-top:1.1em}
 
 /* ---------- layout ---------- */
-.section{padding:clamp(36px,6vh,76px) var(--pad);position:relative}
+.section{padding:clamp(28px,4.5vh,58px) var(--pad);position:relative}
 .container{max-width:var(--maxw);margin:0 auto}
 .rule{height:1px;background:var(--hair);border:0}
-.sec-head{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin-bottom:clamp(24px,4vh,42px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin-bottom:clamp(18px,3vh,30px)}
 .sec-head .kicker{display:flex;align-items:center;gap:12px}
-.sec-head .kicker::before{content:'';width:34px;height:1px;background:var(--terra)}
 
 .reveal{opacity:0;transition:opacity 1.1s var(--ease)}
 .reveal.in{opacity:1}
@@ -251,6 +250,13 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
 .iv-figure .stage{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:var(--bone-2)}
 .iv-figure .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .7s var(--ease),transform 1.2s var(--ease)}
 .iv-figure .stage img.on{opacity:1;transform:scale(1)}
+.iv-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;border-radius:50%;background:rgba(26,24,21,.55);color:var(--white);font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .2s}
+.iv-arrow:hover{background:rgba(26,24,21,.8)}
+.iv-prev{left:12px}
+.iv-next{right:12px}
+.iv-dots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:8px;z-index:2}
+.iv-dots span{width:7px;height:7px;border-radius:50%;background:rgba(252,250,246,.5);transition:background .2s}
+.iv-dots span.on{background:var(--white)}
 .iv-cap{margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .iv-cap b{color:var(--ink);font-weight:500}
 
@@ -409,9 +415,9 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
   body.past-hero .totop{opacity:1;transform:translateY(0);pointer-events:auto}
   body.menu-open .totop{opacity:0;pointer-events:none}
   .totop svg{width:16px;height:16px}
-  .section{padding:clamp(30px,5vh,56px) var(--pad)}
-  h1.display{font-size:clamp(36px,8.6vw,112px)}
-  .sec-head{margin-bottom:clamp(18px,3vh,32px)}
+  .section{padding:clamp(22px,4vh,40px) var(--pad)}
+  h1.display{font-size:clamp(32px,8vw,64px)}
+  .sec-head{margin-bottom:clamp(14px,2.5vh,24px)}
 }
 
 .calc-solo{max-width:520px}
@@ -605,6 +611,11 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
           <img src="assets/finito-bagno.jpg" alt="Bagno rivestito in marmo, immagine di riferimento">
           <img src="assets/slide-3.jpg" alt="Scala e ingresso ristrutturati, immagine di riferimento">
           <img src="assets/aerea-villa.jpg" alt="Villa unifamiliare vista dall'alto, immagine di riferimento">
+          <button type="button" class="iv-arrow iv-prev" id="ivPrev" aria-label="Precedente">‹</button>
+          <button type="button" class="iv-arrow iv-next" id="ivNext" aria-label="Successiva">›</button>
+          <div class="iv-dots" id="ivDots">
+            <span class="on"></span><span></span><span></span><span></span>
+          </div>
         </div>
         <figcaption class="iv-cap">
           <span id="ivCap">01 · <b data-lang="it">Cucina su misura</b><b data-lang="en">Bespoke kitchen</b></span>
@@ -1053,10 +1064,12 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
   }
 
   /* interventi switcher */
-  var rows = $$('#ivList .iv-row'), stImgs = $$('#ivStage img'), ivCap = $('#ivCap');
+  var rows = $$('#ivList .iv-row'), stImgs = $$('#ivStage img'), ivCap = $('#ivCap'), ivDots = $$('#ivDots span'), ivStage = $('#ivStage'), ivCur = 0;
   function pickRow(i){
+    ivCur = i;
     rows.forEach(function(r, k){ r.setAttribute('aria-current', k === i ? 'true' : 'false'); });
     stImgs.forEach(function(im, k){ im.classList.toggle('on', k === i); });
+    ivDots.forEach(function(d, k){ d.classList.toggle('on', k === i); });
     var r = rows[i], lang = document.body.getAttribute('data-lang');
     ivCap.innerHTML = r.querySelector('.rn').textContent + ' · <b>' + (lang === 'en' ? r.dataset.capEn : r.dataset.capIt) + '</b>';
   }
@@ -1068,6 +1081,20 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
       if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){ e.preventDefault(); rows[(i - 1 + rows.length) % rows.length].focus(); pickRow((i - 1 + rows.length) % rows.length); }
     });
   });
+  var ivPrevBtn = $('#ivPrev'), ivNextBtn = $('#ivNext');
+  if(ivPrevBtn) ivPrevBtn.addEventListener('click', function(){ pickRow((ivCur - 1 + rows.length) % rows.length); });
+  if(ivNextBtn) ivNextBtn.addEventListener('click', function(){ pickRow((ivCur + 1) % rows.length); });
+  if(ivStage){
+    var ivTouchX = null;
+    ivStage.addEventListener('touchstart', function(e){ ivTouchX = e.touches[0].clientX; }, { passive:true });
+    ivStage.addEventListener('touchend', function(e){
+      if(ivTouchX === null) return;
+      var dx = e.changedTouches[0].clientX - ivTouchX;
+      ivTouchX = null;
+      if(Math.abs(dx) < 40) return;
+      if(dx < 0) pickRow((ivCur + 1) % rows.length); else pickRow((ivCur - 1 + rows.length) % rows.length);
+    }, { passive:true });
+  }
 
   /* package CTA -> form */
   $$('[data-pkg]').forEach(function(b){
