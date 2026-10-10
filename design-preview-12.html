@@ -218,6 +218,9 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
 .hero-dots{position:absolute;right:var(--pad);bottom:clamp(32px,6vh,64px);z-index:2;display:flex;gap:8px}
 .hero-dots button{width:22px;height:2px;background:rgba(252,250,246,.3);border:0;padding:0;cursor:pointer;transition:background .3s}
 .hero-dots button.on{background:var(--white)}
+.hero-badge{position:absolute;left:var(--pad);top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;z-index:2;display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(252,250,246,.78);text-shadow:0 1px 14px rgba(20,18,15,.7)}
+.hero-badge i{display:block;width:1px;height:34px;background:rgba(252,250,246,.4)}
+@media(max-width:860px){.hero-badge{display:none}}
 
 /* ---------- index strip ---------- */
 .strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
@@ -532,15 +535,11 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
     <div class="frame f2"></div>
   </div>
   <div class="hero-scrim"></div>
+  <div class="hero-badge" data-lang="it"><span>Roma</span><i></i><span>Dal 2004</span><i></i><span>Azienda di famiglia</span></div>
+  <div class="hero-badge" data-lang="en"><span>Rome</span><i></i><span>Since 2004</span><i></i><span>Family business</span></div>
   <div class="hero-inner">
-    <p class="hero-kicker" data-lang="it">Benvenuti</p><p class="hero-kicker" data-lang="en">Welcome</p>
     <h1 class="display hero-cinematic" data-lang="it">Dal cantiere<br><em>al capolavoro.</em></h1>
     <h1 class="display hero-cinematic" data-lang="en">From site<br><em>to masterpiece.</em></h1>
-    <div class="hero-meta">
-      <span data-lang="it">Roma</span><span data-lang="en">Rome</span>
-      <span data-lang="it">Dal 2004</span><span data-lang="en">Since 2004</span>
-      <span data-lang="it">Azienda di famiglia</span><span data-lang="en">Family business</span>
-    </div>
     <div class="hero-foot">
       <p data-lang="it">Ristrutturazioni residenziali chiavi in mano a Roma e in tutta Italia. Prezzo fisso, data di consegna nel contratto, un solo referente.</p>
       <p data-lang="en">Turnkey residential renovations in Rome and across Italy. Fixed price, delivery date in the contract, one point of contact.</p>
