@@ -192,7 +192,7 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
 /* ---------- hero ---------- */
 .hero{min-height:88svh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;padding:var(--nav) var(--pad) clamp(28px,5vh,52px);overflow:hidden}
 .hero-media{position:absolute;inset:0;z-index:0}
-.hero-media .frame{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 2s var(--ease);will-change:transform}
+.hero-media .frame{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s var(--ease);will-change:transform}
 .hero-media .frame.on{opacity:1}
 .hero-media .f1{background-image:url('assets/slide-1.jpg')}
 .hero-media .f2{background-image:url('assets/operaio-cantiere.jpg');background-position:center 20%}
@@ -543,9 +543,9 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
     <div class="hero-foot">
       <p data-lang="it">Ristrutturazioni residenziali chiavi in mano a Roma e in tutta Italia. Prezzo fisso, data di consegna nel contratto, un solo referente.</p>
       <p data-lang="en">Turnkey residential renovations in Rome and across Italy. Fixed price, delivery date in the contract, one point of contact.</p>
-      <a href="#contatti" class="hero-cta" data-lang="it">Sopralluogo gratuito
+      <a href="https://wa.me/393287787671" class="hero-cta" rel="noopener" data-lang="it">Sopralluogo gratuito
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a href="#contatti" class="hero-cta" data-lang="en">Free site visit
+      <a href="https://wa.me/393287787671" class="hero-cta" rel="noopener" data-lang="en">Free site visit
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
@@ -1106,7 +1106,7 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
     hf = (n + frames.length) % frames.length;
     frames[hf].classList.add('on'); hdots[hf].classList.add('on');
   }
-  function hplay(){ if(reduce) return; clearInterval(htimer); htimer = setInterval(function(){ goFrame(hf + 1); }, 6500); }
+  function hplay(){ if(reduce) return; clearInterval(htimer); htimer = setInterval(function(){ goFrame(hf + 1); }, 3200); }
   hdots.forEach(function(d){ d.addEventListener('click', function(){ goFrame(+d.dataset.f); hplay(); }); });
   hplay();
   if(!reduce && innerWidth > 760){
