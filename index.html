@@ -76,18 +76,18 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bone:#F4F0E8;
-  --bone-2:#ECE6DA;
-  --paper:#FBF9F4;
-  --ink:#1A1815;
-  --ink-2:#5A5348;
-  --ink-3:#655D50;
-  --hair:rgba(26,24,21,.16);
-  --hair-soft:rgba(26,24,21,.09);
-  --terra:#A24B32;
-  --terra-deep:#823A26;
-  --terra-vivid:#C9501D;
-  --white:#FCFAF6;
+  --bone:#2B1610;
+  --bone-2:#33190F;
+  --paper:#3A2018;
+  --ink:#F7EEE5;
+  --ink-2:#E3D3C5;
+  --ink-3:#C7AF9C;
+  --hair:rgba(247,238,229,.15);
+  --hair-soft:rgba(247,238,229,.08);
+  --terra:#BD7A54;
+  --terra-deep:#9C5F3F;
+  --terra-vivid:#CE8D64;
+  --white:#FFFFFF;
 
   --serif:'Bodoni Moda','Didot',Georgia,'Times New Roman',serif;
   --sans:'Inter',system-ui,-apple-system,sans-serif;
@@ -97,6 +97,8 @@
   --pad:clamp(20px,4.5vw,64px);
   --maxw:1280px;
   --ease:cubic-bezier(.22,1,.36,1);
+  --r-md:16px;
+  --shadow:0 1px 2px rgba(26,24,21,.05),0 10px 26px -12px rgba(26,24,21,.22);
 }
 
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
@@ -127,6 +129,7 @@ h3.display{font-size:clamp(19px,2.2vw,26px);line-height:1.18;font-weight:400;let
 .body-copy strong{color:var(--ink);font-weight:500}
 .body-copy sup{font-size:.55em;letter-spacing:0;vertical-align:.6em}
 .body-copy + .body-copy{margin-top:1.1em}
+.body-copy.dropcap::first-letter{float:left;font-family:var(--serif);font-size:3.6em;line-height:.76;font-weight:500;padding:.035em .09em 0 0;color:var(--terra)}
 
 /* ---------- layout ---------- */
 .section{padding:clamp(28px,4.5vh,58px) var(--pad);position:relative}
@@ -145,10 +148,10 @@ html{scroll-padding-top:76px}
 nav{
   position:fixed;top:0;left:0;width:100%;z-index:110;height:var(--nav);
   display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);
-  background:rgba(244,240,232,0);transition:background .45s var(--ease),height .45s var(--ease),border-color .45s;
+  background:rgba(43,22,16,0);transition:background .45s var(--ease),height .45s var(--ease),border-color .45s;
   border-bottom:1px solid transparent;
 }
-nav.scrolled{background:rgba(244,240,232,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:var(--hair);height:60px}
+nav.scrolled{background:rgba(43,22,16,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:var(--hair);height:60px}
 /* light content while transparent over the hero */
 nav:not(.scrolled){color:var(--white)}
 nav:not(.scrolled) .wordmark,
@@ -192,9 +195,11 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
 .hero-media .frame{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 2s var(--ease);will-change:transform}
 .hero-media .frame.on{opacity:1}
 .hero-media .f1{background-image:url('assets/slide-1.jpg')}
-.hero-media .f2{background-image:url('assets/finito-cucina.jpg')}
+.hero-media .f2{background-image:url('assets/operaio-cantiere.jpg');background-position:center 20%}
 .hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,18,15,.5) 0%,rgba(20,18,15,.22) 30%,rgba(20,18,15,.55) 66%,rgba(20,18,15,.86) 100%)}
 .hero-inner{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;width:100%;color:var(--white)}
+.hero-kicker{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(17px,1.9vw,24px);color:rgba(252,250,246,.92);margin-bottom:6px;text-shadow:0 1px 16px rgba(20,18,15,.6)}
+.hero-cinematic{font-size:clamp(52px,10vw,148px)!important;letter-spacing:-.03em!important;margin-bottom:24px}
 .hero-meta{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(252,250,246,.9);margin-bottom:26px;text-shadow:0 1px 14px rgba(20,18,15,.7)}
 .hero h1{text-shadow:0 2px 40px rgba(20,18,15,.4)}
 .hero-foot p{text-shadow:0 1px 16px rgba(20,18,15,.6)}
@@ -208,9 +213,14 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
   background:var(--terra-vivid);color:var(--white);padding:17px 28px;transition:background .3s var(--ease)}
 .hero-cta:hover{background:var(--white);color:var(--ink)}
 .hero-cta svg{width:15px;height:15px}
+.hero-scroll-cue{position:absolute;right:var(--pad);bottom:clamp(64px,10vh,104px);z-index:2;display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(252,250,246,.75)}
+.hero-scroll-cue i{display:block;width:1px;height:34px;background:linear-gradient(rgba(252,250,246,.75),transparent)}
 .hero-dots{position:absolute;right:var(--pad);bottom:clamp(32px,6vh,64px);z-index:2;display:flex;gap:8px}
 .hero-dots button{width:22px;height:2px;background:rgba(252,250,246,.3);border:0;padding:0;cursor:pointer;transition:background .3s}
 .hero-dots button.on{background:var(--white)}
+.hero-badge{position:absolute;left:var(--pad);top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;z-index:2;display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(252,250,246,.78);text-shadow:0 1px 14px rgba(20,18,15,.7)}
+.hero-badge i{display:block;width:1px;height:34px;background:rgba(252,250,246,.4)}
+@media(max-width:860px){.hero-badge{display:none}}
 
 /* ---------- index strip ---------- */
 .strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
@@ -220,14 +230,32 @@ nav:not(.scrolled) .wordmark .wm-sub{color:#E6C7B4}
 .strip .num i{font-style:normal;color:var(--terra);font-size:.42em;margin-left:3px;vertical-align:.35em}
 .strip .lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:10px;max-width:22ch}
 
+/* ---------- minimal statement ---------- */
+.minimal-statement{padding:clamp(70px,12vh,120px) var(--pad) clamp(40px,7vh,72px)}
+.ms-text{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4.4vw,54px);line-height:1.22;letter-spacing:-.015em;max-width:22ch;color:var(--ink);margin-bottom:clamp(48px,8vh,88px)}
+.ms-text em{font-style:italic;color:var(--terra)}
+.tl-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);position:relative}
+.tl-steps::before{content:'';position:absolute;top:19px;left:calc(12.5% - 0px);right:calc(12.5% - 0px);height:1px;background:var(--hair);z-index:0}
+.tl-step{position:relative;z-index:1}
+.tl-num{width:38px;height:38px;border-radius:50%;background:var(--bone);border:1px solid var(--terra);color:var(--terra);display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;letter-spacing:.04em;margin-bottom:20px}
+.tl-step h3{font-family:var(--serif);font-size:clamp(19px,2vw,24px);font-weight:400;margin-bottom:10px}
+.tl-step p{font-size:14px;line-height:1.6;color:var(--ink-2);max-width:30ch}
+@media(max-width:860px){
+  .tl-steps{grid-template-columns:1fr;gap:28px}
+  .tl-steps::before{top:0;bottom:0;left:19px;right:auto;width:1px;height:auto}
+  .tl-step p{max-width:none}
+}
+
 /* ---------- manifesto ---------- */
 .manifesto{background:var(--bone-2)}
 .mani-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,7vw,110px);align-items:start}
 .mani-figure{position:relative;position:sticky;top:calc(var(--nav) + 24px)}
 .mani-figure img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:32% center;filter:grayscale(1) contrast(1.04) brightness(.94)}
 .mani-figure figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-top:12px;display:flex;justify-content:space-between}
-.mani-quote{margin:38px 0;padding-left:26px;border-left:2px solid var(--terra)}
-.mani-quote p{font-family:var(--serif);font-size:clamp(20px,2.2vw,26px);font-style:italic;font-weight:400;line-height:1.4;color:var(--ink)}
+.mani-quote{position:relative;margin:48px 0 48px -26px;padding:4px 8px 0 30px;border-left:2px solid var(--terra)}
+.mani-quote::before{content:'"';position:absolute;left:-2px;top:-.42em;font-family:var(--serif);font-size:4em;line-height:1;color:var(--terra);opacity:.3}
+.mani-quote p{font-family:var(--serif);font-size:clamp(24px,3vw,36px);font-style:italic;font-weight:400;line-height:1.28;letter-spacing:-.01em;color:var(--ink)}
 .mani-quote cite{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-top:14px;display:block;font-style:normal}
 .values{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair);border:1px solid var(--hair);margin-top:40px}
 .values div{background:var(--bone-2);padding:22px 22px 26px}
@@ -300,16 +328,17 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border:0;border-radiu
 .calc .cta-line:hover{background:var(--ink);color:var(--bone)}
 .bars{display:flex;flex-direction:column;gap:2px;margin-top:8px}
 .bar{position:relative;height:52px;border:1px solid var(--hair);display:flex;align-items:center;padding:0 18px;overflow:hidden;background:var(--bone-2)}
-.bar .fill{position:absolute;inset:0 auto 0 0;background:rgba(162,75,50,.16);transition:width .5s var(--ease)}
+.bar .fill{position:absolute;inset:0 auto 0 0;background:rgba(232,147,90,.16);transition:width .5s var(--ease)}
 .bar span{position:relative;z-index:1;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
 .bar b{position:relative;z-index:1;margin-left:auto;font-family:var(--serif);font-size:19px;font-weight:400}
 .fin-head{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px}
-.fin-partners{list-style:none;border-top:1px solid var(--ink);margin-bottom:56px}
-.fin-partners li{display:grid;grid-template-columns:190px 1fr;gap:24px;padding:22px 2px;border-bottom:1px solid var(--hair);align-items:baseline}
-.fin-partners .pn{font-family:var(--serif);font-size:clamp(18px,2vw,23px);font-weight:400}
-.fin-partners .pr{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--terra);margin-bottom:5px}
-.fin-partners p{font-size:13.5px;color:var(--ink-2);line-height:1.5}
-@media(max-width:640px){.fin-partners li{grid-template-columns:1fr;gap:6px}}
+.fin-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:56px}
+.fin-card{background:var(--paper);border-radius:var(--r-md);box-shadow:var(--shadow);padding:26px}
+.fin-card.is-soon{opacity:.72}
+.fin-card .pn{display:block;font-family:var(--serif);font-size:clamp(19px,2vw,24px);font-weight:400;margin-bottom:14px}
+.fin-card .pr{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--terra);margin-bottom:8px}
+.fin-card p{font-size:13.5px;color:var(--ink-2);line-height:1.6}
+@media(max-width:640px){.fin-cards{grid-template-columns:1fr}}
 
 /* ---------- care ---------- */
 .care{background:var(--bone-2)}
@@ -391,7 +420,7 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
   html{scroll-padding-top:112px}
   .secnav{
     display:flex;gap:0;position:fixed;top:60px;left:0;right:0;z-index:95;
-    background:rgba(244,240,232,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    background:rgba(43,22,16,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
     border-bottom:1px solid var(--hair);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
     transform:translateY(-101%);opacity:0;pointer-events:none;
     transition:transform .4s var(--ease),opacity .4s var(--ease);
@@ -506,14 +535,11 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
     <div class="frame f2"></div>
   </div>
   <div class="hero-scrim"></div>
+  <div class="hero-badge" data-lang="it"><span>Roma</span><i></i><span>Dal 2004</span><i></i><span>Azienda di famiglia</span></div>
+  <div class="hero-badge" data-lang="en"><span>Rome</span><i></i><span>Since 2004</span><i></i><span>Family business</span></div>
   <div class="hero-inner">
-    <div class="hero-meta">
-      <span data-lang="it">Roma</span><span data-lang="en">Rome</span>
-      <span data-lang="it">Dal 2004</span><span data-lang="en">Since 2004</span>
-      <span data-lang="it">Azienda di famiglia</span><span data-lang="en">Family business</span>
-    </div>
-    <h1 class="display" data-lang="it">Dal cantiere<br><em>al capolavoro.</em></h1>
-    <h1 class="display" data-lang="en">From site<br><em>to masterpiece.</em></h1>
+    <h1 class="display hero-cinematic" data-lang="it">Dal cantiere<br><em>al capolavoro.</em></h1>
+    <h1 class="display hero-cinematic" data-lang="en">From site<br><em>to masterpiece.</em></h1>
     <div class="hero-foot">
       <p data-lang="it">Ristrutturazioni residenziali chiavi in mano a Roma e in tutta Italia. Prezzo fisso, data di consegna nel contratto, un solo referente.</p>
       <p data-lang="en">Turnkey residential renovations in Rome and across Italy. Fixed price, delivery date in the contract, one point of contact.</p>
@@ -523,18 +549,45 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
+  <div class="hero-scroll-cue" data-lang="it">Scorri<i></i></div><div class="hero-scroll-cue" data-lang="en">Scroll<i></i></div>
   <div class="hero-dots" id="heroDots">
     <button class="on" data-f="0" aria-label="Immagine 1"></button>
     <button data-f="1" aria-label="Immagine 2"></button>
   </div>
 </header>
 
-<!-- STRIP -->
-<div class="strip reveal">
-  <div><div class="num" data-count="20">20<i>+</i></div><div class="lbl" data-lang="it">Anni di esperienza</div><div class="lbl" data-lang="en">Years of experience</div></div>
-  <div><div class="num" data-count="100">100<i>%</i></div><div class="lbl" data-lang="it">Prezzo fisso garantito</div><div class="lbl" data-lang="en">Fixed price, guaranteed</div></div>
-  <div><div class="num" data-count="48">48<i>h</i></div><div class="lbl" data-lang="it">Preventivo dettagliato</div><div class="lbl" data-lang="en">Detailed quote</div></div>
-  <div><div class="num" data-count="0">0<i>€</i></div><div class="lbl" data-lang="it">Costo del sopralluogo</div><div class="lbl" data-lang="en">Site-visit cost</div></div>
+<!-- MINIMAL STATEMENT + STEPS -->
+<div class="minimal-statement reveal">
+  <div class="container">
+    <p class="ms-text" data-lang="it">Ogni cantiere. <em>Lo stesso metodo.</em> Da vent'anni.</p>
+    <p class="ms-text" data-lang="en">Every site. <em>The same method.</em> For twenty years.</p>
+    <div class="tl-steps">
+      <div class="tl-step">
+        <div class="tl-num">01</div>
+        <h3 data-lang="it">Sopralluogo</h3><h3 data-lang="en">Site visit</h3>
+        <p data-lang="it">Veniamo da te, valutiamo gratuitamente, preventivo dettagliato in 48 ore.</p>
+        <p data-lang="en">We come to you, assess for free, detailed quote within 48 hours.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">02</div>
+        <h3 data-lang="it">Contratto</h3><h3 data-lang="en">Contract</h3>
+        <p data-lang="it">Prezzo fisso e data di consegna scritti nel contratto, con penale a nostro carico.</p>
+        <p data-lang="en">Fixed price and delivery date written into the contract, with a penalty on us.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">03</div>
+        <h3 data-lang="it">Cantiere</h3><h3 data-lang="en">Site works</h3>
+        <p data-lang="it">Aggiornamenti foto e video ogni settimana. Un solo referente per tutto.</p>
+        <p data-lang="en">Photo and video updates every week. One point of contact for everything.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">04</div>
+        <h3 data-lang="it">Consegna</h3><h3 data-lang="en">Delivery</h3>
+        <p data-lang="it">Garanzia scritta di 2 anni. Torniamo entro 48h se qualcosa non va.</p>
+        <p data-lang="en">2-year written guarantee. We come back within 48h if something's wrong.</p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- STUDIO / MANIFESTO -->
@@ -547,12 +600,12 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
     </div>
     <div class="mani-grid">
       <figure class="mani-figure reveal">
-        <img src="assets/finito-bagno.jpg" alt="Bagno rivestito in marmo, immagine di riferimento">
-        <figcaption><span data-lang="it">Dettaglio · bagno in marmo</span><span data-lang="en">Detail · marble bathroom</span><span data-lang="it">Immagine di riferimento</span><span data-lang="en">Reference image</span></figcaption>
+        <img src="assets/cantiere-attrezzi.jpg" alt="Attrezzi da lavoro nella tasca della tuta, immagine di riferimento">
+        <figcaption><span data-lang="it">Dettaglio · attrezzi del mestiere</span><span data-lang="en">Detail · tools of the trade</span><span data-lang="it">Immagine di riferimento</span><span data-lang="en">Reference image</span></figcaption>
       </figure>
       <div class="reveal">
-        <p class="body-copy" data-lang="it">Ionix Group nasce da <strong>oltre 20 anni di esperienza</strong> nell'edilizia italiana. Nostro padre ha costruito una reputazione solida lavorando su centinaia di appartamenti, con la serietà e la qualità artigianale che solo chi ama il proprio lavoro può garantire.</p>
-        <p class="body-copy" data-lang="en">Ionix Group was born from <strong>over 20 years of experience</strong> in Italian construction. Our father built a solid reputation working on hundreds of apartments, with the craftsmanship only someone who truly loves their work can guarantee.</p>
+        <p class="body-copy dropcap" data-lang="it">Ionix Group nasce da <strong>oltre 20 anni di esperienza</strong> nell'edilizia italiana. Nostro padre ha costruito una reputazione solida lavorando su centinaia di appartamenti, con la serietà e la qualità artigianale che solo chi ama il proprio lavoro può garantire.</p>
+        <p class="body-copy dropcap" data-lang="en">Ionix Group was born from <strong>over 20 years of experience</strong> in Italian construction. Our father built a solid reputation working on hundreds of apartments, with the craftsmanship only someone who truly loves their work can guarantee.</p>
         <p class="body-copy" data-lang="it">Il mestiere lo abbiamo imparato in cantiere, dalle mani di nostro padre: la materia, la misura, il rispetto per chi quelle stanze le abiterà. <strong>Lo studio è arrivato dopo</strong>, tra i banchi dell'università e la pratica della progettazione, e ci ha dato il modo di trasformare quel sapere artigiano in qualcosa che si ripete cantiere dopo cantiere, senza perdere la cura del dettaglio.</p>
         <p class="body-copy" data-lang="en">We learned the trade on site, from our father's hands: the material, the measure, the respect for the people who will live in those rooms. <strong>Study came later</strong>, between university and the practice of design, and it gave us a way to turn that artisan knowledge into something we can repeat site after site, without losing the care for detail.</p>
         <p class="body-copy" data-lang="it">Da qui nasce il <strong>Metodo Ionix Group<sup>™</sup></strong>: prezzi fissi, tempi garantiti per contratto, trasparenza totale. Lo seguiamo in ogni cantiere, senza eccezioni.</p>
@@ -728,28 +781,28 @@ footer{background:var(--ink);color:#9C9488;padding:clamp(56px,8vh,90px) var(--pa
     </div>
 
     <div class="fin-head reveal"><span data-lang="it">Partner finanziari</span><span data-lang="en">Financing partners</span></div>
-    <ul class="fin-partners reveal">
-      <li>
+    <div class="fin-cards reveal">
+      <div class="fin-card">
         <span class="pn" data-lang="it">Rate a milestone</span><span class="pn" data-lang="en">Milestone payments</span>
-        <div><div class="pr">0% · 30% + 40% + 30%</div>
-          <p data-lang="it">30% alla firma · 40% a metà lavori · 30% alla consegna. Nessun interesse, sempre disponibile.</p><p data-lang="en">30% on signing · 40% mid-works · 30% on delivery. No interest, always available.</p></div>
-      </li>
-      <li>
+        <div class="pr">0% · 30% + 40% + 30%</div>
+        <p data-lang="it">30% alla firma · 40% a metà lavori · 30% alla consegna. Nessun interesse, sempre disponibile.</p><p data-lang="en">30% on signing · 40% mid-works · 30% on delivery. No interest, always available.</p>
+      </div>
+      <div class="fin-card">
         <span class="pn">Scalapay</span>
-        <div><div class="pr" data-lang="it">0% · 3 rate</div><div class="pr" data-lang="en">0% · 3 instalments</div>
-          <p data-lang="it">Paga in 3 rate, senza interessi.</p><p data-lang="en">Pay in 3 instalments, interest-free.</p></div>
-      </li>
-      <li>
+        <div class="pr" data-lang="it">0% · 3 rate</div><div class="pr" data-lang="en">0% · 3 instalments</div>
+        <p data-lang="it">Paga in 3 rate, senza interessi.</p><p data-lang="en">Pay in 3 instalments, interest-free.</p>
+      </div>
+      <div class="fin-card is-soon">
         <span class="pn">Afterpay</span>
-        <div><div class="pr" data-lang="it">In arrivo</div><div class="pr" data-lang="en">Coming soon</div>
-          <p data-lang="it">Pagamento in 4 rate, senza interessi.</p><p data-lang="en">Payment in 4 instalments, interest-free.</p></div>
-      </li>
-      <li>
+        <div class="pr" data-lang="it">In arrivo</div><div class="pr" data-lang="en">Coming soon</div>
+        <p data-lang="it">Pagamento in 4 rate, senza interessi.</p><p data-lang="en">Payment in 4 instalments, interest-free.</p>
+      </div>
+      <div class="fin-card is-soon">
         <span class="pn" data-lang="it">Compass / Banche</span><span class="pn" data-lang="en">Compass / Banks</span>
-        <div><div class="pr" data-lang="it">In arrivo</div><div class="pr" data-lang="en">Coming soon</div>
-          <p data-lang="it">Finanziamenti fino a €60.000 per i lavori più grandi.</p><p data-lang="en">Financing up to €60,000 for larger renovations.</p></div>
-      </li>
-    </ul>
+        <div class="pr" data-lang="it">In arrivo</div><div class="pr" data-lang="en">Coming soon</div>
+        <p data-lang="it">Finanziamenti fino a €60.000 per i lavori più grandi.</p><p data-lang="en">Financing up to €60,000 for larger renovations.</p>
+      </div>
+    </div>
 
     <p class="bonus-note reveal" data-lang="it">Molti lavori danno diritto a detrazioni fiscali (Bonus Ristrutturazioni, Ecobonus, Bonus Barriere Architettoniche) e all'IVA agevolata al 10%. Le percentuali cambiano ogni anno: al sopralluogo calcoliamo cosa spetta esattamente al tuo caso.</p>
     <p class="bonus-note reveal" data-lang="en">Many works qualify for tax deductions (renovation, energy-efficiency and accessibility bonuses) plus reduced 10% VAT. The rates change every year: at the site visit we work out exactly what applies to you.</p>
