@@ -320,3 +320,85 @@ alter table workers add column if not exists daily_rate numeric(10,2);
 -- per calcolare il compenso dovuto con precisione.
 alter table attendance add column if not exists units numeric(3,2) not null default 1
   check (units > 0 and units <= 2);
+
+-- =========================================================================
+-- Estensione: professionisti (geometri/architetti/ingegneri, capo cantiere,
+-- responsabile del progetto) e squadra assegnata a ciascun cantiere,
+-- visibile al cliente nel portale.
+-- =========================================================================
+
+-- Albo professionisti: non sono "lavoratori" (niente presenze/paga), ognuno
+-- ha un titolo, una breve biografia e i contatti diretti.
+create table if not exists professionals (
+  id uuid primary key default gen_random_uuid(),
+  full_name text not null,
+  title text not null, -- es. "Architetto", "Geometra", "Ingegnere", "Capo cantiere", "Responsabile del progetto"
+  bio text,
+  phone text,
+  email text,
+  photo_path text,
+  active boolean not null default true,
+  created_at timestamptz not null default now()
+);
+
+alter table professionals enable row level security;
+
+drop policy if exists "team_all_professionals" on professionals;
+create policy "team_all_professionals" on professionals for all
+  using (public.is_team()) with check (public.is_team());
+
+insert into storage.buckets (id, name, public)
+values ('professionals', 'professionals', false)
+on conflict (id) do nothing;
+
+drop policy if exists "team_all_professionals_bucket" on storage.objects;
+create policy "team_all_professionals_bucket" on storage.objects for all
+  using (bucket_id = 'professionals' and public.is_team())
+  with check (bucket_id = 'professionals' and public.is_team());
+
+-- Squadra assegnata a un cantiere: collega un professionista a un progetto
+-- con un ruolo specifico per quel cantiere (può differire dal titolo
+-- generale, es. un geometra assegnato come "Capo cantiere" su un progetto).
+create table if not exists project_team (
+  id uuid primary key default gen_random_uuid(),
+  project_id uuid not null references projects(id) on delete cascade,
+  professional_id uuid not null references professionals(id) on delete cascade,
+  role_label text not null,
+  created_at timestamptz not null default now(),
+  unique (project_id, professional_id, role_label)
+);
+
+create index if not exists project_team_project_id_idx on project_team(project_id);
+create index if not exists project_team_professional_id_idx on project_team(professional_id);
+
+alter table project_team enable row level security;
+
+drop policy if exists "team_all_project_team" on project_team;
+create policy "team_all_project_team" on project_team for all
+  using (public.is_team()) with check (public.is_team());
+
+drop policy if exists "client_select_own_project_team" on project_team;
+create policy "client_select_own_project_team" on project_team for select
+  using (project_id = public.my_project_id());
+
+-- Il cliente vede solo i professionisti assegnati al proprio progetto.
+drop policy if exists "client_select_assigned_professionals" on professionals;
+create policy "client_select_assigned_professionals" on professionals for select
+  using (
+    exists (
+      select 1 from project_team pt
+      where pt.professional_id = professionals.id
+        and pt.project_id = public.my_project_id()
+    )
+  );
+
+drop policy if exists "client_select_assigned_professionals_bucket" on storage.objects;
+create policy "client_select_assigned_professionals_bucket" on storage.objects for select
+  using (
+    bucket_id = 'professionals' and exists (
+      select 1 from professionals p
+      join project_team pt on pt.professional_id = p.id
+      where p.photo_path = storage.objects.name
+        and pt.project_id = public.my_project_id()
+    )
+  );

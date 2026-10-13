@@ -9,6 +9,7 @@ import DocumentsClient from "./documents-client";
 import AttendanceClient from "./attendance-client";
 import MilestonesClient from "./milestones-client";
 import PhotosClient from "./photos-client";
+import ProjectTeamClient from "./project-team-client";
 
 export const dynamic = "force-dynamic";
 
@@ -72,6 +73,19 @@ export default async function BoardPage(props: PageProps<"/board">) {
     .eq("active", true)
     .order("full_name", { ascending: true });
 
+  const { data: professionals } = await supabase
+    .from("professionals")
+    .select("*")
+    .eq("active", true)
+    .order("full_name", { ascending: true });
+
+  const { data: projectTeam } = activeProjectId
+    ? await supabase
+        .from("project_team")
+        .select("*")
+        .eq("project_id", activeProjectId)
+    : { data: [] };
+
   const { data: attendance } = activeProjectId
     ? await supabase
         .from("attendance")
@@ -129,6 +143,12 @@ export default async function BoardPage(props: PageProps<"/board">) {
           >
             Calendario
           </Link>
+          <Link
+            href="/board/professionisti"
+            className="font-mono text-[10px] tracking-[0.14em] uppercase text-ink-3 hover:text-terra"
+          >
+            Professionisti
+          </Link>
           {session.profile?.role === "owner" && (
             <Link
               href="/board/notifiche"
@@ -185,6 +205,13 @@ export default async function BoardPage(props: PageProps<"/board">) {
           <BoardClient projectId={activeProjectId} initialTasks={tasks ?? []} />
           <div className="mt-10">
             <MilestonesClient projectId={activeProjectId} initialMilestones={milestones ?? []} />
+          </div>
+          <div className="mt-10">
+            <ProjectTeamClient
+              projectId={activeProjectId}
+              professionals={professionals ?? []}
+              initialTeam={projectTeam ?? []}
+            />
           </div>
           <div className="mt-10">
             <PhotosClient

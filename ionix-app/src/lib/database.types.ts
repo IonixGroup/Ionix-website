@@ -305,6 +305,81 @@ export interface Database {
           },
         ];
       };
+      professionals: {
+        Row: {
+          id: string;
+          full_name: string;
+          title: string;
+          bio: string | null;
+          phone: string | null;
+          email: string | null;
+          photo_path: string | null;
+          active: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          full_name: string;
+          title: string;
+          bio?: string | null;
+          phone?: string | null;
+          email?: string | null;
+          photo_path?: string | null;
+          active?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          full_name?: string;
+          title?: string;
+          bio?: string | null;
+          phone?: string | null;
+          email?: string | null;
+          photo_path?: string | null;
+          active?: boolean;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      project_team: {
+        Row: {
+          id: string;
+          project_id: string;
+          professional_id: string;
+          role_label: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          project_id: string;
+          professional_id: string;
+          role_label: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          project_id?: string;
+          professional_id?: string;
+          role_label?: string;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "project_team_project_id_fkey";
+            columns: ["project_id"];
+            isOneToOne: false;
+            referencedRelation: "projects";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "project_team_professional_id_fkey";
+            columns: ["professional_id"];
+            isOneToOne: false;
+            referencedRelation: "professionals";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

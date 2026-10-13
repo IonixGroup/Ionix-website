@@ -55,6 +55,12 @@ export default async function NotifichePage() {
           >
             Calendario
           </Link>
+          <Link
+            href="/board/professionisti"
+            className="font-mono text-[10px] tracking-[0.14em] uppercase text-ink-3 hover:text-terra"
+          >
+            Professionisti
+          </Link>
           <LogoutButton />
         </div>
       </div>
