@@ -49,6 +49,12 @@ export default async function NotifichePage() {
           >
             Squadra
           </Link>
+          <Link
+            href="/board/calendario"
+            className="font-mono text-[10px] tracking-[0.14em] uppercase text-ink-3 hover:text-terra"
+          >
+            Calendario
+          </Link>
           <LogoutButton />
         </div>
       </div>

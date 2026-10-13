@@ -123,6 +123,12 @@ export default async function BoardPage(props: PageProps<"/board">) {
           >
             Squadra
           </Link>
+          <Link
+            href="/board/calendario"
+            className="font-mono text-[10px] tracking-[0.14em] uppercase text-ink-3 hover:text-terra"
+          >
+            Calendario
+          </Link>
           {session.profile?.role === "owner" && (
             <Link
               href="/board/notifiche"

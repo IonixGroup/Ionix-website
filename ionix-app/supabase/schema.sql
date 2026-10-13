@@ -304,3 +304,19 @@ create policy "client_select_own_photos_bucket" on storage.objects for select
         and p.project_id = public.my_project_id()
     )
   );
+
+-- =========================================================================
+-- Estensione: fascia e paga giornaliera lavoratore, calendario presenze,
+-- resoconto settimanale per il compenso.
+-- =========================================================================
+
+-- Fascia del lavoratore ("Junior" = meno esperto, "Pro" = con esperienza) e
+-- la sua paga giornaliera, usata per calcolare il resoconto settimanale.
+alter table workers add column if not exists tier text not null default 'junior'
+  check (tier in ('junior', 'pro'));
+alter table workers add column if not exists daily_rate numeric(10,2);
+
+-- Quante giornate vale una presenza (1 = giornata intera, 0.5 = mezza),
+-- per calcolare il compenso dovuto con precisione.
+alter table attendance add column if not exists units numeric(3,2) not null default 1
+  check (units > 0 and units <= 2);

@@ -5,6 +5,7 @@
 export type TaskStatus = "todo" | "in_progress" | "done";
 export type DocumentCategory = "contratto" | "preventivo" | "fattura" | "altro";
 export type ProfileRole = "team" | "client" | "owner";
+export type WorkerTier = "junior" | "pro";
 
 export interface Database {
   public: {
@@ -148,6 +149,8 @@ export interface Database {
           phone: string | null;
           photo_path: string | null;
           active: boolean;
+          tier: WorkerTier;
+          daily_rate: number | null;
           created_at: string;
         };
         Insert: {
@@ -156,6 +159,8 @@ export interface Database {
           phone?: string | null;
           photo_path?: string | null;
           active?: boolean;
+          tier?: WorkerTier;
+          daily_rate?: number | null;
           created_at?: string;
         };
         Update: {
@@ -164,6 +169,8 @@ export interface Database {
           phone?: string | null;
           photo_path?: string | null;
           active?: boolean;
+          tier?: WorkerTier;
+          daily_rate?: number | null;
           created_at?: string;
         };
         Relationships: [];
@@ -174,6 +181,7 @@ export interface Database {
           worker_id: string;
           project_id: string;
           work_date: string;
+          units: number;
           note: string | null;
           created_at: string;
         };
@@ -182,6 +190,7 @@ export interface Database {
           worker_id: string;
           project_id: string;
           work_date: string;
+          units?: number;
           note?: string | null;
           created_at?: string;
         };
@@ -190,6 +199,7 @@ export interface Database {
           worker_id?: string;
           project_id?: string;
           work_date?: string;
+          units?: number;
           note?: string | null;
           created_at?: string;
         };
