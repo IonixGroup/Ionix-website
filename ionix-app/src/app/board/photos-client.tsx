@@ -142,13 +142,13 @@ export default function PhotosClient({
                 <div className="w-full aspect-square bg-paper-4" />
               )}
               {photo.caption && (
-                <div className="absolute bottom-0 inset-x-0 bg-ink/70 text-paper text-[10.5px] px-2 py-1 truncate">
+                <div className="absolute bottom-0 inset-x-0 bg-black/70 text-white text-[10.5px] px-2 py-1 truncate">
                   {photo.caption}
                 </div>
               )}
               <button
                 onClick={() => handleDelete(photo)}
-                className="absolute top-1.5 right-1.5 w-6 h-6 bg-ink/70 text-paper text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute top-1.5 right-1.5 w-6 h-6 bg-black/70 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity"
                 aria-label="Elimina"
               >
                 ✕

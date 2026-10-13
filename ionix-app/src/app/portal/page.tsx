@@ -165,7 +165,7 @@ export default async function PortalPage() {
                   <div className="w-full aspect-square bg-paper-4" />
                 )}
                 {photo.caption && (
-                  <div className="absolute bottom-0 inset-x-0 bg-ink/70 text-paper text-[10.5px] px-2 py-1 truncate">
+                  <div className="absolute bottom-0 inset-x-0 bg-black/70 text-white text-[10.5px] px-2 py-1 truncate">
                     {photo.caption}
                   </div>
                 )}
