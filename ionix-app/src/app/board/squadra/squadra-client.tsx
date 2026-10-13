@@ -20,6 +20,7 @@ export default function SquadraClient({
   const [photoUrls, setPhotoUrls] = useState(initialPhotoUrls);
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [tier, setTier] = useState<WorkerTier>("junior");
   const [dailyRate, setDailyRate] = useState("");
   const [photoFile, setPhotoFile] = useState<File | null>(null);
@@ -51,6 +52,7 @@ export default function SquadraClient({
       .insert({
         full_name: fullName.trim(),
         phone: phone.trim() || null,
+        email: email.trim() || null,
         photo_path: photoPath,
         tier,
         daily_rate: dailyRate ? Number(dailyRate) : null,
@@ -76,6 +78,7 @@ export default function SquadraClient({
     setWorkers((prev) => [data, ...prev]);
     setFullName("");
     setPhone("");
+    setEmail("");
     setTier("junior");
     setDailyRate("");
     setPhotoFile(null);
@@ -125,6 +128,18 @@ export default function SquadraClient({
             onChange={(e) => setPhone(e.target.value)}
             placeholder="Opzionale"
             className="border border-hair bg-paper px-2 py-2 text-sm outline-none focus:border-terra w-40"
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label className="font-mono text-[9.5px] tracking-[0.1em] uppercase text-ink-3">
+            Email
+          </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Opzionale · solo contatto, nessun accesso"
+            className="border border-hair bg-paper px-2 py-2 text-sm outline-none focus:border-terra w-56"
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -200,8 +215,15 @@ export default function SquadraClient({
                     </div>
                   )}
                   <div className="text-sm font-medium mb-1">{worker.full_name}</div>
-                  {worker.phone && (
-                    <div className="font-mono text-[10.5px] text-ink-3 mb-2">{worker.phone}</div>
+                  {(worker.phone || worker.email) && (
+                    <div className="mb-2">
+                      {worker.phone && (
+                        <div className="font-mono text-[10.5px] text-ink-3">{worker.phone}</div>
+                      )}
+                      {worker.email && (
+                        <div className="font-mono text-[10.5px] text-ink-3">{worker.email}</div>
+                      )}
+                    </div>
                   )}
                   <span
                     className={`font-mono text-[9px] tracking-[0.08em] uppercase px-2 py-1 mb-3 ${
