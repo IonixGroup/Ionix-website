@@ -147,6 +147,7 @@ export interface Database {
           id: string;
           full_name: string;
           phone: string | null;
+          email: string | null;
           photo_path: string | null;
           active: boolean;
           tier: WorkerTier;
@@ -157,6 +158,7 @@ export interface Database {
           id?: string;
           full_name: string;
           phone?: string | null;
+          email?: string | null;
           photo_path?: string | null;
           active?: boolean;
           tier?: WorkerTier;
@@ -167,6 +169,7 @@ export interface Database {
           id?: string;
           full_name?: string;
           phone?: string | null;
+          email?: string | null;
           photo_path?: string | null;
           active?: boolean;
           tier?: WorkerTier;

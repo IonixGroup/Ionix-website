@@ -425,3 +425,7 @@ alter table advances enable row level security;
 drop policy if exists "team_all_advances" on advances;
 create policy "team_all_advances" on advances for all
   using (public.is_team()) with check (public.is_team());
+
+-- Email di contatto del lavoratore (facoltativa, solo anagrafica — non crea
+-- nessun accesso/login: i lavoratori restano solo in rubrica).
+alter table workers add column if not exists email text;
