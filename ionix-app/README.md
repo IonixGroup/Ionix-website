@@ -25,14 +25,18 @@ Senza almeno un account "squadra" non si può entrare nell'app (e senza un accou
 
 ## Stato attuale
 
-- **Login vero** (email/password, Supabase Auth) per due tipi di account:
-  - **Squadra** → `/board`: bacheca lavori per progetto (Da fare/In corso/Fatto, drag&drop), scadenza di consegna modificabile, documenti (contratto/preventivo/altro, upload PDF, "visibile al cliente"), pagina **Account** per creare nuovi accessi.
-  - **Cliente** → `/portal`: sola lettura, vede solo il proprio progetto — scadenza di consegna e i documenti marcati "visibile al cliente". Non vede mai la bacheca lavori.
+- **Login vero** (email/password, Supabase Auth) per tre tipi di account:
+  - **Squadra** → `/board`: bacheca lavori per progetto (Da fare/In corso/Fatto, drag&drop), scadenza di consegna modificabile, milestone (tappe di lavorazione, alcune legate a una rata di pagamento), foto cantiere (con QR code per il cliente), presenze dei lavoratori, documenti (contratto/preventivo/fattura/altro, upload PDF, "visibile al cliente"), pagina **Squadra** (rubrica lavoratori con foto), pagina **Account** per creare nuovi accessi.
+  - **Titolare** (`owner`) → tutto quello che vede "Squadra", più la pagina riservata **Notifiche** (`/board/notifiche`): milestone in scadenza e completate di recente, su tutti i cantieri.
+  - **Cliente** → `/portal`: sola lettura, vede solo il proprio progetto — scadenza di consegna, stato dei pagamenti (colorato giallo/arancione/rosso in base a quanto manca alla scadenza, verde se pagato), foto cantiere, e i documenti marcati "visibile al cliente". Non vede mai la bacheca lavori, le milestone interne o le presenze.
 - Le regole di accesso sono vere (Supabase RLS legata all'account che ha fatto login), non più permissive come nella prima versione.
+- Il QR code sul pulsante "Mostra QR" (sezione foto, lato squadra) apre `/portal`: funziona scansionandolo da un telefono dove il cliente ha già fatto login (la sessione resta attiva nel browser del telefono).
 - Font, colori e stile ricalcano il sito e il mockup del portale cliente.
+- **Importante**: se avevi già un progetto Supabase collegato dalla versione precedente, devi rieseguire `supabase/schema.sql` per aggiungere le nuove tabelle (workers, attendance, milestones, photos) e il ruolo "owner" — è scritto per essere eseguito di nuovo senza errori.
+- Non ancora collaudato con un vero progetto Supabase in questa sessione (qui non c'era `.env.local`): build e typecheck passano puliti, ma vale la pena un giro di prova reale prima di andare in produzione.
 
 ## Prossimi passi
 
-- Timeline settimanale nel portale cliente (per ora ha solo scadenza + documenti — vedi il mockup già condiviso per il disegno completo).
-- Aggiornamento settimanale da cantiere (foto + stato in un tap, lato squadra).
+- Notifiche milestone via email/WhatsApp (oggi solo nella pagina "Notifiche" in-app) — richiede collegare un servizio esterno.
+- Timeline settimanale nel portale cliente (per ora ha scadenza, pagamenti, foto e documenti — vedi il mockup già condiviso per il disegno completo).
 - Recupero password self-service per i clienti (oggi la password si comunica a mano dalla pagina Account).

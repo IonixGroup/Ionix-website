@@ -1,18 +1,22 @@
 @import "tailwindcss";
 
+/* Stesso tema scuro "Terracotta scuro" del sito (ionixgroup.it). */
 :root {
-  --paper: #FCFAF6;
-  --paper-2: #FBF9F4;
-  --paper-3: #F4F0E8;
-  --paper-4: #ECE6DA;
-  --ink: #1A1815;
-  --ink-2: #5A5348;
-  --ink-3: #9C9488;
-  --terra: #A24B32;
-  --terra-dark: #823A26;
-  --terra-soft: #E6C7B4;
-  --green: #1f7a4d;
-  --hair: rgba(26, 24, 21, 0.16);
+  --paper: #2B1610;
+  --paper-2: #33190F;
+  --paper-3: #3A2018;
+  --paper-4: #44261C;
+  --ink: #F7EEE5;
+  --ink-2: #E3D3C5;
+  --ink-3: #C7AF9C;
+  --terra: #BD7A54;
+  --terra-dark: #CE8D64;
+  --terra-soft: rgba(189, 122, 84, 0.18);
+  --green: #4CAF7D;
+  --amber: #D9A441;
+  --orange: #E08A42;
+  --red: #E2574C;
+  --hair: rgba(247, 238, 229, 0.15);
 }
 
 @theme inline {
@@ -27,6 +31,9 @@
   --color-terra-dark: var(--terra-dark);
   --color-terra-soft: var(--terra-soft);
   --color-green: var(--green);
+  --color-amber: var(--amber);
+  --color-orange: var(--orange);
+  --color-red: var(--red);
   --color-hair: var(--hair);
 
   --font-serif: var(--font-serif);
