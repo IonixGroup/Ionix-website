@@ -144,15 +144,17 @@ insert into projects (id, name, address, deadline) values
   ('22222222-2222-2222-2222-222222222222', 'Villa — Ostia', 'Ostia, Roma', '2027-02-10')
 on conflict (id) do update set deadline = excluded.deadline;
 
-insert into tasks (project_id, title, status, position) values
-  ('11111111-1111-1111-1111-111111111111', 'Ordinare piastrelle bagno', 'todo', 1),
-  ('11111111-1111-1111-1111-111111111111', 'Contattare idraulico per collaudo', 'todo', 2),
-  ('11111111-1111-1111-1111-111111111111', 'Posa parquet camera', 'in_progress', 1),
-  ('11111111-1111-1111-1111-111111111111', 'Demolizione bagno', 'done', 1),
-  ('11111111-1111-1111-1111-111111111111', 'Rimozione infissi vecchi', 'done', 2),
-  ('22222222-2222-2222-2222-222222222222', 'Preventivo elettricista', 'todo', 1),
-  ('22222222-2222-2222-2222-222222222222', 'Scavo per impianto irrigazione', 'in_progress', 1)
-on conflict do nothing;
+-- ID fissi (non casuali) per i task di esempio, altrimenti "on conflict"
+-- non ha nulla su cui agire e rieseguire lo script li duplica ogni volta.
+insert into tasks (id, project_id, title, status, position) values
+  ('a1111111-0000-0000-0000-000000000001', '11111111-1111-1111-1111-111111111111', 'Ordinare piastrelle bagno', 'todo', 1),
+  ('a1111111-0000-0000-0000-000000000002', '11111111-1111-1111-1111-111111111111', 'Contattare idraulico per collaudo', 'todo', 2),
+  ('a1111111-0000-0000-0000-000000000003', '11111111-1111-1111-1111-111111111111', 'Posa parquet camera', 'in_progress', 1),
+  ('a1111111-0000-0000-0000-000000000004', '11111111-1111-1111-1111-111111111111', 'Demolizione bagno', 'done', 1),
+  ('a1111111-0000-0000-0000-000000000005', '11111111-1111-1111-1111-111111111111', 'Rimozione infissi vecchi', 'done', 2),
+  ('a2222222-0000-0000-0000-000000000001', '22222222-2222-2222-2222-222222222222', 'Preventivo elettricista', 'todo', 1),
+  ('a2222222-0000-0000-0000-000000000002', '22222222-2222-2222-2222-222222222222', 'Scavo per impianto irrigazione', 'in_progress', 1)
+on conflict (id) do nothing;
 
 -- =========================================================================
 -- Estensione: ruolo "owner", lavoratori, presenze, milestone/pagamenti, foto
