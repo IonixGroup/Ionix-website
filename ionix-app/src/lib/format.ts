@@ -21,6 +21,23 @@ export function endOfWeek(offsetWeeks = 0) {
   return start.toISOString().slice(0, 10);
 }
 
+export function startOfMonth(offsetMonths = 0) {
+  const date = new Date();
+  date.setDate(1);
+  date.setMonth(date.getMonth() + offsetMonths);
+  date.setHours(0, 0, 0, 0);
+  return date.toISOString().slice(0, 10);
+}
+
+export function endOfMonth(offsetMonths = 0) {
+  const date = new Date();
+  date.setDate(1);
+  date.setMonth(date.getMonth() + offsetMonths + 1);
+  date.setDate(0);
+  date.setHours(0, 0, 0, 0);
+  return date.toISOString().slice(0, 10);
+}
+
 export function formatDateItShort(iso: string) {
   return new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "short" }).format(
     new Date(`${iso}T00:00:00`),

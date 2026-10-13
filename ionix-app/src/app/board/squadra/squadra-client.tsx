@@ -243,7 +243,11 @@ export default function SquadraClient({
 
                 {expanded && (
                   <div onClick={(e) => e.stopPropagation()}>
-                    <WorkerReport workerId={worker.id} dailyRate={worker.daily_rate} />
+                    <WorkerReport
+                      workerId={worker.id}
+                      workerName={worker.full_name}
+                      dailyRate={worker.daily_rate}
+                    />
                   </div>
                 )}
               </div>

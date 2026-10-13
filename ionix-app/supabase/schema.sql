@@ -402,3 +402,24 @@ create policy "client_select_assigned_professionals_bucket" on storage.objects f
         and pt.project_id = public.my_project_id()
     )
   );
+
+-- =========================================================================
+-- Estensione: anticipi ai lavoratori, da sottrarre nel resoconto del periodo.
+-- =========================================================================
+
+create table if not exists advances (
+  id uuid primary key default gen_random_uuid(),
+  worker_id uuid not null references workers(id) on delete cascade,
+  amount numeric(10,2) not null check (amount > 0),
+  advance_date date not null,
+  note text,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists advances_worker_id_idx on advances(worker_id);
+
+alter table advances enable row level security;
+
+drop policy if exists "team_all_advances" on advances;
+create policy "team_all_advances" on advances for all
+  using (public.is_team()) with check (public.is_team());
