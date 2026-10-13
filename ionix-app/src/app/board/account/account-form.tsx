@@ -67,6 +67,7 @@ export default function AccountForm({ projects }: { projects: Project[] }) {
         >
           <option value="client">Cliente</option>
           <option value="team">Squadra</option>
+          <option value="owner">Titolare</option>
         </select>
       </div>
 

@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export default async function AccountPage() {
   const session = await getSessionProfile();
   if (!session) redirect("/login");
-  if (session.profile?.role !== "team") redirect("/board");
+  if (session.profile?.role !== "team" && session.profile?.role !== "owner") redirect("/board");
 
   const supabase = await createClient();
 
@@ -61,7 +61,11 @@ export default async function AccountPage() {
             >
               <span>{p.full_name || "—"}</span>
               <span className="font-mono text-[9.5px] tracking-[0.08em] uppercase text-ink-3">
-                {p.role === "team" ? "Squadra" : `Cliente · ${projectName(p.project_id)}`}
+                {p.role === "owner"
+                  ? "Titolare"
+                  : p.role === "team"
+                    ? "Squadra"
+                    : `Cliente · ${projectName(p.project_id)}`}
               </span>
             </div>
           ))}

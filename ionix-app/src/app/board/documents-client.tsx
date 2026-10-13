@@ -9,6 +9,7 @@ type Doc = Database["public"]["Tables"]["documents"]["Row"];
 const CATEGORY_LABEL: Record<DocumentCategory, string> = {
   contratto: "Contratto",
   preventivo: "Preventivo",
+  fattura: "Fattura",
   altro: "Altro",
 };
 
@@ -110,6 +111,7 @@ export default function DocumentsClient({
           >
             <option value="contratto">Contratto</option>
             <option value="preventivo">Preventivo</option>
+            <option value="fattura">Fattura</option>
             <option value="altro">Altro</option>
           </select>
 

@@ -6,6 +6,9 @@ import LogoutButton from "@/components/logout-button";
 import BoardClient from "./board-client";
 import DeadlineEditor from "./deadline-editor";
 import DocumentsClient from "./documents-client";
+import AttendanceClient from "./attendance-client";
+import MilestonesClient from "./milestones-client";
+import PhotosClient from "./photos-client";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +23,7 @@ export default async function BoardPage(props: PageProps<"/board">) {
 
   const session = await getSessionProfile();
   if (!session) redirect("/login");
-  if (session.profile?.role !== "team") redirect("/portal");
+  if (session.profile?.role !== "team" && session.profile?.role !== "owner") redirect("/portal");
 
   const supabase = await createClient();
 
@@ -63,6 +66,49 @@ export default async function BoardPage(props: PageProps<"/board">) {
     return <ConnectionNotice message={documentsError.message} />;
   }
 
+  const { data: workers } = await supabase
+    .from("workers")
+    .select("*")
+    .eq("active", true)
+    .order("full_name", { ascending: true });
+
+  const { data: attendance } = activeProjectId
+    ? await supabase
+        .from("attendance")
+        .select("*")
+        .eq("project_id", activeProjectId)
+        .order("work_date", { ascending: false })
+    : { data: [] };
+
+  const { data: milestones } = activeProjectId
+    ? await supabase
+        .from("milestones")
+        .select("*")
+        .eq("project_id", activeProjectId)
+        .order("position", { ascending: true })
+    : { data: [] };
+
+  const { data: photos } = activeProjectId
+    ? await supabase
+        .from("photos")
+        .select("*")
+        .eq("project_id", activeProjectId)
+        .order("created_at", { ascending: false })
+    : { data: [] };
+
+  const { data: photoSigned } = photos?.length
+    ? await supabase.storage
+        .from("photos")
+        .createSignedUrls(
+          photos.map((p) => p.file_path),
+          3600,
+        )
+    : { data: null };
+
+  const photoUrls = Object.fromEntries(
+    (photoSigned ?? []).filter((p) => p.signedUrl).map((p) => [p.path, p.signedUrl as string]),
+  );
+
   return (
     <main className="flex-1 px-6 py-10 md:px-10 max-w-6xl mx-auto w-full">
       <div className="flex items-center justify-between mb-10">
@@ -71,6 +117,20 @@ export default async function BoardPage(props: PageProps<"/board">) {
           <span className="font-mono text-[7px] tracking-[0.2em] uppercase text-terra">Group</span>
         </div>
         <div className="flex items-center gap-4">
+          <Link
+            href="/board/squadra"
+            className="font-mono text-[10px] tracking-[0.14em] uppercase text-ink-3 hover:text-terra"
+          >
+            Squadra
+          </Link>
+          {session.profile?.role === "owner" && (
+            <Link
+              href="/board/notifiche"
+              className="font-mono text-[10px] tracking-[0.14em] uppercase text-ink-3 hover:text-terra"
+            >
+              Notifiche
+            </Link>
+          )}
           <Link
             href="/board/account"
             className="font-mono text-[10px] tracking-[0.14em] uppercase text-ink-3 hover:text-terra"
@@ -117,6 +177,23 @@ export default async function BoardPage(props: PageProps<"/board">) {
       {activeProjectId ? (
         <>
           <BoardClient projectId={activeProjectId} initialTasks={tasks ?? []} />
+          <div className="mt-10">
+            <MilestonesClient projectId={activeProjectId} initialMilestones={milestones ?? []} />
+          </div>
+          <div className="mt-10">
+            <PhotosClient
+              projectId={activeProjectId}
+              initialPhotos={photos ?? []}
+              initialUrls={photoUrls}
+            />
+          </div>
+          <div className="mt-10">
+            <AttendanceClient
+              projectId={activeProjectId}
+              workers={workers ?? []}
+              initialAttendance={attendance ?? []}
+            />
+          </div>
           <div className="mt-10">
             <DocumentsClient projectId={activeProjectId} initialDocuments={documents ?? []} />
           </div>

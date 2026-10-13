@@ -3,8 +3,8 @@
 //   npx supabase gen types typescript --project-id <id> > src/lib/database.types.ts
 
 export type TaskStatus = "todo" | "in_progress" | "done";
-export type DocumentCategory = "contratto" | "preventivo" | "altro";
-export type ProfileRole = "team" | "client";
+export type DocumentCategory = "contratto" | "preventivo" | "fattura" | "altro";
+export type ProfileRole = "team" | "client" | "owner";
 
 export interface Database {
   public: {
@@ -134,6 +134,160 @@ export interface Database {
         Relationships: [
           {
             foreignKeyName: "profiles_project_id_fkey";
+            columns: ["project_id"];
+            isOneToOne: false;
+            referencedRelation: "projects";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      workers: {
+        Row: {
+          id: string;
+          full_name: string;
+          phone: string | null;
+          photo_path: string | null;
+          active: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          full_name: string;
+          phone?: string | null;
+          photo_path?: string | null;
+          active?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          full_name?: string;
+          phone?: string | null;
+          photo_path?: string | null;
+          active?: boolean;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      attendance: {
+        Row: {
+          id: string;
+          worker_id: string;
+          project_id: string;
+          work_date: string;
+          note: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          worker_id: string;
+          project_id: string;
+          work_date: string;
+          note?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          worker_id?: string;
+          project_id?: string;
+          work_date?: string;
+          note?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "attendance_worker_id_fkey";
+            columns: ["worker_id"];
+            isOneToOne: false;
+            referencedRelation: "workers";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "attendance_project_id_fkey";
+            columns: ["project_id"];
+            isOneToOne: false;
+            referencedRelation: "projects";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      milestones: {
+        Row: {
+          id: string;
+          project_id: string;
+          title: string;
+          position: number;
+          due_date: string | null;
+          completed_at: string | null;
+          is_payment: boolean;
+          payment_label: string | null;
+          payment_amount: number | null;
+          payment_paid: boolean;
+          payment_paid_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          project_id: string;
+          title: string;
+          position?: number;
+          due_date?: string | null;
+          completed_at?: string | null;
+          is_payment?: boolean;
+          payment_label?: string | null;
+          payment_amount?: number | null;
+          payment_paid?: boolean;
+          payment_paid_at?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          project_id?: string;
+          title?: string;
+          position?: number;
+          due_date?: string | null;
+          completed_at?: string | null;
+          is_payment?: boolean;
+          payment_label?: string | null;
+          payment_amount?: number | null;
+          payment_paid?: boolean;
+          payment_paid_at?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "milestones_project_id_fkey";
+            columns: ["project_id"];
+            isOneToOne: false;
+            referencedRelation: "projects";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      photos: {
+        Row: {
+          id: string;
+          project_id: string;
+          file_path: string;
+          caption: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          project_id: string;
+          file_path: string;
+          caption?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          project_id?: string;
+          file_path?: string;
+          caption?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "photos_project_id_fkey";
             columns: ["project_id"];
             isOneToOne: false;
             referencedRelation: "projects";

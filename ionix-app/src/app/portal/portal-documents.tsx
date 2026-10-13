@@ -9,6 +9,7 @@ type Doc = Database["public"]["Tables"]["documents"]["Row"];
 const CATEGORY_LABEL: Record<DocumentCategory, string> = {
   contratto: "Contratto",
   preventivo: "Preventivo",
+  fattura: "Fattura",
   altro: "Altro",
 };
 

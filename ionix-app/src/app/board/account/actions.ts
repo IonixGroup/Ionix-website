@@ -11,7 +11,7 @@ function generatePassword() {
 
 export async function createAccount(formData: FormData) {
   const session = await getSessionProfile();
-  if (!session || session.profile?.role !== "team") {
+  if (!session || (session.profile?.role !== "team" && session.profile?.role !== "owner")) {
     return { error: "Non autorizzato." };
   }
 
@@ -20,7 +20,7 @@ export async function createAccount(formData: FormData) {
   const role = String(formData.get("role") || "");
   const projectId = String(formData.get("project_id") || "");
 
-  if (!email || (role !== "team" && role !== "client")) {
+  if (!email || (role !== "team" && role !== "client" && role !== "owner")) {
     return { error: "Dati mancanti." };
   }
   if (role === "client" && !projectId) {
