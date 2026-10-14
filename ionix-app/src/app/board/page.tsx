@@ -10,6 +10,7 @@ import AttendanceClient from "./attendance-client";
 import MilestonesClient from "./milestones-client";
 import PhotosClient from "./photos-client";
 import ProjectTeamClient from "./project-team-client";
+import ProjectManagerClient from "./project-manager-client";
 
 export const dynamic = "force-dynamic";
 
@@ -182,23 +183,7 @@ export default async function BoardPage(props: PageProps<"/board">) {
         )}
       </div>
 
-      {projects && projects.length > 1 && (
-        <div className="flex flex-wrap gap-2 mb-8">
-          {projects.map((p) => (
-            <Link
-              key={p.id}
-              href={`/board?project=${p.id}`}
-              className={`font-mono text-[10px] tracking-[0.1em] uppercase px-3 py-2 border ${
-                p.id === activeProjectId
-                  ? "bg-ink text-paper border-ink"
-                  : "border-hair text-ink-2 hover:text-ink"
-              }`}
-            >
-              {p.name}
-            </Link>
-          ))}
-        </div>
-      )}
+      <ProjectManagerClient projects={projects ?? []} activeProjectId={activeProjectId} />
 
       {activeProjectId ? (
         <>
