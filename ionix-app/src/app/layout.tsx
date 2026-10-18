@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import SwRegister from "./sw-register";
 import "./globals.css";
 
 const bodoni = localFont({
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${bodoni.variable} ${plexMono.variable} ${inter.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink font-sans antialiased">
+        <SwRegister />
         {children}
       </body>
     </html>
